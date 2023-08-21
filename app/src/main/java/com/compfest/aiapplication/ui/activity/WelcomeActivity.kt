@@ -1,4 +1,4 @@
-package com.compfest.aiapplication.ui
+package com.compfest.aiapplication.ui.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +13,7 @@ class WelcomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnNext.setOnClickListener {
-            intent = Intent(this, HomeActivity::class.java)
+            intent = Intent(this, MainActivity::class.java)
             getUserName(intent)
             startActivity(intent)
         }
