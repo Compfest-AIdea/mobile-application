@@ -3,6 +3,7 @@ package com.compfest.aiapplication.ui.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.compfest.aiapplication.databinding.ActivityMainBinding
+import com.compfest.aiapplication.ui.fragment.HomeFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -11,6 +12,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setSupportActionBar(binding.toolbar1.root)
+
         binding.bottomNavView.menu.getItem(1).isEnabled = false
+
+        supportFragmentManager.beginTransaction()
+            .add(binding.fragmentContainer.id, HomeFragment())
+            .commit()
+
     }
 }
