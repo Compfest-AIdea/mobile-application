@@ -24,13 +24,15 @@
                 android:id="@+id/tv_welcome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/font_inria_sans"
                 android:text="Welcome!"
                 android:textAllCaps="true"
                 android:textSize="42sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/font_inria_sans"
                 android:text="We are happy to see you here"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -46,10 +48,11 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/font_inria_sans"
                 android:text="What is your name?"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp"/>
+                android:textStyle="bold" />
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -75,6 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
+                android:fontFamily="@font/font_kanit"
                 android:text="Next"
                 android:textAllCaps="false" />
 
