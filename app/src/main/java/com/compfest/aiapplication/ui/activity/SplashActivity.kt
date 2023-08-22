@@ -3,10 +3,10 @@ package com.compfest.aiapplication.ui.activity
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import androidx.appcompat.app.AppCompatActivity
 import com.compfest.aiapplication.LOGIN_PREF
 import com.compfest.aiapplication.LOGIN_STATUS
 import com.compfest.aiapplication.R

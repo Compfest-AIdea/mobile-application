@@ -6,34 +6,103 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.HomeFragment">
 
-    <androidx.constraintlayout.utils.widget.ImageFilterView
-        android:id="@+id/card_recent_check"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:padding="12dp"
+        android:id="@+id/container_recent_activity"
         android:layout_width="match_parent"
-        android:layout_height="96dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_frame_bkg"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/rounded_frame_bkg"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/layout_recent_activity"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:background="@drawable/rounded_frame_bkg"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="0.7"
+            android:orientation="vertical">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_kanit"
+                android:text="Recent check-up"
+                android:textSize="20sp" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_kanit"
+                android:text="23 Jan 2023 08:08 AM"
+                android:textSize="12sp" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_kanit"
+                android:text="Your Health"
+                android:textSize="20sp" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_kanit"
+                android:text="Good"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_next"
+                android:layout_gravity="end"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_title_activity_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/card_recent_check"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/font_inria_sans"
         android:text="Activity List"
-        android:textStyle="bold"/>
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/container_recent_activity" />
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/container_activity_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_activity_list"
+        android:background="@drawable/rounded_frame_bkg"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/rounded_frame_bkg"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_activity_list" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font_kanit"
+        android:text="Nothing to see here"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/container_activity_list"
+        app:layout_constraintEnd_toEndOf="@id/container_activity_list"
+        app:layout_constraintStart_toStartOf="@id/container_activity_list"
+        app:layout_constraintTop_toTopOf="@id/container_activity_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
