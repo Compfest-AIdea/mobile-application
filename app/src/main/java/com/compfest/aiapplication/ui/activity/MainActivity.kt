@@ -1,5 +1,6 @@
 package com.compfest.aiapplication.ui.activity
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
@@ -31,6 +32,9 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
 
         binding.bottomNavView.menu.getItem(1).isEnabled = false
         binding.bottomNavView.setOnItemSelectedListener(this)
+        binding.fabAddNew.setOnClickListener {
+            startActivity(Intent(this, AddActivity::class.java))
+        }
 
         supportFragmentManager.beginTransaction()
             .add(binding.fragmentContainer.id, HomeFragment())
