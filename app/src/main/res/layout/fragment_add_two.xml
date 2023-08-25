@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.AddFragmentOne">
+    tools:context=".ui.fragment.AddFragmentTwo">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_title_activity_list"
@@ -39,14 +39,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_inria_sans"
-                android:text="Stay up late"
+                android:text="Pressure level"
                 android:textSize="16sp"
                 android:textStyle="bold" />
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_inria_sans"
-                android:text="How many hours have you stayed up late?"
+                android:text="Your level of pressure"
                 android:textSize="16sp" />
             <androidx.appcompat.widget.AppCompatEditText
                 android:layout_width="match_parent"
@@ -70,14 +70,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_inria_sans"
-                android:text="Coffee consumed"
+                android:text="Stress level"
                 android:textSize="16sp"
                 android:textStyle="bold" />
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_inria_sans"
-                android:text="How many cups of coffee have you consumed?"
+                android:text="Your level of stress"
                 android:textSize="16sp" />
             <androidx.appcompat.widget.AppCompatEditText
                 android:layout_width="match_parent"
@@ -101,14 +101,76 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_inria_sans"
-                android:text="Brain working duration"
+                android:text="Swimming"
                 android:textSize="16sp"
                 android:textStyle="bold" />
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_inria_sans"
-                android:text="How many hours have you spent on work which requires brain power?"
+                android:text="Have you swimmed today?"
+                android:textSize="16sp" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/rounded_frame_input_bkg"
+                android:hint="integer value"
+                android:padding="16dp"
+                android:textSize="16sp"
+                android:inputType="number" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_inria_sans"
+                android:text="Hair washing"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_inria_sans"
+                android:text="Have you washed your hair today?"
+                android:textSize="16sp" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/rounded_frame_input_bkg"
+                android:hint="integer value"
+                android:padding="16dp"
+                android:textSize="16sp"
+                android:inputType="number" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_inria_sans"
+                android:text="Dandruff"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_inria_sans"
+                android:text="Does you get any dandruff on your scalp?"
                 android:textSize="16sp" />
             <androidx.appcompat.widget.AppCompatEditText
                 android:layout_width="match_parent"
@@ -120,7 +182,7 @@
                 android:textSize="16sp"
                 android:inputType="number" />
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_next_one"
+                android:id="@+id/btn_next_two"
                 android:layout_marginTop="16dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="80dp"

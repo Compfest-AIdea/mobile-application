@@ -5,8 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import androidx.constraintlayout.utils.widget.ImageFilterButton
 import com.compfest.aiapplication.R
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -15,10 +16,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [AddFragmentOne.newInstance] factory method to
+ * Use the [AddFragmentThree.newInstance] factory method to
  * create an instance of this fragment.
  */
-class AddFragmentOne : Fragment() {
+class AddFragmentThree : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -36,15 +37,17 @@ class AddFragmentOne : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_one, container, false)
+        return inflater.inflate(R.layout.fragment_add_three, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val nextButton: Button = view.findViewById(R.id.btn_next_one)
-        nextButton.setOnClickListener {
-            val fragmentManager = parentFragmentManager
-            fragmentManager.beginTransaction().replace(R.id.fragment_container, AddFragmentTwo()).addToBackStack(AddFragmentOne::class.java.simpleName).commit()
+        val btnShowBottomSheet: ImageFilterButton = view.findViewById(R.id.ifb_add_images)
+        val bsAddImages = BottomSheetDialog(requireContext())
+        btnShowBottomSheet.setOnClickListener {
+            val bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet_add_images, null)
+            bsAddImages.setContentView(bottomSheetView)
+            bsAddImages.show()
         }
     }
 
@@ -55,12 +58,12 @@ class AddFragmentOne : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment AddFragmentOne.
+         * @return A new instance of fragment AddFragmentThree.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            AddFragmentOne().apply {
+            AddFragmentThree().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
