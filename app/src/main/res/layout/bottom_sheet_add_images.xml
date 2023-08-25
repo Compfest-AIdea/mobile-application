@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/list_photos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:paddingStart="28dp"
+        android:paddingEnd="28dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:id="@+id/iv_add_img_1"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_add"
+            android:background="@drawable/rounded_frame_bkg"/>
+        <ImageView
+            android:id="@+id/iv_add_img_2"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_add"
+            android:background="@drawable/rounded_frame_bkg"/>
+        <ImageView
+            android:id="@+id/iv_add_img_3"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_add"
+            android:background="@drawable/rounded_frame_bkg"/>
+        <ImageView
+            android:id="@+id/iv_add_img_4"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_add"
+            android:background="@drawable/rounded_frame_bkg"/>
+        <ImageView
+            android:id="@+id/iv_add_img_5"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_add"
+            android:background="@drawable/rounded_frame_bkg"/>
+        
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/list_photos">
+
+        <ImageView
+            android:id="@+id/iv_img_preview"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/ic_photo_fill"
+            android:background="@drawable/rounded_frame_bkg"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/iv_img_preview"
+            android:text="Adjust the pictures taken"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_title"
+            android:layout_toEndOf="@id/iv_img_preview"
+            android:text="If it doesn't fit, you can click on the image to take another picture"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal"
+            android:layout_below="@id/iv_img_preview">
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:layout_marginEnd="25dp"
+                android:layout_height="wrap_content"
+                android:text="Cancel" />
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:layout_marginStart="15dp"
+                android:text="Save"
+                android:textAllCaps="false" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

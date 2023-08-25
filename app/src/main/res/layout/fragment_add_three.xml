@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.AddFragmentOne">
+    tools:context=".ui.fragment.AddFragmentThree">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_title_activity_list"
@@ -39,96 +39,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_inria_sans"
-                android:text="Stay up late"
+                android:text="Image Data"
                 android:textSize="16sp"
                 android:textStyle="bold" />
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_inria_sans"
-                android:text="How many hours have you stayed up late?"
+                android:text="We need you to input your scalp image"
                 android:textSize="16sp" />
-            <androidx.appcompat.widget.AppCompatEditText
+            <androidx.constraintlayout.utils.widget.ImageFilterButton
+                android:id="@+id/ifb_add_images"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="140dp"
                 android:layout_marginTop="6dp"
                 android:background="@drawable/rounded_frame_input_bkg"
-                android:hint="integer value"
                 android:padding="16dp"
-                android:textSize="16sp"
+                android:src="@drawable/ic_add"
                 android:inputType="number" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_marginTop="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/font_inria_sans"
-                android:text="Coffee consumed"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/font_inria_sans"
-                android:text="How many cups of coffee have you consumed?"
-                android:textSize="16sp" />
-            <androidx.appcompat.widget.AppCompatEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:background="@drawable/rounded_frame_input_bkg"
-                android:hint="integer value"
-                android:padding="16dp"
-                android:textSize="16sp"
-                android:inputType="number" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_marginTop="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/font_inria_sans"
-                android:text="Brain working duration"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/font_inria_sans"
-                android:text="How many hours have you spent on work which requires brain power?"
-                android:textSize="16sp" />
-            <androidx.appcompat.widget.AppCompatEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:background="@drawable/rounded_frame_input_bkg"
-                android:hint="integer value"
-                android:padding="16dp"
-                android:textSize="16sp"
-                android:inputType="number" />
-            <androidx.appcompat.widget.AppCompatButton
+            <Button
                 android:id="@+id/btn_next_one"
+                android:layout_width="160dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:background="@drawable/circle_frame_button_bkg"
-                android:foreground="@drawable/ic_arrow_next"/>
-
+                android:text="Submit" />
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -138,8 +74,7 @@
                     android:id="@+id/page_one"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/circle_dot_indicator"
-                    android:tint="@android:color/darker_gray" />
+                    android:src="@drawable/circle_dot_indicator" />
 
                 <androidx.constraintlayout.utils.widget.ImageFilterView
                     android:id="@+id/page_two"
@@ -153,7 +88,8 @@
                     android:id="@+id/page_three"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/circle_dot_indicator" />
+                    android:src="@drawable/circle_dot_indicator"
+                    android:tint="@android:color/darker_gray" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>

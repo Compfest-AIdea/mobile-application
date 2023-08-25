@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.compfest.aiapplication.R
@@ -27,7 +26,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         sessionManager = SessionManager(this)
         val userName = sessionManager.getNickname()
         if (!userName.isNullOrBlank()) {
-            binding.toolbar1.tvAppName.text = sessionManager.getNickname()
+            binding.toolbar1.tvAppName.text = "Hello,".plus(userName.lowercase())
         }
 
         binding.bottomNavView.menu.getItem(1).isEnabled = false
@@ -58,9 +57,5 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
             }
             else -> false
         }
-    }
-
-    private fun showToast() {
-        Toast.makeText(this, "Menu ini telah dipilih", Toast.LENGTH_SHORT).show()
     }
 }

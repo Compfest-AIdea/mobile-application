@@ -47,4 +47,10 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+
+    val camerax = "1.2.3"
+    implementation("androidx.camera:camera-camera2:${camerax}")
+    implementation("androidx.camera:camera-lifecycle:${camerax}")
+    implementation("androidx.camera:camera-view:${camerax}")
 }
