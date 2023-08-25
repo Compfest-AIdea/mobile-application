@@ -48,15 +48,13 @@
                 android:fontFamily="@font/font_inria_sans"
                 android:text="Your level of pressure"
                 android:textSize="16sp" />
-            <androidx.appcompat.widget.AppCompatEditText
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinner_level_of_pressure"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginTop="6dp"
                 android:background="@drawable/rounded_frame_input_bkg"
-                android:hint="integer value"
-                android:padding="16dp"
-                android:textSize="16sp"
-                android:inputType="number" />
+                android:padding="16dp"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -79,15 +77,13 @@
                 android:fontFamily="@font/font_inria_sans"
                 android:text="Your level of stress"
                 android:textSize="16sp" />
-            <androidx.appcompat.widget.AppCompatEditText
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinner_level_of_stress"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginTop="6dp"
                 android:background="@drawable/rounded_frame_input_bkg"
-                android:hint="integer value"
-                android:padding="16dp"
-                android:textSize="16sp"
-                android:inputType="number" />
+                android:padding="16dp" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -110,15 +106,13 @@
                 android:fontFamily="@font/font_inria_sans"
                 android:text="Have you swimmed today?"
                 android:textSize="16sp" />
-            <androidx.appcompat.widget.AppCompatEditText
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinner_have_swimmed_bool"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginTop="6dp"
                 android:background="@drawable/rounded_frame_input_bkg"
-                android:hint="integer value"
-                android:padding="16dp"
-                android:textSize="16sp"
-                android:inputType="number" />
+                android:padding="16dp" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -141,15 +135,13 @@
                 android:fontFamily="@font/font_inria_sans"
                 android:text="Have you washed your hair today?"
                 android:textSize="16sp" />
-            <androidx.appcompat.widget.AppCompatEditText
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinner_hair_washed_bool"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginTop="6dp"
                 android:background="@drawable/rounded_frame_input_bkg"
-                android:hint="integer value"
-                android:padding="16dp"
-                android:textSize="16sp"
-                android:inputType="number" />
+                android:padding="16dp" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -172,23 +164,48 @@
                 android:fontFamily="@font/font_inria_sans"
                 android:text="Does you get any dandruff on your scalp?"
                 android:textSize="16sp" />
-            <androidx.appcompat.widget.AppCompatEditText
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinner_dandruff_condition_lvl"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginTop="6dp"
                 android:background="@drawable/rounded_frame_input_bkg"
-                android:hint="integer value"
-                android:padding="16dp"
-                android:textSize="16sp"
-                android:inputType="number" />
+                android:padding="16dp"/>
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_next_two"
                 android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:background="@drawable/circle_frame_button_bkg"
                 android:foreground="@drawable/ic_arrow_next"/>
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <androidx.constraintlayout.utils.widget.ImageFilterView
+                    android:id="@+id/page_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/circle_dot_indicator" />
+
+                <androidx.constraintlayout.utils.widget.ImageFilterView
+                    android:id="@+id/page_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/circle_dot_indicator"
+                    android:tint="@android:color/darker_gray" />
+
+                <androidx.constraintlayout.utils.widget.ImageFilterView
+                    android:id="@+id/page_three"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/circle_dot_indicator" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

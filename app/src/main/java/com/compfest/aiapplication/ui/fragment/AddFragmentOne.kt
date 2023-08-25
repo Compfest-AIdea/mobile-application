@@ -1,12 +1,18 @@
 package com.compfest.aiapplication.ui.fragment
 
+import android.graphics.BlendMode
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.annotation.RequiresApi
+import androidx.core.content.res.ResourcesCompat
 import com.compfest.aiapplication.R
+import com.compfest.aiapplication.databinding.FragmentAddOneBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,6 +26,8 @@ private const val ARG_PARAM2 = "param2"
  */
 class AddFragmentOne : Fragment() {
     // TODO: Rename and change types of parameters
+    private var _binding: FragmentAddOneBinding? = null
+    private val binding get() = _binding!!
     private var param1: String? = null
     private var param2: String? = null
 
@@ -36,12 +44,14 @@ class AddFragmentOne : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_one, container, false)
+        _binding = FragmentAddOneBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val nextButton: Button = view.findViewById(R.id.btn_next_one)
+        val nextButton = binding.btnNextOne
         nextButton.setOnClickListener {
             val fragmentManager = parentFragmentManager
             fragmentManager.beginTransaction().replace(R.id.fragment_container, AddFragmentTwo()).addToBackStack(AddFragmentOne::class.java.simpleName).commit()

@@ -63,7 +63,34 @@
                 android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
                 android:text="Submit" />
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <androidx.constraintlayout.utils.widget.ImageFilterView
+                    android:id="@+id/page_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/circle_dot_indicator" />
+
+                <androidx.constraintlayout.utils.widget.ImageFilterView
+                    android:id="@+id/page_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/circle_dot_indicator" />
+
+                <androidx.constraintlayout.utils.widget.ImageFilterView
+                    android:id="@+id/page_three"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/circle_dot_indicator"
+                    android:tint="@android:color/darker_gray" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

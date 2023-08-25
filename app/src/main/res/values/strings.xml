@@ -2,4 +2,20 @@
     <string name="app_name">AIApplication</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="sense_level">
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
+        <item>Very High</item>
+    </string-array>
+    <string-array name="bool_val">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string-array name="condition_level">
+        <item>None</item>
+        <item>Few</item>
+        <item>Many</item>
+    </string-array>
 </resources>
