@@ -1,13 +1,13 @@
 package com.compfest.aiapplication.ui.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
+import androidx.fragment.app.Fragment
 import com.compfest.aiapplication.R
 import com.compfest.aiapplication.databinding.FragmentAddTwoBinding
 

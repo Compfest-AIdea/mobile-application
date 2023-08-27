@@ -1,16 +1,12 @@
 package com.compfest.aiapplication.ui.fragment
 
-import android.graphics.BlendMode
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.annotation.RequiresApi
-import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.Fragment
 import com.compfest.aiapplication.R
 import com.compfest.aiapplication.databinding.FragmentAddOneBinding
 

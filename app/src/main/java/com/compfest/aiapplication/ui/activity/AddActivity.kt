@@ -1,13 +1,10 @@
 package com.compfest.aiapplication.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.marginStart
-import com.compfest.aiapplication.R
+import androidx.appcompat.app.AppCompatActivity
 import com.compfest.aiapplication.databinding.ActivityAddBinding
 import com.compfest.aiapplication.ui.fragment.AddFragmentOne
-import com.compfest.aiapplication.ui.fragment.HomeFragment
 
 class AddActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddBinding

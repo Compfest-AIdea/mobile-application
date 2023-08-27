@@ -1,12 +1,14 @@
 package com.compfest.aiapplication.ui.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.utils.widget.ImageFilterButton
+import androidx.fragment.app.Fragment
 import com.compfest.aiapplication.R
+import com.compfest.aiapplication.databinding.BottomSheetAddImagesBinding
+import com.compfest.aiapplication.databinding.FragmentAddThreeBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 // TODO: Rename parameter arguments, choose names that match
@@ -21,6 +23,10 @@ private const val ARG_PARAM2 = "param2"
  */
 class AddFragmentThree : Fragment() {
     // TODO: Rename and change types of parameters
+    private var _binding: FragmentAddThreeBinding? = null
+    private val binding get() = _binding!!
+    private var _bottomSheetVBinding: BottomSheetAddImagesBinding? = null
+    private val bottomSheetVBinding get() = _bottomSheetVBinding!!
     private var param1: String? = null
     private var param2: String? = null
 
@@ -37,17 +43,23 @@ class AddFragmentThree : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_three, container, false)
+        _binding = FragmentAddThreeBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val btnShowBottomSheet: ImageFilterButton = view.findViewById(R.id.ifb_add_images)
+        val btnShowBottomSheet = binding.ifbAddImages
         val bsAddImages = BottomSheetDialog(requireContext())
         btnShowBottomSheet.setOnClickListener {
             val bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet_add_images, null)
+            _bottomSheetVBinding = BottomSheetAddImagesBinding.bind(bottomSheetView)
             bsAddImages.setContentView(bottomSheetView)
             bsAddImages.show()
+
+            bottomSheetVBinding.ivBottomSheetModal.setOnClickListener {
+                Log.d("BottomSheet", "Add new images")
+            }
         }
     }
 
@@ -69,5 +81,7 @@ class AddFragmentThree : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+
+        const val REQUEST_IMAGE_CAPTURE = 1
     }
 }
