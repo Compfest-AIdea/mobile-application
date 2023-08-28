@@ -1,5 +1,6 @@
 package com.compfest.aiapplication
 
+import android.app.Application
 import android.content.ContentResolver
 import android.content.Context
 import android.graphics.Bitmap
@@ -7,9 +8,12 @@ import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.net.Uri
 import android.os.Environment
+import android.util.Log
+import android.widget.Toast
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
+import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 import java.text.SimpleDateFormat
@@ -64,4 +68,42 @@ fun resizeBitmap(bitmap: Bitmap, maxWidth: Int, maxHeight: Int): Bitmap {
 fun createCustomTempFile(context: Context): File {
     val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
     return File.createTempFile(timeStamp, ".jpg", storageDir)
+}
+
+fun createFile(application: Application): File {
+    val mediaDir = application.externalMediaDirs.firstOrNull()?.let {
+        File(it, application.resources.getString(R.string.app_name)).apply { mkdirs() }
+    }
+
+    val outputDirectory = if (
+        mediaDir != null && mediaDir.exists()
+    ) mediaDir else application.filesDir
+
+    return File(outputDirectory, "$timeStamp.jpg")
+}
+
+fun saveImage(bitmap: Bitmap?, context: Context) {
+    bitmap?.let {
+        val externalDir = context.getExternalFilesDir(null)
+        if (externalDir != null) {
+            val imageFile = File(externalDir, "captured_image.jpg")
+            try {
+                val outputStream = FileOutputStream(imageFile)
+                it.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+                outputStream.close()
+                Log.d("Saving", "Success")
+                Toast.makeText(context, "ImageSaved", Toast.LENGTH_LONG).show()
+            } catch (e: IOException) {
+                e.printStackTrace()
+                Log.d("Saving", "Fail")
+                Toast.makeText(context, "Failed to save image", Toast.LENGTH_LONG).show()
+            }
+        } else {
+            Log.d("Saving", "Unavailable")
+            Toast.makeText(context, "External storage not available", Toast.LENGTH_SHORT).show()
+        }
+    } ?: run {
+        Log.d("Saving", "No image")
+        Toast.makeText(context, "No image to save", Toast.LENGTH_SHORT).show()
+    }
 }

@@ -1,14 +1,23 @@
 package com.compfest.aiapplication.ui.fragment
 
+import android.Manifest
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.os.Bundle
-import android.util.Log
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.compfest.aiapplication.CAMERA_PERMISSION_REQUEST
 import com.compfest.aiapplication.R
 import com.compfest.aiapplication.databinding.BottomSheetAddImagesBinding
 import com.compfest.aiapplication.databinding.FragmentAddThreeBinding
+import com.compfest.aiapplication.saveImage
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 // TODO: Rename parameter arguments, choose names that match
@@ -25,10 +34,11 @@ class AddFragmentThree : Fragment() {
     // TODO: Rename and change types of parameters
     private var _binding: FragmentAddThreeBinding? = null
     private val binding get() = _binding!!
-    private var _bottomSheetVBinding: BottomSheetAddImagesBinding? = null
-    private val bottomSheetVBinding get() = _bottomSheetVBinding!!
+    private var _bottomSheetBinding: BottomSheetAddImagesBinding? = null
+    private val bottomSheetBinding get() = _bottomSheetBinding!!
     private var param1: String? = null
     private var param2: String? = null
+    private var imgBitmap: Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,13 +63,63 @@ class AddFragmentThree : Fragment() {
         val bsAddImages = BottomSheetDialog(requireContext())
         btnShowBottomSheet.setOnClickListener {
             val bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet_add_images, null)
-            _bottomSheetVBinding = BottomSheetAddImagesBinding.bind(bottomSheetView)
+            _bottomSheetBinding = BottomSheetAddImagesBinding.bind(bottomSheetView)
+            bsAddImages.setCancelable(false)
             bsAddImages.setContentView(bottomSheetView)
             bsAddImages.show()
 
-            bottomSheetVBinding.ivBottomSheetModal.setOnClickListener {
-                Log.d("BottomSheet", "Add new images")
+            bottomSheetBinding.ivImgPreview.setOnClickListener {
+                if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                    startCamera()
+                } else {
+                    ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.CAMERA), CAMERA_PERMISSION_REQUEST)
+                }
             }
+
+            bottomSheetBinding.btnCancel.setOnClickListener {
+                bsAddImages.dismiss()
+            }
+
+            bottomSheetBinding.btnSave.setOnClickListener {
+                //
+            }
+        }
+    }
+
+    @Suppress("DEPRECATION")
+    private fun startCamera() {
+        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == CAMERA_PERMISSION_REQUEST) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                startCamera()
+            }
+        }
+    }
+
+    @Deprecated("Deprecated in Java")
+    @Suppress("DEPRECATION")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+            val imageBitmap = data?.extras?.get("data") as Bitmap
+            imgBitmap = imageBitmap
+            bottomSheetBinding.ivImgPreview.setImageBitmap(imageBitmap)
+        }
+    }
+
+    private fun setSaveBtnBehavior() {
+        bottomSheetBinding.btnSave.setOnClickListener {
+            saveImage(imgBitmap, requireContext())
         }
     }
 
@@ -82,6 +142,6 @@ class AddFragmentThree : Fragment() {
                 }
             }
 
-        const val REQUEST_IMAGE_CAPTURE = 1
+        const val REQUEST_IMAGE_CAPTURE = 101
     }
 }

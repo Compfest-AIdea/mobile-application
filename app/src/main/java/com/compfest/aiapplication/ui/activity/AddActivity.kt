@@ -19,4 +19,8 @@ class AddActivity : AppCompatActivity() {
             .add(binding.fragmentContainer.id, AddFragmentOne())
             .commit()
     }
+
+    companion object {
+        const val CAMERA_X_RESULT = 200
+    }
 }

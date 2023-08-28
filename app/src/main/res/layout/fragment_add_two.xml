@@ -1,214 +1,227 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragment.AddFragmentTwo">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_title_activity_list"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/font_inria_sans"
-        android:text="Add New Data"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/container_activity_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:padding="16dp"
-        android:background="@drawable/rounded_frame_bkg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_activity_list"
-        android:orientation="vertical">
-
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title_activity_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/font_inria_sans"
-                android:text="Pressure level"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/font_inria_sans"
-                android:text="Your level of pressure"
-                android:textSize="16sp" />
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/spinner_level_of_pressure"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="6dp"
-                android:background="@drawable/rounded_frame_input_bkg"
-                android:padding="16dp"/>
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
+            android:fontFamily="@font/font_inria_sans"
+            android:text="Add New Data"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_marginTop="12dp"
+            android:id="@+id/container_activity_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:padding="16dp"
+            android:background="@drawable/rounded_frame_bkg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_activity_list"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/font_inria_sans"
-                android:text="Stress level"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/font_inria_sans"
-                android:text="Your level of stress"
-                android:textSize="16sp" />
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/spinner_level_of_stress"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="6dp"
-                android:background="@drawable/rounded_frame_input_bkg"
-                android:padding="16dp" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_marginTop="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/font_inria_sans"
-                android:text="Swimming"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/font_inria_sans"
-                android:text="Have you swimmed today?"
-                android:textSize="16sp" />
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/spinner_have_swimmed_bool"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="6dp"
-                android:background="@drawable/rounded_frame_input_bkg"
-                android:padding="16dp" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_marginTop="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/font_inria_sans"
-                android:text="Hair washing"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/font_inria_sans"
-                android:text="Have you washed your hair today?"
-                android:textSize="16sp" />
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/spinner_hair_washed_bool"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="6dp"
-                android:background="@drawable/rounded_frame_input_bkg"
-                android:padding="16dp" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_marginTop="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/font_inria_sans"
-                android:text="Dandruff"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/font_inria_sans"
-                android:text="Does you get any dandruff on your scalp?"
-                android:textSize="16sp" />
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/spinner_dandruff_condition_lvl"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="6dp"
-                android:background="@drawable/rounded_frame_input_bkg"
-                android:padding="16dp"/>
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_next_two"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:background="@drawable/circle_frame_button_bkg"
-                android:foreground="@drawable/ic_arrow_next"/>
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
-                <androidx.constraintlayout.utils.widget.ImageFilterView
-                    android:id="@+id/page_one"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/circle_dot_indicator" />
+                android:orientation="vertical">
 
-                <androidx.constraintlayout.utils.widget.ImageFilterView
-                    android:id="@+id/page_two"
-                    android:layout_width="wrap_content"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:src="@drawable/circle_dot_indicator"
-                    android:tint="@android:color/darker_gray" />
+                    android:fontFamily="@font/font_inria_sans"
+                    android:text="Pressure level"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_inria_sans"
+                    android:text="Your level of pressure"
+                    android:textSize="16sp" />
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner_level_of_pressure"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/rounded_frame_input_bkg"
+                    android:padding="16dp"/>
 
-                <androidx.constraintlayout.utils.widget.ImageFilterView
-                    android:id="@+id/page_three"
-                    android:layout_width="wrap_content"
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_marginTop="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/circle_dot_indicator" />
+                    android:fontFamily="@font/font_inria_sans"
+                    android:text="Stress level"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_inria_sans"
+                    android:text="Your level of stress"
+                    android:textSize="16sp" />
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner_level_of_stress"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/rounded_frame_input_bkg"
+                    android:padding="16dp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_marginTop="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_inria_sans"
+                    android:text="Swimming"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_inria_sans"
+                    android:text="Have you swimmed today?"
+                    android:textSize="16sp" />
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner_have_swimmed_bool"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/rounded_frame_input_bkg"
+                    android:padding="16dp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_marginTop="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_inria_sans"
+                    android:text="Hair washing"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_inria_sans"
+                    android:text="Have you washed your hair today?"
+                    android:textSize="16sp" />
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner_hair_washed_bool"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/rounded_frame_input_bkg"
+                    android:padding="16dp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_marginTop="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_inria_sans"
+                    android:text="Dandruff"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_inria_sans"
+                    android:text="Does you get any dandruff on your scalp?"
+                    android:textSize="16sp" />
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner_dandruff_condition_lvl"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/rounded_frame_input_bkg"
+                    android:padding="16dp"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_next_two"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@drawable/circle_frame_button_bkg"
+                    android:foreground="@drawable/ic_arrow_next"/>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <androidx.constraintlayout.utils.widget.ImageFilterView
+                        android:id="@+id/page_one"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/circle_dot_indicator" />
+
+                    <androidx.constraintlayout.utils.widget.ImageFilterView
+                        android:id="@+id/page_two"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/circle_dot_indicator"
+                        android:tint="@android:color/darker_gray" />
+
+                    <androidx.constraintlayout.utils.widget.ImageFilterView
+                        android:id="@+id/page_three"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/circle_dot_indicator" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/container_activity_list"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
