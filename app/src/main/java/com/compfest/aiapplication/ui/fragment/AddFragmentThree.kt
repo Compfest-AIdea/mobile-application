@@ -81,7 +81,9 @@ class AddFragmentThree : Fragment() {
             }
 
             bottomSheetBinding.btnSave.setOnClickListener {
-                //
+                if (imgBitmap != null) {
+                    saveImage(imgBitmap, requireContext())
+                }
             }
         }
     }
@@ -93,19 +95,6 @@ class AddFragmentThree : Fragment() {
     }
 
     @Deprecated("Deprecated in Java")
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        if (requestCode == CAMERA_PERMISSION_REQUEST) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                startCamera()
-            }
-        }
-    }
-
-    @Deprecated("Deprecated in Java")
     @Suppress("DEPRECATION")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -114,12 +103,6 @@ class AddFragmentThree : Fragment() {
             val imageBitmap = data?.extras?.get("data") as Bitmap
             imgBitmap = imageBitmap
             bottomSheetBinding.ivImgPreview.setImageBitmap(imageBitmap)
-        }
-    }
-
-    private fun setSaveBtnBehavior() {
-        bottomSheetBinding.btnSave.setOnClickListener {
-            saveImage(imgBitmap, requireContext())
         }
     }
 
