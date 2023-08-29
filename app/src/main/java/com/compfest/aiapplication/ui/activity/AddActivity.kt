@@ -3,17 +3,21 @@ package com.compfest.aiapplication.ui.activity
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.compfest.aiapplication.STORAGE_ACCESS_PERMISSION_REQUEST
 import com.compfest.aiapplication.databinding.ActivityAddBinding
+import com.compfest.aiapplication.model.AddViewModel
 import com.compfest.aiapplication.ui.fragment.AddFragmentOne
 
 class AddActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddBinding
+    private val viewModel: AddViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,8 +26,10 @@ class AddActivity : AppCompatActivity() {
 
         binding.toolbar1.ivLogo.visibility = View.GONE
         binding.toolbar1.tvAppName.text = "Add New"
+        val fragment = AddFragmentOne()
+        fragment.arguments = Bundle().apply { putString("Fragment", fragment::class.java.simpleName) }
         supportFragmentManager.beginTransaction()
-            .add(binding.fragmentContainer.id, AddFragmentOne())
+            .add(binding.fragmentContainer.id, fragment)
             .commit()
 
         if (!checkPermission()) {
@@ -59,5 +65,9 @@ class AddActivity : AppCompatActivity() {
                 Toast.makeText(this, "Permissions granted", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun showLogging(msg: String) {
+        Log.d(AddActivity::class.java.simpleName, msg)
     }
 }

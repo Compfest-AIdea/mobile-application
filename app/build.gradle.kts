@@ -48,6 +48,13 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+    implementation("androidx.activity:activity-ktx:1.7.2")
+    implementation("androidx.fragment:fragment-ktx:1.6.1")
+
+    val archLifecycle ="2.6.1"
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycle")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$archLifecycle")
+    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
 
     val camerax = "1.2.3"
     implementation("androidx.camera:camera-camera2:${camerax}")

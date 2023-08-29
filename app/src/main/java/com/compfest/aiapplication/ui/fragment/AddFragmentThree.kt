@@ -13,10 +13,12 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.compfest.aiapplication.CAMERA_PERMISSION_REQUEST
 import com.compfest.aiapplication.R
 import com.compfest.aiapplication.databinding.BottomSheetAddImagesBinding
 import com.compfest.aiapplication.databinding.FragmentAddThreeBinding
+import com.compfest.aiapplication.model.AddViewModel
 import com.compfest.aiapplication.saveImage
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
@@ -33,11 +35,13 @@ private const val ARG_PARAM2 = "param2"
 class AddFragmentThree : Fragment() {
     // TODO: Rename and change types of parameters
     private var _binding: FragmentAddThreeBinding? = null
+    private val viewModel: AddViewModel by viewModels()
     private val binding get() = _binding!!
     private var _bottomSheetBinding: BottomSheetAddImagesBinding? = null
     private val bottomSheetBinding get() = _bottomSheetBinding!!
     private var param1: String? = null
     private var param2: String? = null
+    private var thisFragmentName: String? = null
     private var imgBitmap: Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +49,7 @@ class AddFragmentThree : Fragment() {
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+            thisFragmentName = it.getString("Fragment")
         }
     }
 
