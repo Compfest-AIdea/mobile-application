@@ -49,6 +49,7 @@
                 android:text="How many hours have you stayed up late?"
                 android:textSize="16sp" />
             <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/stay_up_late"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -80,6 +81,7 @@
                 android:text="How many cups of coffee have you consumed?"
                 android:textSize="16sp" />
             <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/coffee_consumption"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -111,6 +113,7 @@
                 android:text="How many hours have you spent on work which requires brain power?"
                 android:textSize="16sp" />
             <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/brain_working_duration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
