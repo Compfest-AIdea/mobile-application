@@ -10,6 +10,8 @@ import android.net.Uri
 import android.os.Environment
 import android.util.Log
 import android.widget.Toast
+import com.compfest.aiapplication.data.Prediction
+import com.compfest.aiapplication.data.PredictionRepository
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream

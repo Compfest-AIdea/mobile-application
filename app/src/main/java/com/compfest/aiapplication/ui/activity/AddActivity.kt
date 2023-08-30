@@ -32,6 +32,8 @@ class AddActivity : AppCompatActivity() {
             .add(binding.fragmentContainer.id, fragment)
             .commit()
 
+        showLogging(viewModel.viewModelName)
+
         if (!checkPermission()) {
             requestPermission()
         }

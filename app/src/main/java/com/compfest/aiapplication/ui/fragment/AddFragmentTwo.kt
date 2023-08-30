@@ -8,10 +8,8 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.compfest.aiapplication.R
 import com.compfest.aiapplication.databinding.FragmentAddTwoBinding
-import com.compfest.aiapplication.model.AddViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +24,6 @@ private const val ARG_PARAM2 = "param2"
 class AddFragmentTwo : Fragment() {
     // TODO: Rename and change types of parameters
     private var _binding: FragmentAddTwoBinding? = null
-    private val viewModel: AddViewModel by viewModels()
     private val binding get() = _binding!!
     private var param1: String? = null
     private var param2: String? = null
@@ -47,6 +44,7 @@ class AddFragmentTwo : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentAddTwoBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
@@ -60,7 +58,6 @@ class AddFragmentTwo : Fragment() {
             val swimming = binding.spinnerHaveSwimmedBool.selectedItemPosition.toString()
             val hairWashing = binding.spinnerHairWashedBool.selectedItemPosition.toString()
             val dandruff = binding.spinnerDandruffConditionLvl.selectedItemPosition.toString()
-            viewModel.saveDataFragmentTwo(pressureLevel, stressLevel, swimming, hairWashing, dandruff)
 
             val fragment = AddFragmentThree()
             fragment.arguments = Bundle().apply { putString("Fragment", fragment::class.java.simpleName) }

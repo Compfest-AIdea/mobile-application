@@ -13,12 +13,10 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.compfest.aiapplication.CAMERA_PERMISSION_REQUEST
 import com.compfest.aiapplication.R
 import com.compfest.aiapplication.databinding.BottomSheetAddImagesBinding
 import com.compfest.aiapplication.databinding.FragmentAddThreeBinding
-import com.compfest.aiapplication.model.AddViewModel
 import com.compfest.aiapplication.saveImage
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
@@ -35,7 +33,6 @@ private const val ARG_PARAM2 = "param2"
 class AddFragmentThree : Fragment() {
     // TODO: Rename and change types of parameters
     private var _binding: FragmentAddThreeBinding? = null
-    private val viewModel: AddViewModel by viewModels()
     private val binding get() = _binding!!
     private var _bottomSheetBinding: BottomSheetAddImagesBinding? = null
     private val bottomSheetBinding get() = _bottomSheetBinding!!
@@ -59,37 +56,21 @@ class AddFragmentThree : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentAddThreeBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val btnShowBottomSheet = binding.ifbAddImages
         val bsAddImages = BottomSheetDialog(requireContext())
         btnShowBottomSheet.setOnClickListener {
-            val bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet_add_images, null)
-            _bottomSheetBinding = BottomSheetAddImagesBinding.bind(bottomSheetView)
-            bsAddImages.setCancelable(false)
-            bsAddImages.setContentView(bottomSheetView)
-            bsAddImages.show()
-
-            bottomSheetBinding.ivImgPreview.setOnClickListener {
-                if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                    startCamera()
-                } else {
-                    ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.CAMERA), CAMERA_PERMISSION_REQUEST)
-                }
-            }
-
-            bottomSheetBinding.btnCancel.setOnClickListener {
-                bsAddImages.dismiss()
-            }
-
-            bottomSheetBinding.btnSave.setOnClickListener {
-                if (imgBitmap != null) {
-                    saveImage(imgBitmap, requireContext())
-                }
-            }
+            setBottomSheet(bsAddImages)
+        }
+        val btnSubmitAll = binding.btnSubmitAll
+        btnSubmitAll.setOnClickListener {
+            //
         }
     }
 
@@ -109,6 +90,33 @@ class AddFragmentThree : Fragment() {
             imgBitmap = imageBitmap
             bottomSheetBinding.ivImgPreview.setImageBitmap(imageBitmap)
         }
+    }
+
+    private fun setBottomSheet(dialog: BottomSheetDialog) {
+        val bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet_add_images, null)
+        _bottomSheetBinding = BottomSheetAddImagesBinding.bind(bottomSheetView)
+        dialog.setCancelable(false)
+        dialog.setContentView(bottomSheetView)
+
+        bottomSheetBinding.ivImgPreview.setOnClickListener {
+            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                startCamera()
+            } else {
+                ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.CAMERA), CAMERA_PERMISSION_REQUEST)
+            }
+        }
+
+        bottomSheetBinding.btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        bottomSheetBinding.btnSave.setOnClickListener {
+            if (imgBitmap != null) {
+                saveImage(imgBitmap, requireContext())
+            }
+        }
+
+        dialog.show()
     }
 
     companion object {
