@@ -22,6 +22,7 @@ import com.compfest.aiapplication.CAMERA_PERMISSION_REQUEST
 import com.compfest.aiapplication.R
 import com.compfest.aiapplication.databinding.BottomSheetAddImagesBinding
 import com.compfest.aiapplication.databinding.FragmentAddThreeBinding
+import com.compfest.aiapplication.ml.HairlossModel
 import com.compfest.aiapplication.ml.ScalpModel
 import com.compfest.aiapplication.model.AddViewModel
 import com.compfest.aiapplication.saveImage
@@ -72,7 +73,6 @@ class AddFragmentThree : Fragment() {
     private var thisFragmentName: String? = null
     private var currentSelection: Int? = null
     private var imgBitmap: Bitmap? = null
-    private var interpreter: Interpreter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -125,7 +125,8 @@ class AddFragmentThree : Fragment() {
 
         val btnSubmitAll = binding.btnSubmitAll
         btnSubmitAll.setOnClickListener {
-            tryingMLImage(imageBitmap = imgBitmap as Bitmap)
+            //tryingMLImage(imageBitmap = imgBitmap as Bitmap)
+            tryingML()
         }
 
         viewModel.image1.observe(viewLifecycleOwner) {
@@ -315,45 +316,36 @@ class AddFragmentThree : Fragment() {
         for (value in outputArray) {
             Log.d("TestModel", value.toString())
         }
-        /*
-        val input = ByteBuffer.allocateDirect(150*150*3*4).order(ByteOrder.nativeOrder())
-        for (y in 0 until 150) {
-            for (x in 0 until 150) {
-                val px = bitmap.getPixel(x, y)
-
-                // Get channel values from the pixel value.
-                val r = Color.red(px)
-                val g = Color.green(px)
-                val b = Color.blue(px)
-
-                // Normalize channel values to [-1.0, 1.0]. This requirement depends on the model.
-                // For example, some models might require values to be normalized to the range
-                // [0.0, 1.0] instead.
-                val rf = (r - 127) / 255f
-                val gf = (g - 127) / 255f
-                val bf = (b - 127) / 255f
-
-                input.putFloat(rf)
-                input.putFloat(gf)
-                input.putFloat(bf)
-            }
-        }
-
-
-        val bufferSize = 5 * Float.SIZE / Byte.SIZE
-        val modelOutput = ByteBuffer.allocateDirect(bufferSize).order(ByteOrder.nativeOrder())
-
-        inputFeature0.loadBuffer(modelOutput)
-        val outputs = model.process(inputFeature0)
-
-        val outputFeature0 = outputs.outputFeature0AsTensorBuffer
-        model.close()
-
-        val result = outputFeature0.intArray
-        Log.d("Model Try", result.toString())
-        */
     }
 
+    private fun tryingML() {
+        val model = HairlossModel.newInstance(requireContext())
+
+        val byteBuffer = ByteBuffer.allocateDirect(4 * 8) // 4 bytes per float, 8 features
+        byteBuffer.order(ByteOrder.nativeOrder()) // Set byte order to native
+        val payload = viewModel.getInputData()
+        payload.values.forEach { value ->
+            byteBuffer.putFloat(value)
+        }
+        byteBuffer.rewind() // Reset buffer position to 0
+
+        // Creates inputs for reference.
+        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 8), DataType.FLOAT32)
+        inputFeature0.loadBuffer(byteBuffer)
+
+        // Runs model inference and gets result.
+        val outputs = model.process(inputFeature0)
+        val outputFeature0 = outputs.outputFeature0AsTensorBuffer
+
+        // Output hasil
+        println("Output:")
+        for (i in 0 until outputFeature0.typeSize) {
+            Log.d("ModelML","Class $i: ${outputFeature0.getFloatValue(i)}")
+        }
+
+// Releases model resources if no longer used.
+        model.close()
+    }
 
     companion object {
         /**
