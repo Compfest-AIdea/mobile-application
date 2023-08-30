@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.compfest.aiapplication.data.Prediction
 import com.compfest.aiapplication.ui.fragment.AddFragmentThree
+import com.google.firebase.ml.modeldownloader.CustomModelDownloadConditions
+import org.tensorflow.lite.Interpreter
 
 class AddViewModel: ViewModel() {
     private val _stayUpLate = MutableLiveData<Int>()

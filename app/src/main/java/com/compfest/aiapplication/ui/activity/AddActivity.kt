@@ -14,6 +14,11 @@ import com.compfest.aiapplication.STORAGE_ACCESS_PERMISSION_REQUEST
 import com.compfest.aiapplication.databinding.ActivityAddBinding
 import com.compfest.aiapplication.model.AddViewModel
 import com.compfest.aiapplication.ui.fragment.AddFragmentOne
+import com.google.firebase.ml.modeldownloader.CustomModel
+import com.google.firebase.ml.modeldownloader.CustomModelDownloadConditions
+import com.google.firebase.ml.modeldownloader.DownloadType
+import com.google.firebase.ml.modeldownloader.FirebaseModelDownloader
+import org.tensorflow.lite.Interpreter
 
 class AddActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddBinding
