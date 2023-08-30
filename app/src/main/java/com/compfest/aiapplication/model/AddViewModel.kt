@@ -5,8 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.compfest.aiapplication.data.Prediction
 import com.compfest.aiapplication.ui.fragment.AddFragmentThree
-import com.google.firebase.ml.modeldownloader.CustomModelDownloadConditions
-import org.tensorflow.lite.Interpreter
 
 class AddViewModel: ViewModel() {
     private val _stayUpLate = MutableLiveData<Int>()
@@ -47,7 +45,7 @@ class AddViewModel: ViewModel() {
         _dandruff.value = p4.toInt()
     }
 
-    fun submitAll() {
+    fun getInputData(): Map<String, Float> {
         val predictionData = Prediction(
             stayUpLate = stayUpLate.value as Int,
             coffeeConsumption = coffeeConsumption.value as Int,
@@ -57,6 +55,17 @@ class AddViewModel: ViewModel() {
             swimming = swimming.value as Int,
             hairWashing = hairWashing.value as Int,
             dandruff = dandruff.value as Int
+        )
+
+        return mapOf(
+            "stay_up_late" to predictionData.stayUpLate.toFloat(),
+            "coffee_consumed" to predictionData.coffeeConsumption.toFloat(),
+            "brain_working_duration" to predictionData.brainWorkingDuration.toFloat(),
+            "pressure_level" to predictionData.pressureLevel.toFloat(),
+            "stress_level" to predictionData.stressLevel.toFloat(),
+            "swimming" to predictionData.swimming.toFloat(),
+            "hair_washing" to predictionData.hairWashing.toFloat(),
+            "dandruff" to predictionData.dandruff.toFloat()
         )
     }
 
