@@ -1,8 +1,10 @@
 package com.compfest.aiapplication.model
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.compfest.aiapplication.data.Prediction
 
 class AddViewModel: ViewModel() {
     private val _stayUpLate = MutableLiveData<Int>()
@@ -42,4 +44,19 @@ class AddViewModel: ViewModel() {
         _hairWashing.value = p3.toInt()
         _dandruff.value = p4.toInt()
     }
+
+    fun submitAll() {
+        val predictionData = Prediction(
+            stayUpLate = stayUpLate.value as Int,
+            coffeeConsumption = coffeeConsumption.value as Int,
+            brainWorkingDuration = brainWorkingDuration.value as Int,
+            pressureLevel = pressureLevel.value as Int,
+            stressLevel = stressLevel.value as Int,
+            swimming = swimming.value as Int,
+            hairWashing = hairWashing.value as Int,
+            dandruff = dandruff.value as Int
+        )
+    }
+
+    val viewModelName: String = AddViewModel::class.java.simpleName
 }

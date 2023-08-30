@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -51,13 +52,15 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.7.2")
     implementation("androidx.fragment:fragment-ktx:1.6.1")
 
-    val archLifecycle ="2.6.1"
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycle")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$archLifecycle")
-    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    val lifecycle_version = "2.5.1"
+    // ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+    // LiveData
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
 
-    val camerax = "1.2.3"
-    implementation("androidx.camera:camera-camera2:${camerax}")
-    implementation("androidx.camera:camera-lifecycle:${camerax}")
-    implementation("androidx.camera:camera-view:${camerax}")
+    val room_version = "2.5.0"
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    // Kotlin Extensions and Coroutines support for Room
+    implementation("androidx.room:room-ktx:$room_version")
 }

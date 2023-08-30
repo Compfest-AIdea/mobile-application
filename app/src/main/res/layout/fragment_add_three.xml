@@ -58,7 +58,7 @@
                 android:src="@drawable/ic_add"
                 android:inputType="number" />
             <Button
-                android:id="@+id/btn_next_one"
+                android:id="@+id/btn_submit_all"
                 android:layout_width="160dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
