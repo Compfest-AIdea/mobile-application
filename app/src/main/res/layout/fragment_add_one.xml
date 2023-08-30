@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:background="@drawable/rounded_frame_input_bkg"
-                android:hint="integer value"
+                android:hint="0"
                 android:padding="16dp"
                 android:textSize="16sp"
                 android:inputType="number" />
@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:background="@drawable/rounded_frame_input_bkg"
-                android:hint="integer value"
+                android:hint="0"
                 android:padding="16dp"
                 android:textSize="16sp"
                 android:inputType="number" />
@@ -118,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:background="@drawable/rounded_frame_input_bkg"
-                android:hint="integer value"
+                android:hint="0"
                 android:padding="16dp"
                 android:textSize="16sp"
                 android:inputType="number" />

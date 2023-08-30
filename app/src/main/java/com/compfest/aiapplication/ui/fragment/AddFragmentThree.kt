@@ -5,20 +5,32 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.compfest.aiapplication.CAMERA_PERMISSION_REQUEST
 import com.compfest.aiapplication.R
 import com.compfest.aiapplication.databinding.BottomSheetAddImagesBinding
 import com.compfest.aiapplication.databinding.FragmentAddThreeBinding
+import com.compfest.aiapplication.model.AddViewModel
 import com.compfest.aiapplication.saveImage
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,9 +48,11 @@ class AddFragmentThree : Fragment() {
     private val binding get() = _binding!!
     private var _bottomSheetBinding: BottomSheetAddImagesBinding? = null
     private val bottomSheetBinding get() = _bottomSheetBinding!!
+    private val viewModel: AddViewModel by activityViewModels()
     private var param1: String? = null
     private var param2: String? = null
     private var thisFragmentName: String? = null
+    private var currentSelection: Int? = null
     private var imgBitmap: Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,14 +77,67 @@ class AddFragmentThree : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val btnShowBottomSheet = binding.ifbAddImages
+        val btnShowBottomSheet1 = binding.ivAddImg1
+        val btnShowBottomSheet2 = binding.ivAddImg2
+        val btnShowBottomSheet3 = binding.ivAddImg3
+        val btnShowBottomSheet4 = binding.ivAddImg4
+        val btnShowBottomSheet5 = binding.ivAddImg5
         val bsAddImages = BottomSheetDialog(requireContext())
-        btnShowBottomSheet.setOnClickListener {
+        btnShowBottomSheet1.setOnClickListener {
+            currentSelection = IMG_SELECTOR_1
             setBottomSheet(bsAddImages)
         }
+        btnShowBottomSheet2.setOnClickListener {
+            currentSelection = IMG_SELECTOR_2
+            setBottomSheet(bsAddImages)
+        }
+        btnShowBottomSheet3.setOnClickListener {
+            currentSelection = IMG_SELECTOR_3
+            setBottomSheet(bsAddImages)
+        }
+        btnShowBottomSheet4.setOnClickListener {
+            currentSelection = IMG_SELECTOR_4
+            setBottomSheet(bsAddImages)
+        }
+        btnShowBottomSheet5.setOnClickListener {
+            currentSelection = IMG_SELECTOR_5
+            setBottomSheet(bsAddImages)
+        }
+
         val btnSubmitAll = binding.btnSubmitAll
         btnSubmitAll.setOnClickListener {
             //
+        }
+
+        viewModel.image1.observe(viewLifecycleOwner) {
+            if (it != null) {
+                binding.ivAddImg1.setImageBitmap(getImageFromExternalStorage(it))
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
+        }
+        viewModel.image2.observe(viewLifecycleOwner) {
+            if (it != null) {
+                binding.ivAddImg2.setImageBitmap(getImageFromExternalStorage(it))
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
+        }
+        viewModel.image3.observe(viewLifecycleOwner) {
+            if (it != null) {
+                binding.ivAddImg3.setImageBitmap(getImageFromExternalStorage(it))
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
+        }
+        viewModel.image4.observe(viewLifecycleOwner) {
+            if (it != null) {
+                binding.ivAddImg4.setImageBitmap(getImageFromExternalStorage(it))
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
+        }
+        viewModel.image5.observe(viewLifecycleOwner) {
+            if (it != null) {
+                binding.ivAddImg5.setImageBitmap(getImageFromExternalStorage(it))
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -112,12 +179,85 @@ class AddFragmentThree : Fragment() {
 
         bottomSheetBinding.btnSave.setOnClickListener {
             if (imgBitmap != null) {
-                saveImage(imgBitmap, requireContext())
+                val imgSavedPath = saveImageToExternalStorage(imgBitmap)
+                viewModel.saveImage(imgSavedPath, currentSelection)
             }
         }
 
         dialog.show()
     }
+
+    /*
+    private fun setSelectImageToCapture() {
+        bottomSheetBinding.apply {
+            ivAddImg1.setOnClickListener {
+
+            }
+            ivAddImg2.setOnClickListener {
+
+            }
+            ivAddImg3.setOnClickListener {
+
+            }
+            ivAddImg4.setOnClickListener {
+
+            }
+            ivAddImg5.setOnClickListener {
+
+            }
+        }
+    }*/
+
+    private fun saveImageToExternalStorage(capturedImage: Bitmap?): String? {
+        capturedImage?.let { bitmap ->
+            val externalDir = requireContext().getExternalFilesDir(null)
+
+            if (externalDir != null) {
+                val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+                val imageFileName = "captured_image_$timestamp.jpg"
+                val imageFile = File(externalDir, imageFileName)
+                try {
+                    val fos = FileOutputStream(imageFile)
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos)
+                    fos.close()
+
+                    // Simpan path gambar ke Room database
+                    val imagePath = imageFile.absolutePath
+
+                    Toast.makeText(requireContext(), "Image saved", Toast.LENGTH_SHORT).show()
+                    return imagePath
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                    Toast.makeText(requireContext(), "Failed to save image", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "External storage not available",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        } ?: run {
+            Toast.makeText(requireContext(), "No image to save", Toast.LENGTH_SHORT).show()
+        }
+
+        return null
+    }
+
+    private fun getImageFromExternalStorage(imagePath: String): Bitmap? {
+        try {
+            val imageFile = File(imagePath)
+            if (imageFile.exists()) {
+                val bitmap = BitmapFactory.decodeFile(imageFile.absolutePath)
+                return bitmap
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return null
+    }
+
 
     companion object {
         /**
@@ -139,5 +279,10 @@ class AddFragmentThree : Fragment() {
             }
 
         const val REQUEST_IMAGE_CAPTURE = 101
+        const val IMG_SELECTOR_1 = 1
+        const val IMG_SELECTOR_2 = 2
+        const val IMG_SELECTOR_3 = 3
+        const val IMG_SELECTOR_4 = 4
+        const val IMG_SELECTOR_5 = 5
     }
 }
