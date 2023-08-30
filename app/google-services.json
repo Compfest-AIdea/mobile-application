@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "458604970370",
+    "project_id": "aidea-5f84a",
+    "storage_bucket": "aidea-5f84a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:458604970370:android:19018b014280e5dff8cf9b",
+        "android_client_info": {
+          "package_name": "com.compfest.aiapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "458604970370-jep6sev78hc48efh60s4sud4ot2c309p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAuX9cINKKXYGuBvoF1fKNMGzF8tYROaI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "458604970370-jep6sev78hc48efh60s4sud4ot2c309p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
