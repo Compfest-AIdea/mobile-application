@@ -35,9 +35,22 @@ data class Prediction(
 
     @ColumnInfo(name = "dandruff")
     val dandruff: Int,
+): Parcelable
 
-    @ColumnInfo(name = "imagePath")
-    val imagePath: ImagePath? = null
+@Parcelize
+data class PredictionImageResult(
+    val class1: Float,
+    val class2: Float,
+    val class3: Float,
+    val class4: Float,
+    val class5: Float
+): Parcelable
+
+@Parcelize
+data class PredictionTabularResult(
+    val class1: String,
+    val class2: String,
+    val class3: String
 ): Parcelable
 
 @Parcelize

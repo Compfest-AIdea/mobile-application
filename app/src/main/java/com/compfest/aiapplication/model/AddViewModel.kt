@@ -46,17 +46,7 @@ class AddViewModel: ViewModel() {
     }
 
     fun getInputData(): Map<String, Float> {
-        val predictionData = Prediction(
-            stayUpLate = stayUpLate.value as Int,
-            coffeeConsumption = coffeeConsumption.value as Int,
-            brainWorkingDuration = brainWorkingDuration.value as Int,
-            pressureLevel = pressureLevel.value as Int,
-            stressLevel = stressLevel.value as Int,
-            swimming = swimming.value as Int,
-            hairWashing = hairWashing.value as Int,
-            dandruff = dandruff.value as Int
-        )
-
+        val predictionData = getParcelableInputData()
         return mapOf(
             "stay_up_late" to predictionData.stayUpLate.toFloat(),
             "coffee_consumed" to predictionData.coffeeConsumption.toFloat(),
@@ -66,6 +56,19 @@ class AddViewModel: ViewModel() {
             "swimming" to predictionData.swimming.toFloat(),
             "hair_washing" to predictionData.hairWashing.toFloat(),
             "dandruff" to predictionData.dandruff.toFloat()
+        )
+    }
+
+    fun getParcelableInputData(): Prediction {
+        return Prediction(
+            stayUpLate = stayUpLate.value as Int,
+            coffeeConsumption = coffeeConsumption.value as Int,
+            brainWorkingDuration = brainWorkingDuration.value as Int,
+            pressureLevel = pressureLevel.value as Int,
+            stressLevel = stressLevel.value as Int,
+            swimming = swimming.value as Int,
+            hairWashing = hairWashing.value as Int,
+            dandruff = dandruff.value as Int
         )
     }
 
@@ -86,7 +89,7 @@ class AddViewModel: ViewModel() {
     private val _image5 = MutableLiveData<String?>()
     val image5 : LiveData<String?> = _image5
 
-    fun saveAllImage(img1: String? = null, img2: String? = null, img3: String? = null, img4: String? = null, img5: String? = null) {
+    private fun saveAllImage(img1: String? = null, img2: String? = null, img3: String? = null, img4: String? = null, img5: String? = null) {
         _image1.value = img1
         _image2.value = img2
         _image3.value = img3
@@ -112,6 +115,17 @@ class AddViewModel: ViewModel() {
                 saveAllImage(img5 = imgPath)
             }
             else -> {}
+        }
+    }
+
+    fun getImage(imgSelector: Int?): String? {
+        return when (imgSelector) {
+            AddFragmentThree.IMG_SELECTOR_1 -> { _image1.value }
+            AddFragmentThree.IMG_SELECTOR_2 -> { _image2.value }
+            AddFragmentThree.IMG_SELECTOR_3 -> { _image3.value }
+            AddFragmentThree.IMG_SELECTOR_4 -> { _image4.value }
+            AddFragmentThree.IMG_SELECTOR_5 -> { _image5.value }
+            else -> { null }
         }
     }
 }

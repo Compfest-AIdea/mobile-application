@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -25,51 +24,26 @@ import com.compfest.aiapplication.databinding.FragmentAddThreeBinding
 import com.compfest.aiapplication.ml.HairlossModel
 import com.compfest.aiapplication.ml.ScalpModel
 import com.compfest.aiapplication.model.AddViewModel
-import com.compfest.aiapplication.saveImage
+import com.compfest.aiapplication.ui.activity.ResultActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.firebase.ml.modeldownloader.CustomModel
-import com.google.firebase.ml.modeldownloader.CustomModelDownloadConditions
-import com.google.firebase.ml.modeldownloader.DownloadType
-import com.google.firebase.ml.modeldownloader.FirebaseModelDownloader
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import org.tensorflow.lite.DataType
-import org.tensorflow.lite.Interpreter
-import org.tensorflow.lite.schema.Model
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
-import java.io.BufferedReader
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import java.io.InputStreamReader
-import java.lang.Byte
-import java.lang.Float
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [AddFragmentThree.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AddFragmentThree : Fragment() {
-    // TODO: Rename and change types of parameters
     private var _binding: FragmentAddThreeBinding? = null
     private val binding get() = _binding!!
     private var _bottomSheetBinding: BottomSheetAddImagesBinding? = null
     private val bottomSheetBinding get() = _bottomSheetBinding!!
     private val viewModel: AddViewModel by activityViewModels()
-    private var param1: String? = null
-    private var param2: String? = null
     private var thisFragmentName: String? = null
     private var currentSelection: Int? = null
     private var imgBitmap: Bitmap? = null
@@ -77,8 +51,6 @@ class AddFragmentThree : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
             thisFragmentName = it.getString("Fragment")
         }
     }
@@ -87,9 +59,7 @@ class AddFragmentThree : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentAddThreeBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -126,7 +96,11 @@ class AddFragmentThree : Fragment() {
         val btnSubmitAll = binding.btnSubmitAll
         btnSubmitAll.setOnClickListener {
             //tryingMLImage(imageBitmap = imgBitmap as Bitmap)
-            tryingML()
+            //tryingML()
+            val intent = Intent(requireContext(), ResultActivity::class.java)
+            intent.putExtra(ResultActivity.EXTRA_PREDICTION_INPUT, viewModel.getParcelableInputData())
+            startActivity(intent)
+            requireActivity().finish()
         }
 
         viewModel.image1.observe(viewLifecycleOwner) {
@@ -159,26 +133,6 @@ class AddFragmentThree : Fragment() {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             }
         }
-
-
-        /*
-        val conditions = CustomModelDownloadConditions.Builder()
-            .requireWifi()  // Also possible: .requireCharging() and .requireDeviceIdle()
-            .build()
-        FirebaseModelDownloader.getInstance()
-            .getModel("scalp_model", DownloadType.LOCAL_MODEL_UPDATE_IN_BACKGROUND,
-                conditions)
-            .addOnSuccessListener { model: CustomModel? ->
-                // Download complete. Depending on your app, you could enable the ML
-                // feature, or switch from the local model to the remote model, etc.
-                Log.d("FragmentThree", "Model has been downloaded")
-                // The CustomModel object contains the local path of the model file,
-                // which you can use to instantiate a TensorFlow Lite interpreter.
-                val modelFile = model?.file
-                if (modelFile != null) {
-                    interpreter = Interpreter(modelFile)
-                }
-            } */
     }
 
     @Suppress("DEPRECATION")
@@ -227,27 +181,6 @@ class AddFragmentThree : Fragment() {
         dialog.show()
     }
 
-    /*
-    private fun setSelectImageToCapture() {
-        bottomSheetBinding.apply {
-            ivAddImg1.setOnClickListener {
-
-            }
-            ivAddImg2.setOnClickListener {
-
-            }
-            ivAddImg3.setOnClickListener {
-
-            }
-            ivAddImg4.setOnClickListener {
-
-            }
-            ivAddImg5.setOnClickListener {
-
-            }
-        }
-    }*/
-
     private fun saveImageToExternalStorage(capturedImage: Bitmap?): String? {
         capturedImage?.let { bitmap ->
             val externalDir = requireContext().getExternalFilesDir(null)
@@ -261,7 +194,6 @@ class AddFragmentThree : Fragment() {
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos)
                     fos.close()
 
-                    // Simpan path gambar ke Room database
                     val imagePath = imageFile.absolutePath
 
                     Toast.makeText(requireContext(), "Image saved", Toast.LENGTH_SHORT).show()
@@ -289,8 +221,7 @@ class AddFragmentThree : Fragment() {
         try {
             val imageFile = File(imagePath)
             if (imageFile.exists()) {
-                val bitmap = BitmapFactory.decodeFile(imageFile.absolutePath)
-                return bitmap
+                return BitmapFactory.decodeFile(imageFile.absolutePath)
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -302,8 +233,8 @@ class AddFragmentThree : Fragment() {
         val model = ScalpModel.newInstance(requireContext())
 
         val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 150, 150, 3), DataType.FLOAT32)
-        val bitmap = Bitmap.createScaledBitmap(imageBitmap, 150, 150, true)
         val tensorImage = TensorImage(DataType.FLOAT32)
+        val bitmap = Bitmap.createScaledBitmap(imageBitmap, 150, 150, true)
         tensorImage.load(bitmap)
         val byteBuffer: ByteBuffer = tensorImage.buffer
         inputFeature0.loadBuffer(byteBuffer)
@@ -321,51 +252,27 @@ class AddFragmentThree : Fragment() {
     private fun tryingML() {
         val model = HairlossModel.newInstance(requireContext())
 
-        val byteBuffer = ByteBuffer.allocateDirect(4 * 8) // 4 bytes per float, 8 features
-        byteBuffer.order(ByteOrder.nativeOrder()) // Set byte order to native
+        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 8), DataType.FLOAT32)
+        val byteBuffer: ByteBuffer = ByteBuffer.allocateDirect(4 * 8)
+        byteBuffer.order(ByteOrder.nativeOrder())
         val payload = viewModel.getInputData()
         payload.values.forEach { value ->
             byteBuffer.putFloat(value)
         }
-        byteBuffer.rewind() // Reset buffer position to 0
-
-        // Creates inputs for reference.
-        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 8), DataType.FLOAT32)
+        byteBuffer.rewind()
         inputFeature0.loadBuffer(byteBuffer)
 
-        // Runs model inference and gets result.
         val outputs = model.process(inputFeature0)
         val outputFeature0 = outputs.outputFeature0AsTensorBuffer
+        model.close()
 
-        // Output hasil
         println("Output:")
         for (i in 0 until outputFeature0.typeSize) {
             Log.d("ModelML","Class $i: ${outputFeature0.getFloatValue(i)}")
         }
-
-// Releases model resources if no longer used.
-        model.close()
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AddFragmentThree.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AddFragmentThree().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-
         const val REQUEST_IMAGE_CAPTURE = 101
         const val IMG_SELECTOR_1 = 1
         const val IMG_SELECTOR_2 = 2
