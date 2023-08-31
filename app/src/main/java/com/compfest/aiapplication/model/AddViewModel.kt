@@ -3,10 +3,13 @@ package com.compfest.aiapplication.model
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.compfest.aiapplication.data.Prediction
+import com.compfest.aiapplication.data.PredictionImageInput
+import com.compfest.aiapplication.data.PredictionTabularInput
 import com.compfest.aiapplication.ui.fragment.AddFragmentThree
 
 class AddViewModel: ViewModel() {
+    val viewModelName: String = AddViewModel::class.java.simpleName
+
     private val _stayUpLate = MutableLiveData<Int>()
     val stayUpLate: LiveData<Int> = _stayUpLate
 
@@ -45,18 +48,8 @@ class AddViewModel: ViewModel() {
         _dandruff.value = p4.toInt()
     }
 
-    fun getInputData(): Map<String, Float> {
-        val predictionData = Prediction(
-            stayUpLate = stayUpLate.value as Int,
-            coffeeConsumption = coffeeConsumption.value as Int,
-            brainWorkingDuration = brainWorkingDuration.value as Int,
-            pressureLevel = pressureLevel.value as Int,
-            stressLevel = stressLevel.value as Int,
-            swimming = swimming.value as Int,
-            hairWashing = hairWashing.value as Int,
-            dandruff = dandruff.value as Int
-        )
-
+    fun getTabularInputData(): Map<String, Float> {
+        val predictionData = getParcelableTabularInputData()
         return mapOf(
             "stay_up_late" to predictionData.stayUpLate.toFloat(),
             "coffee_consumed" to predictionData.coffeeConsumption.toFloat(),
@@ -69,7 +62,18 @@ class AddViewModel: ViewModel() {
         )
     }
 
-    val viewModelName: String = AddViewModel::class.java.simpleName
+    fun getParcelableTabularInputData(): PredictionTabularInput {
+        return PredictionTabularInput(
+            stayUpLate = stayUpLate.value as Int,
+            coffeeConsumption = coffeeConsumption.value as Int,
+            brainWorkingDuration = brainWorkingDuration.value as Int,
+            pressureLevel = pressureLevel.value as Int,
+            stressLevel = stressLevel.value as Int,
+            swimming = swimming.value as Int,
+            hairWashing = hairWashing.value as Int,
+            dandruff = dandruff.value as Int
+        )
+    }
 
     private val _image1 = MutableLiveData<String?>()
     val image1 : LiveData<String?> = _image1
@@ -86,7 +90,7 @@ class AddViewModel: ViewModel() {
     private val _image5 = MutableLiveData<String?>()
     val image5 : LiveData<String?> = _image5
 
-    fun saveAllImage(img1: String? = null, img2: String? = null, img3: String? = null, img4: String? = null, img5: String? = null) {
+    private fun saveAllImage(img1: String? = null, img2: String? = null, img3: String? = null, img4: String? = null, img5: String? = null) {
         _image1.value = img1
         _image2.value = img2
         _image3.value = img3
@@ -113,5 +117,26 @@ class AddViewModel: ViewModel() {
             }
             else -> {}
         }
+    }
+
+    fun getImageInputData(): Map<String, String?> {
+        val predictionData = getParcelableImageInputData()
+        return mapOf(
+            "imagePath1" to predictionData.imagePath1,
+            "imagePath2" to predictionData.imagePath2,
+            "imagePath3" to predictionData.imagePath3,
+            "imagePath4" to predictionData.imagePath4,
+            "imagePath5" to predictionData.imagePath5
+        )
+    }
+
+    fun getParcelableImageInputData(): PredictionImageInput {
+        return PredictionImageInput(
+            imagePath1 = image1.value as String,
+            imagePath2 = image2.value as String,
+            imagePath3 = image3.value as String,
+            imagePath4 = image4.value as String,
+            imagePath5 = image5.value as String
+        )
     }
 }

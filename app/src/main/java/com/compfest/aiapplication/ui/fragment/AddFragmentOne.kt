@@ -2,6 +2,8 @@ package com.compfest.aiapplication.ui.fragment
 
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,30 +16,15 @@ import com.compfest.aiapplication.R
 import com.compfest.aiapplication.databinding.FragmentAddOneBinding
 import com.compfest.aiapplication.model.AddViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [AddFragmentOne.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AddFragmentOne : Fragment() {
-    // TODO: Rename and change types of parameters
     private var _binding: FragmentAddOneBinding? = null
     private val binding get() = _binding!!
     private val viewModel: AddViewModel by activityViewModels()
-    private var param1: String? = null
-    private var param2: String? = null
     private var thisFragmentName: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
             thisFragmentName = it.getString("Fragment")
         }
     }
@@ -46,15 +33,14 @@ class AddFragmentOne : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentAddOneBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setInputFieldBehavior()
 
         Log.d("ThisFragment", thisFragmentName.toString())
         val nextButton = binding.btnNextOne
@@ -74,23 +60,35 @@ class AddFragmentOne : Fragment() {
         }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AddFragmentOne.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AddFragmentOne().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun setInputFieldBehavior() {
+        binding.stayUpLate.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Tidak perlu melakukan apa-apa sebelum teks berubah
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Tidak perlu melakukan apa-apa saat teks berubah
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                // Validasi nilai yang dimasukkan oleh pengguna
+                val inputText = s.toString()
+                if (inputText.isEmpty()) {
+                    // Biarkan kosong atau isi dengan 0 jika Anda ingin mengizinkan nilai 0
+                    return
+                }
+
+                val value = inputText.toIntOrNull()
+                if (value != null && value in 0..8) {
+                    // Nilai berada dalam rentang yang valid
+                    // Lakukan sesuatu dengan nilai ini jika perlu
+                } else {
+                    // Nilai tidak valid, atur teks ulang ke nilai yang valid
+                    binding.stayUpLate.setText("0")
+                    // Tampilkan pesan kesalahan jika perlu
+                    Toast.makeText(requireContext(), "Nilai harus antara 0 dan 8", Toast.LENGTH_SHORT).show()
                 }
             }
+        })
     }
 }

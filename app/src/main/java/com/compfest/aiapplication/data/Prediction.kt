@@ -8,8 +8,9 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 @Entity
-data class Prediction(
+data class PredictionTabularInput(
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
     val id: Int = 0,
 
     @ColumnInfo(name = "stayUpLate")
@@ -35,16 +36,70 @@ data class Prediction(
 
     @ColumnInfo(name = "dandruff")
     val dandruff: Int,
-
-    @ColumnInfo(name = "imagePath")
-    val imagePath: ImagePath? = null
 ): Parcelable
 
 @Parcelize
-data class ImagePath(
-    val imagePath1: String? = null,
-    val imagePath2: String? = null,
-    val imagePath3: String? = null,
-    val imagePath4: String? = null,
-    val imagePath5: String? = null
+@Entity
+data class PredictionImageResult(
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    val id: Int = 0,
+
+    @ColumnInfo(name = "class1")
+    val class1: Float,
+
+    @ColumnInfo(name = "class2")
+    val class2: Float,
+
+    @ColumnInfo(name = "class3")
+    val class3: Float,
+
+    @ColumnInfo(name = "class4")
+    val class4: Float,
+
+    @ColumnInfo(name = "class5")
+    val class5: Float
+): Parcelable
+
+@Parcelize
+@Entity
+data class PredictionTabularResult(
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    val id: Int = 0,
+
+    @ColumnInfo(name = "class1")
+    val class1: Float,
+
+    @ColumnInfo(name = "class2")
+    val class2: Float,
+
+    @ColumnInfo(name = "class3")
+    val class3: Float,
+
+    @ColumnInfo(name = "class4")
+    val class4: Float,
+): Parcelable
+
+@Entity
+@Parcelize
+data class PredictionImageInput(
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    val id: Int = 0,
+
+    @ColumnInfo(name = "imagePath1")
+    val imagePath1: String,
+
+    @ColumnInfo(name = "imagePath2")
+    val imagePath2: String,
+
+    @ColumnInfo(name = "imagePath3")
+    val imagePath3: String,
+
+    @ColumnInfo(name = "imagePath4")
+    val imagePath4: String,
+
+    @ColumnInfo(name = "imagePath5")
+    val imagePath5: String
 ): Parcelable
