@@ -69,13 +69,16 @@ data class PredictionTabularResult(
     val id: Int = 0,
 
     @ColumnInfo(name = "class1")
-    val class1: String,
+    val class1: Float,
 
     @ColumnInfo(name = "class2")
-    val class2: String,
+    val class2: Float,
 
     @ColumnInfo(name = "class3")
-    val class3: String
+    val class3: Float,
+
+    @ColumnInfo(name = "class4")
+    val class4: Float,
 ): Parcelable
 
 @Entity
@@ -86,17 +89,17 @@ data class PredictionImageInput(
     val id: Int = 0,
 
     @ColumnInfo(name = "imagePath1")
-    val imagePath1: String? = null,
+    val imagePath1: String,
 
     @ColumnInfo(name = "imagePath2")
-    val imagePath2: String? = null,
+    val imagePath2: String,
 
     @ColumnInfo(name = "imagePath3")
-    val imagePath3: String? = null,
+    val imagePath3: String,
 
     @ColumnInfo(name = "imagePath4")
-    val imagePath4: String? = null,
+    val imagePath4: String,
 
     @ColumnInfo(name = "imagePath5")
-    val imagePath5: String? = null
+    val imagePath5: String
 ): Parcelable

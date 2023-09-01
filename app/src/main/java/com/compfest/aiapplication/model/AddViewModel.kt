@@ -48,8 +48,8 @@ class AddViewModel: ViewModel() {
         _dandruff.value = p4.toInt()
     }
 
-    fun getInputData(): Map<String, Float> {
-        val predictionData = getParcelableInputData()
+    fun getTabularInputData(): Map<String, Float> {
+        val predictionData = getParcelableTabularInputData()
         return mapOf(
             "stay_up_late" to predictionData.stayUpLate.toFloat(),
             "coffee_consumed" to predictionData.coffeeConsumption.toFloat(),
@@ -62,7 +62,7 @@ class AddViewModel: ViewModel() {
         )
     }
 
-    fun getParcelableInputData(): PredictionTabularInput {
+    fun getParcelableTabularInputData(): PredictionTabularInput {
         return PredictionTabularInput(
             stayUpLate = stayUpLate.value as Int,
             coffeeConsumption = coffeeConsumption.value as Int,
@@ -119,24 +119,24 @@ class AddViewModel: ViewModel() {
         }
     }
 
-    fun getImage(imgSelector: Int?): String? {
-        return when (imgSelector) {
-            AddFragmentThree.IMG_SELECTOR_1 -> { _image1.value }
-            AddFragmentThree.IMG_SELECTOR_2 -> { _image2.value }
-            AddFragmentThree.IMG_SELECTOR_3 -> { _image3.value }
-            AddFragmentThree.IMG_SELECTOR_4 -> { _image4.value }
-            AddFragmentThree.IMG_SELECTOR_5 -> { _image5.value }
-            else -> { null }
-        }
+    fun getImageInputData(): Map<String, String?> {
+        val predictionData = getParcelableImageInputData()
+        return mapOf(
+            "imagePath1" to predictionData.imagePath1,
+            "imagePath2" to predictionData.imagePath2,
+            "imagePath3" to predictionData.imagePath3,
+            "imagePath4" to predictionData.imagePath4,
+            "imagePath5" to predictionData.imagePath5
+        )
     }
 
-    fun getParcelableInputImageData(): PredictionImageInput {
+    fun getParcelableImageInputData(): PredictionImageInput {
         return PredictionImageInput(
-            imagePath1 = image1.value,
-            imagePath2 = image2.value,
-            imagePath3 = image3.value,
-            imagePath4 = image4.value,
-            imagePath5 = image5.value
+            imagePath1 = image1.value as String,
+            imagePath2 = image2.value as String,
+            imagePath3 = image3.value as String,
+            imagePath4 = image4.value as String,
+            imagePath5 = image5.value as String
         )
     }
 }
