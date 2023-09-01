@@ -21,9 +21,11 @@ import com.compfest.aiapplication.CAMERA_PERMISSION_REQUEST
 import com.compfest.aiapplication.R
 import com.compfest.aiapplication.databinding.BottomSheetAddImagesBinding
 import com.compfest.aiapplication.databinding.FragmentAddThreeBinding
+import com.compfest.aiapplication.getImageFromExternalStorage
 import com.compfest.aiapplication.ml.HairlossModel
 import com.compfest.aiapplication.ml.ScalpModel
 import com.compfest.aiapplication.model.AddViewModel
+import com.compfest.aiapplication.saveImageToExternalStorage
 import com.compfest.aiapplication.ui.activity.ResultActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.tensorflow.lite.DataType
@@ -37,6 +39,8 @@ import java.nio.ByteOrder
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 class AddFragmentThree : Fragment() {
     private var _binding: FragmentAddThreeBinding? = null
@@ -95,8 +99,8 @@ class AddFragmentThree : Fragment() {
 
         val btnSubmitAll = binding.btnSubmitAll
         btnSubmitAll.setOnClickListener {
-            //tryingMLImage(imageBitmap = imgBitmap as Bitmap)
-            //tryingML()
+            //tryingMLImage()
+            //tryingMLTabular()
             val intent = Intent(requireContext(), ResultActivity::class.java)
             intent.putExtra(ResultActivity.EXTRA_PREDICTION_INPUT, viewModel.getParcelableInputData())
             startActivity(intent)
@@ -173,7 +177,7 @@ class AddFragmentThree : Fragment() {
 
         bottomSheetBinding.btnSave.setOnClickListener {
             if (imgBitmap != null) {
-                val imgSavedPath = saveImageToExternalStorage(imgBitmap)
+                val imgSavedPath = saveImageToExternalStorage(requireContext(), imgBitmap)
                 viewModel.saveImage(imgSavedPath, currentSelection)
             }
         }
@@ -181,6 +185,7 @@ class AddFragmentThree : Fragment() {
         dialog.show()
     }
 
+    /*
     private fun saveImageToExternalStorage(capturedImage: Bitmap?): String? {
         capturedImage?.let { bitmap ->
             val externalDir = requireContext().getExternalFilesDir(null)
@@ -215,8 +220,9 @@ class AddFragmentThree : Fragment() {
         }
 
         return null
-    }
+    }*/
 
+    /*
     private fun getImageFromExternalStorage(imagePath: String): Bitmap? {
         try {
             val imageFile = File(imagePath)
@@ -227,7 +233,7 @@ class AddFragmentThree : Fragment() {
             e.printStackTrace()
         }
         return null
-    }
+    }*/
 
     private fun tryingMLImage(imageBitmap: Bitmap) {
         val model = ScalpModel.newInstance(requireContext())
@@ -244,12 +250,14 @@ class AddFragmentThree : Fragment() {
         val outputArray = outputFeature0.floatArray
         model.close()
 
+        val result = ArrayList<Float>()
         for (value in outputArray) {
+            result.add(value)
             Log.d("TestModel", value.toString())
         }
     }
 
-    private fun tryingML() {
+    private fun tryingMLTabular() {
         val model = HairlossModel.newInstance(requireContext())
 
         val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 8), DataType.FLOAT32)

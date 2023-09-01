@@ -1,7 +1,6 @@
 package com.compfest.aiapplication.data
 
 import android.content.Context
-import androidx.lifecycle.LiveData
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
@@ -9,9 +8,27 @@ class PredictionRepository(private val dao: PredictionDao) {
 
     private val executor: Executor = Executors.newSingleThreadExecutor()
 
-    fun insertPrediction(prediction: Prediction) {
+    fun insertPredictionTabularInput(predictionTabularInput: PredictionTabularInput) {
         executor.execute {
-            dao.insertPrediction(prediction)
+            dao.insertPredictionTabularInput(predictionTabularInput)
+        }
+    }
+
+    fun insertPredictionImageInput(predictionImageInput: PredictionImageInput) {
+        executor.execute {
+            dao.insertPredictionImageInput(predictionImageInput)
+        }
+    }
+
+    fun insertPredictionTabularResult(prediction: PredictionTabularResult) {
+        executor.execute {
+            dao.insertPredictionTabularResult(prediction)
+        }
+    }
+
+    fun insertPredictionImageResult(prediction: PredictionImageResult) {
+        executor.execute {
+            dao.insertPredictionImageResult(prediction)
         }
     }
 

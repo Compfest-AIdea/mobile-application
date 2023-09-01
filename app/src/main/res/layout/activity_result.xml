@@ -6,4 +6,48 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.ResultActivity">
 
+    <include
+        android:id="@+id/toolbar1"
+        layout="@layout/toolbar" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:dividerColor="@android:color/darker_gray"
+        app:dividerThickness="1dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar1" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/result_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/rounded_frame_bkg"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar1">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hasil prediksi"
+            android:textSize="20sp"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_result_tabular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="- Hasil prediksi"
+            android:textSize="20sp"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_result_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="- Hasil prediksi"
+            android:textSize="20sp"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

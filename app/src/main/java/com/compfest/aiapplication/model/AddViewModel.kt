@@ -3,10 +3,13 @@ package com.compfest.aiapplication.model
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.compfest.aiapplication.data.Prediction
+import com.compfest.aiapplication.data.PredictionImageInput
+import com.compfest.aiapplication.data.PredictionTabularInput
 import com.compfest.aiapplication.ui.fragment.AddFragmentThree
 
 class AddViewModel: ViewModel() {
+    val viewModelName: String = AddViewModel::class.java.simpleName
+
     private val _stayUpLate = MutableLiveData<Int>()
     val stayUpLate: LiveData<Int> = _stayUpLate
 
@@ -59,8 +62,8 @@ class AddViewModel: ViewModel() {
         )
     }
 
-    fun getParcelableInputData(): Prediction {
-        return Prediction(
+    fun getParcelableInputData(): PredictionTabularInput {
+        return PredictionTabularInput(
             stayUpLate = stayUpLate.value as Int,
             coffeeConsumption = coffeeConsumption.value as Int,
             brainWorkingDuration = brainWorkingDuration.value as Int,
@@ -71,8 +74,6 @@ class AddViewModel: ViewModel() {
             dandruff = dandruff.value as Int
         )
     }
-
-    val viewModelName: String = AddViewModel::class.java.simpleName
 
     private val _image1 = MutableLiveData<String?>()
     val image1 : LiveData<String?> = _image1
@@ -127,5 +128,15 @@ class AddViewModel: ViewModel() {
             AddFragmentThree.IMG_SELECTOR_5 -> { _image5.value }
             else -> { null }
         }
+    }
+
+    fun getParcelableInputImageData(): PredictionImageInput {
+        return PredictionImageInput(
+            imagePath1 = image1.value,
+            imagePath2 = image2.value,
+            imagePath3 = image3.value,
+            imagePath4 = image4.value,
+            imagePath5 = image5.value
+        )
     }
 }
