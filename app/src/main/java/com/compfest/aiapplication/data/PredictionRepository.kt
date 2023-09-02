@@ -1,6 +1,9 @@
 package com.compfest.aiapplication.data
 
 import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
@@ -19,6 +22,18 @@ class PredictionRepository(private val dao: PredictionDao) {
             dao.insertInputTabularData(predictionTabularInput)
             dao.insertInputImageData(predictionImageInput)
         }
+    }
+
+    fun getPredictionResult(): LiveData<PagedList<PredictionResult>> {
+        val pagedListConfig = PagedList.Config.Builder()
+            .setEnablePlaceholders(false)
+            .setPageSize(10)
+            .build()
+        return LivePagedListBuilder(dao.getAllPredictionResult(), pagedListConfig).build()
+    }
+
+    fun getPredictionResultById(id: Int): PredictionResult {
+        return dao.getPredictionResultById(id)
     }
 
     companion object {

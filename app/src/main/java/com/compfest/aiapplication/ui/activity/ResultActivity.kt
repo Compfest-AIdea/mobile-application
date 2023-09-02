@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.compfest.aiapplication.data.PredictionImageInput
@@ -15,6 +16,12 @@ import com.compfest.aiapplication.databinding.ActivityResultBinding
 import com.compfest.aiapplication.getImageFromExternalStorage
 import com.compfest.aiapplication.model.ResultViewModel
 import com.compfest.aiapplication.model.ViewModelFactory
+import com.compfest.aiapplication.ui.fragment.AddFragmentThree
+import com.compfest.aiapplication.ui.fragment.HomeFragment
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
 class ResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultBinding
@@ -31,17 +38,29 @@ class ResultActivity : AppCompatActivity() {
         val factory = ViewModelFactory.getInstance(this)
         viewModel = ViewModelProvider(this, factory)[ResultViewModel::class.java]
 
-        val predictionTabularInput = getParcelize(EXTRA_PREDICTION_TABULAR_INPUT) as PredictionTabularInput?
-        val predictionImageInput = getParcelize(EXTRA_PREDICTION_IMAGE_INPUT) as PredictionImageInput?
-        val tabularResult = getParcelize(EXTRA_RESULT_TABULAR) as PredictionTabularResult?
-        val imageResult = getParcelize(EXTRA_RESULT_IMAGE) as PredictionImageResult?
-        if (predictionTabularInput != null && tabularResult != null && imageResult != null && predictionImageInput != null) {
-            Log.d("MainActivity", predictionTabularInput.toString())
-            val resultTabular = setOutputTabularResult(tabularResult)
-            val resultImage = setOutputImageResult(imageResult)
-            val imagePath = predictionImageInput.imagePath
-            viewModel.saveInputData(predictionTabularInput, predictionImageInput)
-            setOutputResult(resultTabular, resultImage, imagePath)
+        val origin = intent.getStringExtra("origin") as String
+        val id = intent.getIntExtra(EXTRA_ID, 0)
+        Toast.makeText(this, "$origin + $id", Toast.LENGTH_SHORT).show()
+        if (origin == HomeFragment::class.java.simpleName) {
+            val predictionResult = viewModel.getPredictionResult(id)
+            predictionResult.observe(this) {
+                setOutputResult(it.resultHairLoss, it.resultScalpCondi, it.imgPath)
+            }
+        } else {
+            val predictionTabularInput = getParcelize(EXTRA_PREDICTION_TABULAR_INPUT) as PredictionTabularInput?
+            val predictionImageInput = getParcelize(EXTRA_PREDICTION_IMAGE_INPUT) as PredictionImageInput?
+            val tabularResult = getParcelize(EXTRA_RESULT_TABULAR) as PredictionTabularResult?
+            val imageResult = getParcelize(EXTRA_RESULT_IMAGE) as PredictionImageResult?
+            if (predictionTabularInput != null && tabularResult != null && imageResult != null && predictionImageInput != null) {
+                Log.d("MainActivity", predictionTabularInput.toString())
+                val resultTabular = setOutputTabularResult(tabularResult)
+                val resultImage = setOutputImageResult(imageResult)
+                val imagePath = predictionImageInput.imagePath
+                viewModel.saveInputData(predictionTabularInput, predictionImageInput)
+                setOutputResult(resultTabular, resultImage, imagePath)
+                val predictionResult = PredictionResult(resultHairLoss = resultTabular, resultScalpCondi = resultImage, imgPath = imagePath)
+                viewModel.saveResult(predictionResult)
+            }
         }
     }
 
@@ -50,14 +69,13 @@ class ResultActivity : AppCompatActivity() {
         const val EXTRA_RESULT_TABULAR = "extra_result_tabular"
         const val EXTRA_PREDICTION_TABULAR_INPUT = "extra_prediction_tabular_input"
         const val EXTRA_PREDICTION_IMAGE_INPUT = "extra_prediction_image_input"
+        const val EXTRA_ID = "extra_id"
     }
 
     private fun setOutputResult(resultTabularPrediction: String, resultImagePrediction: String, imagePath: String) {
         binding.ivImageResult.setImageBitmap(getImageFromExternalStorage(imagePath))
         binding.tvResultTabular.text = resultTabularPrediction
         binding.tvResultImage.text = resultImagePrediction
-        val predictionResult = PredictionResult(resultHairLoss = resultTabularPrediction, resultScalpCondi = resultImagePrediction, imgPath = imagePath)
-        viewModel.saveResult(predictionResult)
     }
 
     @Suppress("DEPRECATION")
