@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/font_inria_sans"
         android:text="Add New Data"
+        android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,12 +24,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:padding="16dp"
         android:background="@drawable/rounded_frame_bkg"
+        android:backgroundTint="@color/white"
+        android:backgroundTintMode="multiply"
+        android:orientation="vertical"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_activity_list"
-        android:orientation="vertical">
+        app:layout_constraintTop_toBottomOf="@id/tv_title_activity_list">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -122,15 +125,17 @@
                 android:padding="16dp"
                 android:textSize="16sp"
                 android:inputType="number" />
-            <androidx.appcompat.widget.AppCompatButton
+            <androidx.constraintlayout.utils.widget.ImageFilterButton
                 android:id="@+id/btn_next_one"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:layout_gravity="center_horizontal"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/circle_frame_button_bkg"
-                android:foreground="@drawable/ic_arrow_next"/>
+                android:backgroundTint="@color/blue_200"
+                android:src="@drawable/ic_arrow_next"
+                app:tint="@color/white" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"

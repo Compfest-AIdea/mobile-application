@@ -7,6 +7,8 @@
     tools:context=".ui.fragment.HomeFragment">
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:outlineSpotShadowColor="@color/cardview_dark_background"
+        android:elevation="4dp"
         android:padding="12dp"
         android:id="@+id/container_recent_activity"
         android:layout_width="match_parent"

@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.compfest.aiapplication.R
@@ -37,7 +35,7 @@ class AddFragmentTwo : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setData()
-        val nextButton: Button = view.findViewById(R.id.btn_next_two)
+        val nextButton = binding.btnNextTwo
         nextButton.setOnClickListener {
             val pressureLevel = binding.spinnerLevelOfPressure.selectedItemPosition.toString()
             val stressLevel = binding.spinnerLevelOfStress.selectedItemPosition.toString()
@@ -62,67 +60,22 @@ class AddFragmentTwo : Fragment() {
         binding.spinnerLevelOfPressure.apply {
             adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, senseLevel)
             setSelection(0)
-            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                    //
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>) {
-                    //
-                }
-            }
         }
         binding.spinnerLevelOfStress.apply {
             adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, senseLevel)
             setSelection(0)
-            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                    //
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>) {
-                    //
-                }
-            }
         }
         binding.spinnerHaveSwimmedBool.apply {
             adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, boolVal)
             setSelection(0)
-            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                    //
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>) {
-                    //
-                }
-            }
         }
         binding.spinnerHairWashedBool.apply {
             adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, boolVal)
             setSelection(0)
-            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                    //
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>) {
-                    //
-                }
-            }
         }
         binding.spinnerDandruffConditionLvl.apply {
             adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, conditionLevel)
             setSelection(0)
-            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                    //
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>) {
-                    //
-                }
-            }
         }
     }
 }

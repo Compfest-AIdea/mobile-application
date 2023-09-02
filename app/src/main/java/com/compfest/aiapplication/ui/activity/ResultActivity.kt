@@ -7,9 +7,12 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.compfest.aiapplication.data.PredictionImageInput
+import com.compfest.aiapplication.data.PredictionImageResult
+import com.compfest.aiapplication.data.PredictionResult
 import com.compfest.aiapplication.data.PredictionTabularInput
 import com.compfest.aiapplication.data.PredictionTabularResult
 import com.compfest.aiapplication.databinding.ActivityResultBinding
+import com.compfest.aiapplication.getImageFromExternalStorage
 import com.compfest.aiapplication.model.ResultViewModel
 import com.compfest.aiapplication.model.ViewModelFactory
 
@@ -28,12 +31,17 @@ class ResultActivity : AppCompatActivity() {
         val factory = ViewModelFactory.getInstance(this)
         viewModel = ViewModelProvider(this, factory)[ResultViewModel::class.java]
 
-        val predictionInput = getParcelize(EXTRA_PREDICTION_TABULAR_INPUT) as PredictionTabularInput?
+        val predictionTabularInput = getParcelize(EXTRA_PREDICTION_TABULAR_INPUT) as PredictionTabularInput?
+        val predictionImageInput = getParcelize(EXTRA_PREDICTION_IMAGE_INPUT) as PredictionImageInput?
         val tabularResult = getParcelize(EXTRA_RESULT_TABULAR) as PredictionTabularResult?
-        if (predictionInput != null && tabularResult != null) {
-            Log.d("MainActivity", predictionInput.toString())
-            viewModel.savePredictionInput(predictionInput)
-            viewModel.savePredictionTabularResult(tabularResult)
+        val imageResult = getParcelize(EXTRA_RESULT_IMAGE) as PredictionImageResult?
+        if (predictionTabularInput != null && tabularResult != null && imageResult != null && predictionImageInput != null) {
+            Log.d("MainActivity", predictionTabularInput.toString())
+            val resultTabular = setOutputTabularResult(tabularResult)
+            val resultImage = setOutputImageResult(imageResult)
+            val imagePath = predictionImageInput.imagePath
+            viewModel.saveInputData(predictionTabularInput, predictionImageInput)
+            setOutputResult(resultTabular, resultImage, imagePath)
         }
     }
 
@@ -44,34 +52,100 @@ class ResultActivity : AppCompatActivity() {
         const val EXTRA_PREDICTION_IMAGE_INPUT = "extra_prediction_image_input"
     }
 
+    private fun setOutputResult(resultTabularPrediction: String, resultImagePrediction: String, imagePath: String) {
+        binding.ivImageResult.setImageBitmap(getImageFromExternalStorage(imagePath))
+        binding.tvResultTabular.text = resultTabularPrediction
+        binding.tvResultImage.text = resultImagePrediction
+        val predictionResult = PredictionResult(resultHairLoss = resultTabularPrediction, resultScalpCondi = resultImagePrediction, imgPath = imagePath)
+        viewModel.saveResult(predictionResult)
+    }
+
     @Suppress("DEPRECATION")
     private fun getParcelize(extra: String): Any? {
         when (extra) {
             EXTRA_PREDICTION_TABULAR_INPUT -> {
-                val predictionTabularInput = if (Build.VERSION.SDK_INT >= 33) {
+                val parcelable = if (Build.VERSION.SDK_INT >= 33) {
                     intent.getParcelableExtra(EXTRA_PREDICTION_TABULAR_INPUT, PredictionTabularInput::class.java)
                 } else {
                     intent.getParcelableExtra(EXTRA_PREDICTION_TABULAR_INPUT)
                 }
-                return predictionTabularInput
+                return parcelable
             }
             EXTRA_PREDICTION_IMAGE_INPUT -> {
-                val predictionImageInput = if (Build.VERSION.SDK_INT >= 33) {
+                val parcelable = if (Build.VERSION.SDK_INT >= 33) {
                     intent.getParcelableExtra(EXTRA_PREDICTION_IMAGE_INPUT, PredictionImageInput::class.java)
                 } else {
                     intent.getParcelableExtra(EXTRA_PREDICTION_IMAGE_INPUT)
                 }
-                return predictionImageInput
+                return parcelable
             }
             EXTRA_RESULT_TABULAR -> {
-                val predictionTabularResult = if (Build.VERSION.SDK_INT >= 33) {
+                val parcelable = if (Build.VERSION.SDK_INT >= 33) {
                     intent.getParcelableExtra(EXTRA_RESULT_TABULAR, PredictionTabularResult::class.java)
                 } else {
                     intent.getParcelableExtra(EXTRA_RESULT_TABULAR)
                 }
-                return predictionTabularResult
+                return parcelable
+            }
+            EXTRA_RESULT_IMAGE -> {
+                val parcelable = if (Build.VERSION.SDK_INT >= 33) {
+                    intent.getParcelableExtra(EXTRA_RESULT_IMAGE, PredictionImageResult::class.java)
+                } else {
+                    intent.getParcelableExtra(EXTRA_RESULT_IMAGE)
+                }
+                return parcelable
             }
             else -> { return null }
+        }
+    }
+
+    private fun setOutputTabularResult(predictionTabularResult: PredictionTabularResult): String {
+        val tabularResult = arrayListOf(
+            predictionTabularResult.class1,
+            predictionTabularResult.class2,
+            predictionTabularResult.class3,
+            predictionTabularResult.class4
+        )
+        var maxVal = tabularResult[0]
+        for (i in 1 until tabularResult.size) {
+            val currentVal = tabularResult[i]
+
+            if (currentVal > maxVal) {
+                maxVal = currentVal
+            }
+        }
+        val maxValIndex = tabularResult.indexOf(maxVal)
+        when (maxValIndex) {
+            3 -> { return "Serious Hair Loss" }
+            2 -> { return "Hair Loss" }
+            1 -> { return "Slight Hair Loss" }
+            else -> { return "Normal" }
+        }
+    }
+
+    private fun setOutputImageResult(predictionImageResult: PredictionImageResult): String {
+        val imageResult = arrayListOf(
+            predictionImageResult.class1,
+            predictionImageResult.class2,
+            predictionImageResult.class3,
+            predictionImageResult.class4,
+            predictionImageResult.class5
+        )
+        var maxVal = imageResult[0]
+        for (i in 1 until imageResult.size) {
+            val currentVal = imageResult[i]
+
+            if (currentVal > maxVal) {
+                maxVal = currentVal
+            }
+        }
+        val maxValIndex = imageResult.indexOf(maxVal)
+        when (maxValIndex) {
+            4 -> { return "Tinea-capitis"}
+            3 -> { return "Seborrhoeic-dermatitis" }
+            2 -> { return "Scalp-psoriasis" }
+            1 -> { return "Normal" }
+            else -> { return "Alopecia-areata" }
         }
     }
 }

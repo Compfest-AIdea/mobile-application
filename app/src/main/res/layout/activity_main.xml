@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.MainActivity">
+    tools:context=".ui.activity.MainActivity"
+    android:background="@drawable/background_main">
 
     <include
         android:id="@+id/toolbar1"
@@ -38,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:contentDescription="Add new"
+        android:background="@color/yellow_200"
         android:src="@drawable/ic_add"
         app:elevation="4dp"
         app:layout_constraintBottom_toBottomOf="@id/bottomNavView"
@@ -50,6 +52,8 @@
         android:layout_height="64dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/bottom_nav_bkg"
+        android:backgroundTint="@color/grey_300"
+        android:backgroundTintMode="multiply"
         android:elevation="2dp"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
