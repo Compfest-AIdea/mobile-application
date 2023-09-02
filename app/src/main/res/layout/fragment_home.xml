@@ -15,7 +15,9 @@
         android:elevation="2dp"
         android:orientation="horizontal"
         android:outlineSpotShadowColor="@color/cardview_dark_background"
-        android:padding="12dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -25,7 +27,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.3"
-            android:background="@drawable/rounded_frame_bkg"
+            android:background="@drawable/card_status"
             android:orientation="vertical"
             android:padding="8dp">
 
@@ -36,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_weight="0.7"
+            android:layout_marginBottom="12dp"
             android:orientation="vertical">
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
@@ -44,6 +47,7 @@
                 android:text="Recent check-up"
                 android:textSize="20sp" />
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_time_taken"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_kanit"
@@ -56,6 +60,7 @@
                 android:text="Your Health"
                 android:textSize="20sp" />
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_kanit"
@@ -63,6 +68,7 @@
                 android:textSize="12sp" />
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_to_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_arrow_next"
@@ -110,6 +116,7 @@
         tools:visibility="visible"/>
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_empty_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/font_kanit"

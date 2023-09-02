@@ -36,6 +36,10 @@ class PredictionRepository(private val dao: PredictionDao) {
         return dao.getPredictionResultById(id)
     }
 
+    fun getRecentPredictionResult(): LiveData<PredictionResult?> {
+        return dao.getRecentPredictionResult()
+    }
+
     companion object {
         @Volatile
         private var INSTANCE: PredictionRepository? = null

@@ -8,6 +8,7 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.compfest.aiapplication.R
+import com.compfest.aiapplication.convertLongToDateString
 import com.compfest.aiapplication.data.PredictionResult
 
 class PredictionAdapter(
@@ -15,8 +16,10 @@ class PredictionAdapter(
 ): PagedListAdapter<PredictionResult, PredictionAdapter.PredictionViewHolder>(DIFF_CALLBACK) {
     inner class PredictionViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         private val tvIndex: TextView = itemView.findViewById(R.id.item_tv_index)
+        private val tvTitle: TextView = itemView.findViewById(R.id.item_tv_title)
         fun bind(predictionResult: PredictionResult) {
-            tvIndex.text = "Ke-".plus(predictionResult.id.toString())
+            tvTitle.text = "Ke-".plus(predictionResult.id.toString())
+            tvIndex.text = convertLongToDateString(predictionResult.timeTaken)
 
             itemView.setOnClickListener {
                 onClick(predictionResult)

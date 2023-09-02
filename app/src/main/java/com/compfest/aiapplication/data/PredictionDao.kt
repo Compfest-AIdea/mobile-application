@@ -24,4 +24,7 @@ interface PredictionDao {
 
     @Query("SELECT * FROM predictionresult WHERE id= :id")
     fun getPredictionResultById(id: Int): PredictionResult
+
+    @Query("SELECT * FROM predictionresult ORDER BY id ASC LIMIT 1")
+    fun getRecentPredictionResult(): LiveData<PredictionResult?>
 }
