@@ -3,6 +3,7 @@ package com.compfest.aiapplication
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Matrix
 import android.widget.Toast
 import java.io.File
 import java.io.FileOutputStream
@@ -58,4 +59,19 @@ fun saveImageToExternalStorage(context: Context, capturedImage: Bitmap?): String
     }
 
     return null
+}
+
+fun resizeBitmap(bitmap: Bitmap, maxWidth: Int, maxHeight: Int): Bitmap {
+    val width = bitmap.width
+    val height = bitmap.height
+
+    val scaleWidth = maxWidth.toFloat() / width
+    val scaleHeight = maxHeight.toFloat() / height
+
+    val scaleFactor = minOf(scaleWidth, scaleHeight)
+
+    val matrix = Matrix()
+    matrix.postScale(scaleFactor, scaleFactor)
+
+    return Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, false)
 }

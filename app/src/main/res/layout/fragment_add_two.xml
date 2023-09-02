@@ -15,6 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/font_inria_sans"
+            android:textColor="@color/white"
             android:text="Add New Data"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -29,6 +30,8 @@
             android:layout_marginTop="8dp"
             android:padding="16dp"
             android:background="@drawable/rounded_frame_bkg"
+            android:backgroundTint="@color/white"
+            android:backgroundTintMode="multiply"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title_activity_list"
@@ -175,15 +178,17 @@
                     android:layout_marginTop="6dp"
                     android:background="@drawable/rounded_frame_input_bkg"
                     android:padding="16dp"/>
-                <androidx.appcompat.widget.AppCompatButton
+                <androidx.constraintlayout.utils.widget.ImageFilterButton
                     android:id="@+id/btn_next_two"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:layout_gravity="center_horizontal"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
                     android:background="@drawable/circle_frame_button_bkg"
-                    android:foreground="@drawable/ic_arrow_next"/>
+                    android:backgroundTint="@color/blue_200"
+                    android:src="@drawable/ic_arrow_next"
+                    app:tint="@color/white" />
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

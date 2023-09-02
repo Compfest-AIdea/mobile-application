@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.compfest.aiapplication.CAMERA_PERMISSION_REQUEST
 import com.compfest.aiapplication.R
+import com.compfest.aiapplication.data.PredictionImageResult
 import com.compfest.aiapplication.data.PredictionTabularResult
 import com.compfest.aiapplication.databinding.BottomSheetAddImagesBinding
 import com.compfest.aiapplication.databinding.FragmentAddThreeBinding
@@ -41,7 +42,6 @@ class AddFragmentThree : Fragment() {
     private val bottomSheetBinding get() = _bottomSheetBinding!!
     private val viewModel: AddViewModel by activityViewModels()
     private var thisFragmentName: String? = null
-    private var currentSelection: Int? = null
     private var imageCaptured: Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,14 +66,21 @@ class AddFragmentThree : Fragment() {
 
         val btnSubmitAll = binding.btnSubmitAll
         btnSubmitAll.setOnClickListener {
-            val resultTabular = tryingMLTabular()
-            val intent = Intent(requireContext(), ResultActivity::class.java)
-            intent.apply {
-                putExtra(ResultActivity.EXTRA_RESULT_TABULAR, resultTabular)
-                putExtra(ResultActivity.EXTRA_PREDICTION_TABULAR_INPUT, viewModel.getParcelableTabularInputData())
+            if (viewModel.getImage() != null) {
+                val resultTabular = tryingMLTabular()
+                val resultImage = tryingMLImage()
+                val intent = Intent(requireContext(), ResultActivity::class.java)
+                intent.apply {
+                    putExtra(ResultActivity.EXTRA_RESULT_TABULAR, resultTabular)
+                    putExtra(ResultActivity.EXTRA_RESULT_IMAGE, resultImage)
+                    putExtra(ResultActivity.EXTRA_PREDICTION_TABULAR_INPUT, viewModel.getParcelableTabularInputData())
+                    putExtra(ResultActivity.EXTRA_PREDICTION_IMAGE_INPUT, viewModel.getParcelableImageInputData())
+                }
+                startActivity(intent)
+                requireActivity().finish()
+            } else {
+                Toast.makeText(requireContext(), "Tolong, isi data gambar terlebih dahulu", Toast.LENGTH_SHORT).show()
             }
-            startActivity(intent)
-            requireActivity().finish()
         }
     }
 
@@ -95,37 +102,42 @@ class AddFragmentThree : Fragment() {
         }
     }
 
-    private fun tryingMLImage() {
-        val payload = viewModel.getImageInputData()
-        payload.values.forEach {  imagePath ->
-            if (!imagePath.isNullOrBlank()) {
-                Log.d("TestModelPath", imagePath)
-                /*
-                val imageBitmap = getImageFromExternalStorage(imagePath)
-                if (imageBitmap != null) {
-                    val model = ScalpModel.newInstance(requireContext())
+    private fun tryingMLImage(): PredictionImageResult? {
 
-                    val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 150, 150, 3), DataType.FLOAT32)
-                    val tensorImage = TensorImage(DataType.FLOAT32)
-                    val bitmap = Bitmap.createScaledBitmap(imageBitmap, 150, 150, true)
-                    tensorImage.load(bitmap)
-                    val byteBuffer: ByteBuffer = tensorImage.buffer
-                    inputFeature0.loadBuffer(byteBuffer)
+        val payload = viewModel.getImage()
+        val imageBitmap = getImageFromExternalStorage(payload as String)
+        if (imageBitmap != null) {
+            val model = ScalpModel.newInstance(requireContext())
 
-                    val output = model.process(inputFeature0)
-                    val outputFeature0 = output.outputFeature0AsTensorBuffer
-                    val outputArray = outputFeature0.floatArray
+            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 150, 150, 3), DataType.FLOAT32)
+            val tensorImage = TensorImage(DataType.FLOAT32)
+            val bitmap = Bitmap.createScaledBitmap(imageBitmap, 150, 150, true)
+            tensorImage.load(bitmap)
+            val byteBuffer: ByteBuffer = tensorImage.buffer
+            inputFeature0.loadBuffer(byteBuffer)
 
-                    val result = ArrayList<Float>()
-                    for (value in outputArray) {
-                        result.add(value)
-                        Log.d("TestModel", value.toString())
-                    }
-                    model.close()
-                } else {
-                    Toast.makeText(requireContext(), "Sorry your images cannot be found", Toast.LENGTH_SHORT).show()
-                }*/
+            val output = model.process(inputFeature0)
+            val outputFeature0 = output.outputFeature0AsTensorBuffer
+            val outputArray = outputFeature0.floatArray
+
+            val resultRaw = ArrayList<Float>()
+            for (value in outputArray) {
+                resultRaw.add(value)
+                Log.d("TestModel", value.toString())
             }
+            model.close()
+
+            val result = PredictionImageResult(
+                class1 = resultRaw[0],
+                class2 = resultRaw[1],
+                class3 = resultRaw[2],
+                class4 = resultRaw[3],
+                class5 = resultRaw[4]
+            )
+            return result
+        } else {
+            Toast.makeText(requireContext(), "Sorry your images cannot be found", Toast.LENGTH_SHORT).show()
+            return null
         }
     }
 
@@ -172,50 +184,14 @@ class AddFragmentThree : Fragment() {
 
     private fun setImageCaptureButton() {
         val bsAddImages = BottomSheetDialog(requireContext())
-        binding.ivAddImg1.setOnClickListener {
-            currentSelection = IMG_SELECTOR_1
-            setBottomSheet(bsAddImages)
-        }
-        binding.ivAddImg2.setOnClickListener {
-            currentSelection = IMG_SELECTOR_2
-            setBottomSheet(bsAddImages)
-        }
-        binding.ivAddImg3.setOnClickListener {
-            currentSelection = IMG_SELECTOR_3
-            setBottomSheet(bsAddImages)
-        }
-        binding.ivAddImg4.setOnClickListener {
-            currentSelection = IMG_SELECTOR_4
-            setBottomSheet(bsAddImages)
-        }
-        binding.ivAddImg5.setOnClickListener {
-            currentSelection = IMG_SELECTOR_5
+        binding.ifbAddImages.setOnClickListener {
             setBottomSheet(bsAddImages)
         }
 
-        viewModel.image1.observe(viewLifecycleOwner) {
+        viewModel.imgPath.observe(viewLifecycleOwner) {
             if (it != null) {
-                binding.ivAddImg1.setImageBitmap(getImageFromExternalStorage(it))
-            }
-        }
-        viewModel.image2.observe(viewLifecycleOwner) {
-            if (it != null) {
-                binding.ivAddImg2.setImageBitmap(getImageFromExternalStorage(it))
-            }
-        }
-        viewModel.image3.observe(viewLifecycleOwner) {
-            if (it != null) {
-                binding.ivAddImg3.setImageBitmap(getImageFromExternalStorage(it))
-            }
-        }
-        viewModel.image4.observe(viewLifecycleOwner) {
-            if (it != null) {
-                binding.ivAddImg4.setImageBitmap(getImageFromExternalStorage(it))
-            }
-        }
-        viewModel.image5.observe(viewLifecycleOwner) {
-            if (it != null) {
-                binding.ivAddImg5.setImageBitmap(getImageFromExternalStorage(it))
+                val imgBitmap = getImageFromExternalStorage(it) as Bitmap
+                binding.ifbAddImages.setImageBitmap(imgBitmap)
             }
         }
     }
@@ -241,7 +217,8 @@ class AddFragmentThree : Fragment() {
         bottomSheetBinding.btnSave.setOnClickListener {
             if (imageCaptured != null) {
                 val imgSavedPath = saveImageToExternalStorage(requireContext(), imageCaptured)
-                viewModel.saveImage(imgSavedPath, currentSelection)
+                viewModel.saveImage(imgSavedPath)
+                dialog.dismiss()
             }
         }
 
@@ -250,10 +227,5 @@ class AddFragmentThree : Fragment() {
 
     companion object {
         const val REQUEST_IMAGE_CAPTURE = 101
-        const val IMG_SELECTOR_1 = 1
-        const val IMG_SELECTOR_2 = 2
-        const val IMG_SELECTOR_3 = 3
-        const val IMG_SELECTOR_4 = 4
-        const val IMG_SELECTOR_5 = 5
     }
 }

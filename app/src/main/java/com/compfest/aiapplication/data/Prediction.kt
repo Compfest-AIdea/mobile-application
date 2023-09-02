@@ -40,29 +40,6 @@ data class PredictionTabularInput(
 
 @Parcelize
 @Entity
-data class PredictionImageResult(
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    val id: Int = 0,
-
-    @ColumnInfo(name = "class1")
-    val class1: Float,
-
-    @ColumnInfo(name = "class2")
-    val class2: Float,
-
-    @ColumnInfo(name = "class3")
-    val class3: Float,
-
-    @ColumnInfo(name = "class4")
-    val class4: Float,
-
-    @ColumnInfo(name = "class5")
-    val class5: Float
-): Parcelable
-
-@Parcelize
-@Entity
 data class PredictionTabularResult(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
@@ -88,18 +65,46 @@ data class PredictionImageInput(
     @ColumnInfo(name = "id")
     val id: Int = 0,
 
-    @ColumnInfo(name = "imagePath1")
-    val imagePath1: String,
+    @ColumnInfo(name = "imagePath")
+    val imagePath: String
+): Parcelable
 
-    @ColumnInfo(name = "imagePath2")
-    val imagePath2: String,
+@Parcelize
+@Entity
+data class PredictionImageResult(
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    val id: Int = 0,
 
-    @ColumnInfo(name = "imagePath3")
-    val imagePath3: String,
+    @ColumnInfo(name = "class1")
+    val class1: Float,
 
-    @ColumnInfo(name = "imagePath4")
-    val imagePath4: String,
+    @ColumnInfo(name = "class2")
+    val class2: Float,
 
-    @ColumnInfo(name = "imagePath5")
-    val imagePath5: String
+    @ColumnInfo(name = "class3")
+    val class3: Float,
+
+    @ColumnInfo(name = "class4")
+    val class4: Float,
+
+    @ColumnInfo(name = "class5")
+    val class5: Float
+): Parcelable
+
+@Parcelize
+@Entity
+data class PredictionResult(
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    val id: Int = 0,
+
+    @ColumnInfo(name = "resultHairLoss")
+    val resultHairLoss: String,
+
+    @ColumnInfo(name = "resultScalpCondi")
+    val resultScalpCondi: String,
+
+    @ColumnInfo(name = "imgPath")
+    val imgPath: String
 ): Parcelable

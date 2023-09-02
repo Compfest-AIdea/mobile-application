@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/font_inria_sans"
         android:text="Add New Data"
+        android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,12 +24,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:padding="16dp"
         android:background="@drawable/rounded_frame_bkg"
+        android:backgroundTint="@color/white"
+        android:backgroundTintMode="multiply"
+        android:orientation="vertical"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_activity_list"
-        android:orientation="vertical">
+        app:layout_constraintTop_toBottomOf="@id/tv_title_activity_list">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -48,62 +51,15 @@
                 android:fontFamily="@font/font_inria_sans"
                 android:text="We need you to input your scalp image"
                 android:textSize="16sp" />
-            <!--androidx.constraintlayout.utils.widget.ImageFilterButton
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/ifb_add_images"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="6dp"
                 android:background="@drawable/rounded_frame_input_bkg"
                 android:padding="16dp"
-                android:src="@drawable/ic_add"
-                android:inputType="number" /-->
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/list_photos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-                <ImageView
-                    android:id="@+id/iv_add_img_1"
-                    android:layout_marginEnd="12dp"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.2"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_add"
-                    android:background="@drawable/rounded_frame_bkg"/>
-                <ImageView
-                    android:id="@+id/iv_add_img_2"
-                    android:layout_marginEnd="12dp"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.2"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_add"
-                    android:background="@drawable/rounded_frame_bkg"/>
-                <ImageView
-                    android:id="@+id/iv_add_img_3"
-                    android:layout_marginEnd="12dp"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.2"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_add"
-                    android:background="@drawable/rounded_frame_bkg"/>
-                <ImageView
-                    android:id="@+id/iv_add_img_4"
-                    android:layout_marginEnd="12dp"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.2"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_add"
-                    android:background="@drawable/rounded_frame_bkg"/>
-                <ImageView
-                    android:id="@+id/iv_add_img_5"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.2"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_add"
-                    android:background="@drawable/rounded_frame_bkg"/>
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                android:src="@drawable/ic_add" />
             <Button
                 android:id="@+id/btn_submit_all"
                 android:layout_width="160dp"
@@ -111,12 +67,13 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/yellow_200"
                 android:text="Submit" />
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="horizontal">
                 <androidx.constraintlayout.utils.widget.ImageFilterView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

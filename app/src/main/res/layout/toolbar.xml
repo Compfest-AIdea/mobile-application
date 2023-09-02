@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@android:color/transparent">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -16,7 +17,8 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="20dp"
-            android:src="@drawable/ic_profile" />
+            android:src="@drawable/ic_profile"
+            app:tint="@color/white"/>
         <TextView
             android:id="@+id/tv_app_name"
             android:layout_width="wrap_content"
@@ -24,6 +26,7 @@
             android:layout_gravity="center_vertical"
             android:fontFamily="@font/font_inria_sans"
             android:text="Hello, name"
+            android:textColor="@color/white"
             android:textSize="28sp"
             android:textStyle="bold" />
     </androidx.appcompat.widget.LinearLayoutCompat>

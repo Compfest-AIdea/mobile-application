@@ -75,68 +75,20 @@ class AddViewModel: ViewModel() {
         )
     }
 
-    private val _image1 = MutableLiveData<String?>()
-    val image1 : LiveData<String?> = _image1
+    private val _imgPath = MutableLiveData<String?>()
+    val imgPath : LiveData<String?> = _imgPath
 
-    private val _image2 = MutableLiveData<String?>()
-    val image2 : LiveData<String?> = _image2
-
-    private val _image3 = MutableLiveData<String?>()
-    val image3 : LiveData<String?> = _image3
-
-    private val _image4 = MutableLiveData<String?>()
-    val image4 : LiveData<String?> = _image4
-
-    private val _image5 = MutableLiveData<String?>()
-    val image5 : LiveData<String?> = _image5
-
-    private fun saveAllImage(img1: String? = null, img2: String? = null, img3: String? = null, img4: String? = null, img5: String? = null) {
-        _image1.value = img1
-        _image2.value = img2
-        _image3.value = img3
-        _image4.value = img4
-        _image5.value = img5
+    fun saveImage(imgPath: String?) {
+        _imgPath.value = imgPath
     }
 
-    fun saveImage(imgPath: String? = null, imgSelector: Int?) {
-        when (imgSelector) {
-            AddFragmentThree.IMG_SELECTOR_1 -> {
-                saveAllImage(img1 = imgPath)
-            }
-            AddFragmentThree.IMG_SELECTOR_2 -> {
-                saveAllImage(img2 = imgPath)
-            }
-            AddFragmentThree.IMG_SELECTOR_3 -> {
-                saveAllImage(img3 = imgPath)
-            }
-            AddFragmentThree.IMG_SELECTOR_4 -> {
-                saveAllImage(img4 = imgPath)
-            }
-            AddFragmentThree.IMG_SELECTOR_5 -> {
-                saveAllImage(img5 = imgPath)
-            }
-            else -> {}
-        }
-    }
-
-    fun getImageInputData(): Map<String, String?> {
-        val predictionData = getParcelableImageInputData()
-        return mapOf(
-            "imagePath1" to predictionData.imagePath1,
-            "imagePath2" to predictionData.imagePath2,
-            "imagePath3" to predictionData.imagePath3,
-            "imagePath4" to predictionData.imagePath4,
-            "imagePath5" to predictionData.imagePath5
-        )
+    fun getImage(): String? {
+        return imgPath.value
     }
 
     fun getParcelableImageInputData(): PredictionImageInput {
         return PredictionImageInput(
-            imagePath1 = image1.value as String,
-            imagePath2 = image2.value as String,
-            imagePath3 = image3.value as String,
-            imagePath4 = image4.value as String,
-            imagePath5 = image5.value as String
+            imagePath = imgPath.value as String
         )
     }
 }

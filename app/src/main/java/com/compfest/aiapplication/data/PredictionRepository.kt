@@ -8,27 +8,16 @@ class PredictionRepository(private val dao: PredictionDao) {
 
     private val executor: Executor = Executors.newSingleThreadExecutor()
 
-    fun insertPredictionTabularInput(predictionTabularInput: PredictionTabularInput) {
+    fun insertResult(predictionResult: PredictionResult) {
         executor.execute {
-            dao.insertPredictionTabularInput(predictionTabularInput)
+            dao.insertResult(predictionResult)
         }
     }
 
-    fun insertPredictionImageInput(predictionImageInput: PredictionImageInput) {
+    fun insertPredictionInputData(predictionTabularInput: PredictionTabularInput, predictionImageInput: PredictionImageInput) {
         executor.execute {
-            dao.insertPredictionImageInput(predictionImageInput)
-        }
-    }
-
-    fun insertPredictionTabularResult(prediction: PredictionTabularResult) {
-        executor.execute {
-            dao.insertPredictionTabularResult(prediction)
-        }
-    }
-
-    fun insertPredictionImageResult(prediction: PredictionImageResult) {
-        executor.execute {
-            dao.insertPredictionImageResult(prediction)
+            dao.insertInputTabularData(predictionTabularInput)
+            dao.insertInputImageData(predictionImageInput)
         }
     }
 

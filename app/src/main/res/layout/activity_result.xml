@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.ResultActivity">
+    tools:context=".ui.activity.ResultActivity"
+    android:background="@drawable/background_main">
 
     <include
         android:id="@+id/toolbar1"
@@ -24,24 +25,36 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="20dp"
+        android:padding="12dp"
         android:background="@drawable/rounded_frame_bkg"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar1">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_image_result"
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_horizontal"/>
         <androidx.appcompat.widget.AppCompatTextView
+            android:fontFamily="@font/font_inria_sans"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Hasil prediksi"
-            android:textSize="20sp"/>
+            android:textSize="24sp"/>
         <androidx.appcompat.widget.AppCompatTextView
+            android:fontFamily="@font/font_inria_sans"
             android:id="@+id/tv_result_tabular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="- Hasil prediksi"
             android:textSize="20sp"/>
         <androidx.appcompat.widget.AppCompatTextView
+            android:fontFamily="@font/font_inria_sans"
             android:id="@+id/tv_result_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
