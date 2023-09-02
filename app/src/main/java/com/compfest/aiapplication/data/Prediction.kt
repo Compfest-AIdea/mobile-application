@@ -106,5 +106,8 @@ data class PredictionResult(
     val resultScalpCondi: String,
 
     @ColumnInfo(name = "imgPath")
-    val imgPath: String
+    val imgPath: String,
+
+    @ColumnInfo(name = "timeTaken")
+    val timeTaken: Long
 ): Parcelable

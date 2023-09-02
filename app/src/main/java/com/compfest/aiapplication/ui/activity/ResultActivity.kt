@@ -13,6 +13,7 @@ import com.compfest.aiapplication.data.PredictionResult
 import com.compfest.aiapplication.data.PredictionTabularInput
 import com.compfest.aiapplication.data.PredictionTabularResult
 import com.compfest.aiapplication.databinding.ActivityResultBinding
+import com.compfest.aiapplication.getCurrentTimeMillis
 import com.compfest.aiapplication.getImageFromExternalStorage
 import com.compfest.aiapplication.model.ResultViewModel
 import com.compfest.aiapplication.model.ViewModelFactory
@@ -58,7 +59,7 @@ class ResultActivity : AppCompatActivity() {
                 val imagePath = predictionImageInput.imagePath
                 viewModel.saveInputData(predictionTabularInput, predictionImageInput)
                 setOutputResult(resultTabular, resultImage, imagePath)
-                val predictionResult = PredictionResult(resultHairLoss = resultTabular, resultScalpCondi = resultImage, imgPath = imagePath)
+                val predictionResult = PredictionResult(resultHairLoss = resultTabular, resultScalpCondi = resultImage, imgPath = imagePath, timeTaken = getCurrentTimeMillis())
                 viewModel.saveResult(predictionResult)
             }
         }

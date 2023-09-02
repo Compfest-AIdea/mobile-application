@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.compfest.aiapplication.R
+import com.compfest.aiapplication.convertLongToDateString
 import com.compfest.aiapplication.data.PredictionResult
 import com.compfest.aiapplication.databinding.FragmentHomeBinding
 import com.compfest.aiapplication.model.HomeViewModel
@@ -51,6 +52,25 @@ class HomeFragment : Fragment() {
         recycler.adapter = predictionAdapter
         viewModel.predictionResult.observe(requireActivity()) {
             predictionAdapter.submitList(it)
+        }
+        viewModel.recentPredictionResult.observe(requireActivity()) { predictionResult ->
+            if (predictionResult != null) {
+                binding.tvEmptyMessage.visibility = View.GONE
+                binding.rvResultPrediction.visibility = View.VISIBLE
+                binding.tvStatus.text = predictionResult.resultHairLoss
+                binding.tvTimeTaken.text = convertLongToDateString(predictionResult.timeTaken)
+                binding.ivToResult.setOnClickListener {
+                    val intent = Intent(requireContext(), ResultActivity::class.java)
+                    intent.putExtra(ResultActivity.EXTRA_ID, predictionResult.id)
+                    intent.putExtra("origin", HomeFragment::class.java.simpleName)
+                    startActivity(intent)
+                }
+            } else {
+                binding.tvEmptyMessage.visibility = View.VISIBLE
+                binding.rvResultPrediction.visibility = View.INVISIBLE
+                binding.tvStatus.text = "--"
+                binding.tvTimeTaken.text = "--"
+            }
         }
     }
 

@@ -11,6 +11,7 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import java.util.TimeZone
 
 
 fun getImageFromExternalStorage(imagePath: String): Bitmap? {
@@ -74,4 +75,15 @@ fun resizeBitmap(bitmap: Bitmap, maxWidth: Int, maxHeight: Int): Bitmap {
     matrix.postScale(scaleFactor, scaleFactor)
 
     return Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, false)
+}
+
+fun getCurrentTimeMillis(): Long {
+    return System.currentTimeMillis()
+}
+
+fun convertLongToDateString(timeInMillis: Long): String {
+    val dateFormat = SimpleDateFormat("dd-MM-yyyy HH:mm")
+    dateFormat.timeZone = TimeZone.getDefault() // Set zona waktu lokal
+    val date = Date(timeInMillis)
+    return dateFormat.format(date)
 }
