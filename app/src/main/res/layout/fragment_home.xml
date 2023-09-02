@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.HomeFragment">
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:outlineSpotShadowColor="@color/cardview_dark_background"
-        android:elevation="4dp"
-        android:padding="12dp"
+        android:layout_margin="8dp"
         android:id="@+id/container_recent_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_frame_bkg"
+        android:elevation="2dp"
         android:orientation="horizontal"
+        android:outlineSpotShadowColor="@color/cardview_dark_background"
+        android:padding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -94,6 +95,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title_activity_list" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_result_prediction"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:background="@drawable/rounded_frame_bkg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_activity_list"
+        tools:visibility="visible"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
@@ -105,6 +119,8 @@
         app:layout_constraintBottom_toBottomOf="@id/container_activity_list"
         app:layout_constraintEnd_toEndOf="@id/container_activity_list"
         app:layout_constraintStart_toStartOf="@id/container_activity_list"
-        app:layout_constraintTop_toTopOf="@id/container_activity_list" />
+        app:layout_constraintTop_toTopOf="@id/container_activity_list"
+        android:visibility="gone"
+        tools:visibility="visible"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

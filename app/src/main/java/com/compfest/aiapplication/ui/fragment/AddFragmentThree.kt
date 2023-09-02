@@ -71,6 +71,7 @@ class AddFragmentThree : Fragment() {
                 val resultImage = tryingMLImage()
                 val intent = Intent(requireContext(), ResultActivity::class.java)
                 intent.apply {
+                    putExtra("origin", AddFragmentThree::class.java.simpleName)
                     putExtra(ResultActivity.EXTRA_RESULT_TABULAR, resultTabular)
                     putExtra(ResultActivity.EXTRA_RESULT_IMAGE, resultImage)
                     putExtra(ResultActivity.EXTRA_PREDICTION_TABULAR_INPUT, viewModel.getParcelableTabularInputData())

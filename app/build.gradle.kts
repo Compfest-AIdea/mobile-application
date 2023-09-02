@@ -82,4 +82,6 @@ dependencies {
 
     // Also add the dependency for the TensorFlow Lite library and specify its version
     implementation("org.tensorflow:tensorflow-lite:2.3.0")
+
+    implementation("androidx.paging:paging-runtime-ktx:3.2.0")
 }
