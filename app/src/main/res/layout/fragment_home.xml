@@ -7,72 +7,75 @@
     tools:context=".ui.fragment.HomeFragment">
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_margin="8dp"
         android:id="@+id/container_recent_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:background="@drawable/rounded_frame_bkg"
         android:elevation="2dp"
         android:orientation="horizontal"
         android:outlineSpotShadowColor="@color/cardview_dark_background"
         android:paddingStart="12dp"
-        android:paddingEnd="12dp"
         android:paddingTop="12dp"
+        android:paddingEnd="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_recent_activity"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.3"
             android:background="@drawable/card_status"
-            android:orientation="vertical"
             android:padding="8dp">
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_weight="0.7"
             android:layout_marginBottom="12dp"
+            android:layout_weight="0.7"
             android:orientation="vertical">
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_kanit"
                 android:text="Recent check-up"
                 android:textSize="20sp" />
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_time_taken"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_kanit"
-                android:text="23 Jan 2023 08:08 AM"
+                tools:text="23 Jan 2023 08:08 AM"
                 android:textSize="12sp" />
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_kanit"
                 android:text="Your Health"
                 android:textSize="20sp" />
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_kanit"
-                android:text="Good"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                tools:text="Good" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_to_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_arrow_next"
-                android:layout_gravity="end"/>
+                android:layout_gravity="end"
+                android:src="@drawable/ic_arrow_next" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -101,19 +104,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title_activity_list" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_result_prediction"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_frame_bkg"
         android:paddingTop="4dp"
         android:paddingBottom="4dp"
-        android:background="@drawable/rounded_frame_bkg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title_activity_list"
-        tools:visibility="visible"/>
+        tools:listitem="@layout/result_item"
+        tools:visibility="visible" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_empty_message"
@@ -123,11 +128,10 @@
         android:text="Nothing to see here"
         android:textAlignment="center"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/container_activity_list"
         app:layout_constraintEnd_toEndOf="@id/container_activity_list"
         app:layout_constraintStart_toStartOf="@id/container_activity_list"
-        app:layout_constraintTop_toTopOf="@id/container_activity_list"
-        android:visibility="gone"
-        tools:visibility="visible"/>
+        app:layout_constraintTop_toTopOf="@id/container_activity_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
