@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/iv_img_preview"
-            android:text="Adjust the pictures taken"
+            android:text="Sesuaikan gambar"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_title"
             android:layout_toEndOf="@id/iv_img_preview"
-            android:text="If it doesn't fit, you can click on the image to take another picture"
+            android:text="Jika belum sesuai, bisa klik kembali pada gambar di samping untuk mengambil gambar kembali."
             android:textColor="@color/black"
             android:textSize="15sp" />
 

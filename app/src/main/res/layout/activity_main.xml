@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:background="@color/yellow_200"
+        android:backgroundTint="@color/yellow_200"
         android:src="@drawable/ic_add"
         app:elevation="4dp"
         app:layout_constraintBottom_toBottomOf="@id/bottomNavView"

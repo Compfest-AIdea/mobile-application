@@ -1,9 +1,12 @@
 package com.compfest.aiapplication.ui.activity
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.compfest.aiapplication.R
@@ -42,6 +45,7 @@ class ResultActivity : AppCompatActivity() {
             val predictionResult = viewModel.getPredictionResult(id)
             predictionResult.observe(this) {
                 setOutputResult(it.resultHairLoss, it.resultScalpCondi, it.imgPath)
+                setBottomSheetDetail(it.resultScalpCondi)
             }
         } else {
             val predictionTabularInput = getParcelize(EXTRA_PREDICTION_TABULAR_INPUT) as PredictionTabularInput?
@@ -55,12 +59,11 @@ class ResultActivity : AppCompatActivity() {
                 val imagePath = predictionImageInput.imagePath
                 viewModel.saveInputData(predictionTabularInput, predictionImageInput)
                 setOutputResult(resultTabular, resultImage, imagePath)
+                setBottomSheetDetail(resultImage)
                 val predictionResult = PredictionResult(resultHairLoss = resultTabular, resultScalpCondi = resultImage, imgPath = imagePath, timeTaken = getCurrentTimeMillis())
                 viewModel.saveResult(predictionResult)
             }
         }
-
-        setBottomSheetDetail()
     }
 
     companion object {
@@ -148,29 +151,62 @@ class ResultActivity : AppCompatActivity() {
             predictionImageResult.class4,
             predictionImageResult.class5
         )
-        var maxVal = imageResult[0]
+        var maxValIndex = 0
+        var maxVal = imageResult[maxValIndex]
         for (i in 1 until imageResult.size) {
-            val currentVal = imageResult[i]
-
-            if (currentVal > maxVal) {
-                maxVal = currentVal
+            if (imageResult[i] > maxVal) {
+                maxVal = imageResult[i]
+                maxValIndex = i
             }
         }
-        val maxValIndex = imageResult.indexOf(maxVal)
+        val disesaseName = resources.getStringArray(R.array.disease_name)
         when (maxValIndex) {
-            4 -> { return "Tinea-capitis"}
-            3 -> { return "Seborrhoeic-dermatitis" }
-            2 -> { return "Scalp-psoriasis" }
-            1 -> { return "Normal" }
-            else -> { return "Alopecia-areata" }
+            4 -> { return disesaseName[0] }
+            3 -> { return disesaseName[1] }
+            2 -> { return disesaseName[2] }
+            1 -> { return "normal" }
+            else -> { return disesaseName[3] }
         }
     }
 
-    private fun setBottomSheetDetail() {
+    private fun setBottomSheetDetail(imageResult: String) {
         val bottomSheetDetail: View = findViewById(R.id.bottom_sheet)
         val bottomSheetBinding = BottomSheetDetailBinding.bind(bottomSheetDetail)
         val bottomSheetBehavior: BottomSheetBehavior<*> = BottomSheetBehavior.from(bottomSheetDetail)
-        bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        val diseaseName = resources.getStringArray(R.array.disease_name)
+        val diseaseDesc = resources.getStringArray(R.array.disease_desc)
+        val diseaseArticle = resources.getStringArray(R.array.disease_article)
+        when (imageResult) {
+            diseaseName[0] -> {
+                bottomSheetBinding.tvDiseaseArticleTitle.text = diseaseName[0]
+                bottomSheetBinding.tvDisesaseArticleDesc.text = diseaseDesc[0]
+                goToDetailLink(diseaseArticle[0], bottomSheetBinding)
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            }
+            diseaseName[1] -> {
+                bottomSheetBinding.tvDiseaseArticleTitle.text = diseaseName[1]
+                bottomSheetBinding.tvDisesaseArticleDesc.text = diseaseDesc[1]
+                goToDetailLink(diseaseArticle[1], bottomSheetBinding)
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            }
+            diseaseName[2] -> {
+                bottomSheetBinding.tvDiseaseArticleTitle.text = diseaseName[2]
+                bottomSheetBinding.tvDisesaseArticleDesc.text = diseaseDesc[2]
+                goToDetailLink(diseaseArticle[2], bottomSheetBinding)
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            }
+            diseaseName[3] -> {
+                bottomSheetBinding.tvDiseaseArticleTitle.text = diseaseName[3]
+                bottomSheetBinding.tvDisesaseArticleDesc.text = diseaseDesc[3]
+                goToDetailLink(diseaseArticle[3], bottomSheetBinding)
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            }
+            else -> {
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+                bottomSheetBehavior.isHideable = true
+                bottomSheetBehavior.isDraggable = false
+            }
+        }
         bottomSheetBehavior.addBottomSheetCallback(object: BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
                 //
@@ -180,5 +216,13 @@ class ResultActivity : AppCompatActivity() {
                 //
             }
         })
+    }
+
+    private fun goToDetailLink(url: String, bottomSheetDetailBinding: BottomSheetDetailBinding) {
+        val uri = Uri.parse(url)
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        bottomSheetDetailBinding.btnGoDetail.setOnClickListener {
+            startActivity(intent)
+        }
     }
 }

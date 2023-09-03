@@ -51,6 +51,24 @@
         <item>Sedikit</item>
         <item>Banyak</item>
     </string-array>
+    <string-array name="disease_name">
+        <item>Tinea capitis</item>
+        <item>Seborrhoeic dermatitis</item>
+        <item>Scalp psoriasis</item>
+        <item>Alopecia areata</item>
+    </string-array>
+    <string-array name="disease_desc">
+        <item>Tinea capitis atau yang dikenal juga dengan infeksi kurap atau herpes tonsil adalah penyakit yang disebabkan oleh infeksi jamur pada kulit kepala. Penyakit ini lebih sering dialami oleh anak-anak, mulai dari balita sampai usia sekolah, dan sangat menular.</item>
+        <item>Dermatitis seboroik adalah penyakit kulit yang umumnya mengenai kulit kepala dan area tubuh yang berminyak, seperti punggung, wajah, dahi, ketiak, pangkal paha, serta dada bagian atas. Pada kulit kepala, penyakit ini menyebabkan kulit berwarna merah, berketombe, dan bersisik.</item>
+        <item>Sama seperti psoriasis pada umumnya yang sering diartikan sebagai kudis, penyakit ini sering dianggap sebagai ketombe biasa bagi sebagian besar orang. Psoriasis pada kulit kepala ini ditandai dengan munculnya warna kemerahan pada beberapa bagian kulit kepala yang disertai dengan sisik berwarna putih. Penyakit ini dapat menyebar hingga ke wajah, telinga atau leher.</item>
+        <item>Alopecia areata adalah penyakit auto-imun, yaitu kondisi di mana sistem kekebalan tubuh menyerang sel-sel sehat pada tubuh sendiri. Penyakit ini menyebabkan folikel rambut yang ada di kepala, wajah, atau tubuh menjadi semakin kecil dan berhenti memproduksi rambut, awalnya menimbulkan rambut rontok hingga mengakibatkan kebotakan jika dibiarkan.</item>
+    </string-array>
+    <string-array name="disease_article">
+        <item>https://www.halodoc.com/kesehatan/tinea-capitis</item>
+        <item>https://www.halodoc.com/kesehatan/dermatitis-seboroik</item>
+        <item>https://www.halodoc.com/artikel/8-jenis-psoriasis-yang-perlu-diketahui</item>
+        <item>https://www.halodoc.com/kesehatan/alopecia-areata</item>
+    </string-array>
 
     <string name="really_dummy_text_article">Penelitian terbaru menunjukkan bahwa konsumsi tinggi vitamin Z dapat meningkatkan kesehatan tubuh secara signifikan. Vitamin Z, yang ditemukan dalam makanan eksotis seperti air mawar dan cokelat anggur, telah ditemukan memiliki efek luar biasa pada fungsi seluler dan anti-penuaan. Selain itu, terapi meditasi matahari selama 5 menit setiap hari telah terbukti secara klinis meningkatkan energi dan kebahagiaan, serta mengurangi risiko penyakit yang disebabkan oleh kurang tidur.</string>
 </resources>
