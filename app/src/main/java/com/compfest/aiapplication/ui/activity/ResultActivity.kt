@@ -6,17 +6,20 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.compfest.aiapplication.R
 import com.compfest.aiapplication.data.PredictionImageInput
 import com.compfest.aiapplication.data.PredictionImageResult
 import com.compfest.aiapplication.data.PredictionResult
 import com.compfest.aiapplication.data.PredictionTabularInput
 import com.compfest.aiapplication.data.PredictionTabularResult
 import com.compfest.aiapplication.databinding.ActivityResultBinding
+import com.compfest.aiapplication.databinding.BottomSheetDetailBinding
 import com.compfest.aiapplication.getCurrentTimeMillis
 import com.compfest.aiapplication.getImageFromExternalStorage
 import com.compfest.aiapplication.model.ResultViewModel
 import com.compfest.aiapplication.model.ViewModelFactory
 import com.compfest.aiapplication.ui.fragment.HomeFragment
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 class ResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultBinding
@@ -56,6 +59,8 @@ class ResultActivity : AppCompatActivity() {
                 viewModel.saveResult(predictionResult)
             }
         }
+
+        setBottomSheetDetail()
     }
 
     companion object {
@@ -159,5 +164,21 @@ class ResultActivity : AppCompatActivity() {
             1 -> { return "Normal" }
             else -> { return "Alopecia-areata" }
         }
+    }
+
+    private fun setBottomSheetDetail() {
+        val bottomSheetDetail: View = findViewById(R.id.bottom_sheet)
+        val bottomSheetBinding = BottomSheetDetailBinding.bind(bottomSheetDetail)
+        val bottomSheetBehavior: BottomSheetBehavior<*> = BottomSheetBehavior.from(bottomSheetDetail)
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        bottomSheetBehavior.addBottomSheetCallback(object: BottomSheetBehavior.BottomSheetCallback() {
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                //
+            }
+
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+                //
+            }
+        })
     }
 }

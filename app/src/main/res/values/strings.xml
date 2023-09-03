@@ -34,21 +34,22 @@
     <string name="title_image_data">Data gambar</string>
     <string name="desc_image_data">Kami butuh gambar foto kulit kepalamu</string>
     <string name="button_done">Selesai</string>
+    <string name="button_go_detail">Lihat detail</string>
 
     <string-array name="sense_level">
-        <item>Low</item>
-        <item>Medium</item>
-        <item>High</item>
-        <item>Very High</item>
+        <item>Rendah</item>
+        <item>Sedang</item>
+        <item>Tinggi</item>
+        <item>Sangat Tinggi</item>
     </string-array>
     <string-array name="bool_val">
-        <item>Yes</item>
-        <item>No</item>
+        <item>Tidak</item>
+        <item>Ya</item>
     </string-array>
     <string-array name="condition_level">
-        <item>None</item>
-        <item>Few</item>
-        <item>Many</item>
+        <item>Tidak ada</item>
+        <item>Sedikit</item>
+        <item>Banyak</item>
     </string-array>
 
     <string name="really_dummy_text_article">Penelitian terbaru menunjukkan bahwa konsumsi tinggi vitamin Z dapat meningkatkan kesehatan tubuh secara signifikan. Vitamin Z, yang ditemukan dalam makanan eksotis seperti air mawar dan cokelat anggur, telah ditemukan memiliki efek luar biasa pada fungsi seluler dan anti-penuaan. Selain itu, terapi meditasi matahari selama 5 menit setiap hari telah terbukti secara klinis meningkatkan energi dan kebahagiaan, serta mengurangi risiko penyakit yang disebabkan oleh kurang tidur.</string>

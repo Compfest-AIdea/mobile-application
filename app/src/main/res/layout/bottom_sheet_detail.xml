@@ -1,86 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_sheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:behavior_hideable="false"
+    app:behavior_peekHeight="20dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/list_photos"
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/divider"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/list_photos">
-
-        <ImageView
-            android:id="@+id/iv_img_preview"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:src="@drawable/ic_photo_fill"
-            android:background="@drawable/rounded_frame_bkg"
-            tools:ignore="ContentDescription" />
+        app:layout_constraintTop_toBottomOf="@id/divider">
 
         <TextView
-            android:id="@+id/tv_title"
+            android:id="@+id/tv_disease_article_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/iv_img_preview"
-            android:text="Adjust the pictures taken"
+            android:text="Nama penyakit"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tv_message"
+            android:id="@+id/tv_disease_article_source"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sumber: Halodoc"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_disesase_article_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_title"
-            android:layout_toEndOf="@id/iv_img_preview"
-            android:text="If it doesn't fit, you can click on the image to take another picture"
+            android:layout_marginTop="12dp"
             android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:text="@string/really_dummy_text_article" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/tv_message"
+            android:layout_marginTop="24dp"
             android:layout_marginBottom="20dp"
-            android:orientation="horizontal"
-            android:layout_below="@id/iv_img_preview">
+            android:gravity="end"
+            android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btn_cancel"
-                android:layout_width="0dp"
-                android:layout_weight="0.3"
-                android:layout_marginEnd="25dp"
+                android:id="@+id/btn_go_detail"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cancel" />
-
-            <Button
-                android:id="@+id/btn_save"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:layout_marginStart="15dp"
-                android:text="Save"
+                android:text="@string/button_go_detail"
                 android:textAllCaps="false" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-    </RelativeLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.constraintlayout.widget.ConstraintLayout>
