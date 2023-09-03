@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/font_inria_sans"
-        android:text="Add New Data"
+        android:text="@string/title_add_new"
+        tools:textColor="@color/black"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -42,14 +43,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_inria_sans"
-                android:text="Stay up late"
+                android:text="Begadang"
                 android:textSize="16sp"
                 android:textStyle="bold" />
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_inria_sans"
-                android:text="How many hours have you stayed up late?"
+                android:text="Berapa jam kamu begadang?"
                 android:textSize="16sp" />
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/stay_up_late"
@@ -74,14 +75,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_inria_sans"
-                android:text="Coffee consumed"
+                android:text="Minum kopi"
                 android:textSize="16sp"
                 android:textStyle="bold" />
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_inria_sans"
-                android:text="How many cups of coffee have you consumed?"
+                android:text="Berapa gelas kopi yang kamu konsumsi kemarin?"
                 android:textSize="16sp" />
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/coffee_consumption"
@@ -106,14 +107,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_inria_sans"
-                android:text="Brain working duration"
+                android:text="Waktu kerja"
                 android:textSize="16sp"
                 android:textStyle="bold" />
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_inria_sans"
-                android:text="How many hours have you spent on work which requires brain power?"
+                android:text="Berapa jam kamu telah bekerja dihitung dari hari kemarin?"
                 android:textSize="16sp" />
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/brain_working_duration"

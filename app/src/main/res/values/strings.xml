@@ -11,7 +11,9 @@
     <string name="card_title1">Pemeriksaan terakhir</string>
     <string name="card_title2">Kesehatanmu</string>
     <string name="title_activity_history">Riwayat pemeriksaan</string>
-    <string name="title_empty_activity_history">Nothing to see here</string>
+    <string name="title_empty_activity_history">Belum ada riwayat pemeriksaan</string>
+
+    <string name="title_add_new">Tambahkan data baru</string>
 
     <string-array name="sense_level">
         <item>Low</item>
