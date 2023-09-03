@@ -4,7 +4,6 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.compfest.aiapplication.data.PredictionImageInput
@@ -17,12 +16,7 @@ import com.compfest.aiapplication.getCurrentTimeMillis
 import com.compfest.aiapplication.getImageFromExternalStorage
 import com.compfest.aiapplication.model.ResultViewModel
 import com.compfest.aiapplication.model.ViewModelFactory
-import com.compfest.aiapplication.ui.fragment.AddFragmentThree
 import com.compfest.aiapplication.ui.fragment.HomeFragment
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
 
 class ResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultBinding
@@ -34,14 +28,13 @@ class ResultActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.toolbar1.ivLogo.visibility = View.GONE
-        binding.toolbar1.tvAppName.text = "Result"
+        binding.toolbar1.tvAppName.text = "Hasil Pemeriksaan"
 
         val factory = ViewModelFactory.getInstance(this)
         viewModel = ViewModelProvider(this, factory)[ResultViewModel::class.java]
 
         val origin = intent.getStringExtra("origin") as String
         val id = intent.getIntExtra(EXTRA_ID, 0)
-        Toast.makeText(this, "$origin + $id", Toast.LENGTH_SHORT).show()
         if (origin == HomeFragment::class.java.simpleName) {
             val predictionResult = viewModel.getPredictionResult(id)
             predictionResult.observe(this) {

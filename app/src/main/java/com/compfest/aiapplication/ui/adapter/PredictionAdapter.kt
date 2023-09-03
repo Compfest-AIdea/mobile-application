@@ -18,7 +18,7 @@ class PredictionAdapter(
         private val tvIndex: TextView = itemView.findViewById(R.id.item_tv_index)
         private val tvTitle: TextView = itemView.findViewById(R.id.item_tv_title)
         fun bind(predictionResult: PredictionResult) {
-            tvTitle.text = "Ke-".plus(predictionResult.id.toString())
+            tvTitle.text = "Pemeriksaan Ke-".plus(predictionResult.id.toString())
             tvIndex.text = convertLongToDateString(predictionResult.timeTaken)
 
             itemView.setOnClickListener {
