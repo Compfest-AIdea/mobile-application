@@ -18,17 +18,19 @@
             android:layout_height="50dp"
             android:layout_marginEnd="20dp"
             android:src="@drawable/ic_profile"
-            app:tint="@color/white"/>
+            app:tint="@color/white"
+            tools:tint="@color/black" />
         <TextView
             android:id="@+id/tv_app_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:fontFamily="@font/font_inria_sans"
-            android:text="Hello, name"
+            tools:text="Hello, User"
             android:textColor="@color/white"
             android:textSize="28sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:textColor="@color/black" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </com.google.android.material.appbar.MaterialToolbar>
