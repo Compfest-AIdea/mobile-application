@@ -8,6 +8,9 @@
     <string name="input_name_nickname">masukkan nama panggilan</string>
     <string name="button_next">Simpan</string>
 
+    <string name="card_title1">Pemeriksaan terakhir</string>
+    <string name="card_title2">Kesehatanmu</string>
+
     <string-array name="sense_level">
         <item>Low</item>
         <item>Medium</item>
