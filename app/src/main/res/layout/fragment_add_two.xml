@@ -47,14 +47,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_inria_sans"
-                    android:text="Tingkat tekanan"
+                    android:text="@string/title_pressure_level"
                     android:textSize="16sp"
                     android:textStyle="bold" />
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_inria_sans"
-                    android:text="Tingkat tekanan yang kamu rasakan"
+                    android:text="@string/desc_pressure_level"
                     android:textSize="16sp" />
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spinner_level_of_pressure"
@@ -76,14 +76,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_inria_sans"
-                    android:text="Tingkat stress"
+                    android:text="@string/title_stress_level"
                     android:textSize="16sp"
                     android:textStyle="bold" />
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_inria_sans"
-                    android:text="Tingkat stress yang kamu rasakan"
+                    android:text="@string/desc_stress_level"
                     android:textSize="16sp" />
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spinner_level_of_stress"
@@ -105,14 +105,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_inria_sans"
-                    android:text="Berenang"
+                    android:text="@string/title_swimming"
                     android:textSize="16sp"
                     android:textStyle="bold" />
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_inria_sans"
-                    android:text="Sudahkah kamu berenang hari ini?"
+                    android:text="@string/desc_swimming"
                     android:textSize="16sp" />
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spinner_have_swimmed_bool"
@@ -134,14 +134,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_inria_sans"
-                    android:text="Keramas"
+                    android:text="@string/title_hair_washing"
                     android:textSize="16sp"
                     android:textStyle="bold" />
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_inria_sans"
-                    android:text="Sudahkah kamu keramas hari ini?"
+                    android:text="@string/desc_hair_washing"
                     android:textSize="16sp" />
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spinner_hair_washed_bool"
@@ -163,14 +163,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_inria_sans"
-                    android:text="Ketombe"
+                    android:text="@string/title_dandruff"
                     android:textSize="16sp"
                     android:textStyle="bold" />
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_inria_sans"
-                    android:text="Adakah ketombe di rambutmu?"
+                    android:text="@string/desc_dandruff"
                     android:textSize="16sp" />
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spinner_dandruff_condition_lvl"
@@ -199,7 +199,8 @@
                         android:id="@+id/page_one"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/circle_dot_indicator" />
+                        android:src="@drawable/circle_dot_indicator"
+                        android:tint="@color/grey_200" />
 
                     <androidx.constraintlayout.utils.widget.ImageFilterView
                         android:id="@+id/page_two"
@@ -208,13 +209,14 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginEnd="16dp"
                         android:src="@drawable/circle_dot_indicator"
-                        android:tint="@android:color/darker_gray" />
+                        android:tint="@color/yellow_200" />
 
                     <androidx.constraintlayout.utils.widget.ImageFilterView
                         android:id="@+id/page_three"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/circle_dot_indicator" />
+                        android:src="@drawable/circle_dot_indicator"
+                        android:tint="@color/grey_200" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
             </androidx.appcompat.widget.LinearLayoutCompat>

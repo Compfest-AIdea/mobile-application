@@ -43,14 +43,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_inria_sans"
-                android:text="Begadang"
+                android:text="@string/title_staying_up_late"
                 android:textSize="16sp"
                 android:textStyle="bold" />
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_inria_sans"
-                android:text="Berapa jam kamu begadang?"
+                android:text="@string/desc_staying_up_late"
                 android:textSize="16sp" />
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/stay_up_late"
@@ -75,14 +75,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_inria_sans"
-                android:text="Minum kopi"
+                android:text="@string/title_coffee_consumption"
                 android:textSize="16sp"
                 android:textStyle="bold" />
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_inria_sans"
-                android:text="Berapa gelas kopi yang kamu konsumsi kemarin?"
+                android:text="@string/desc_coffee_consumption"
                 android:textSize="16sp" />
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/coffee_consumption"
@@ -107,14 +107,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_inria_sans"
-                android:text="Waktu kerja"
+                android:text="@string/title_brain_working"
                 android:textSize="16sp"
                 android:textStyle="bold" />
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_inria_sans"
-                android:text="Berapa jam kamu telah bekerja dihitung dari hari kemarin?"
+                android:text="@string/desc_brain_working"
                 android:textSize="16sp" />
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/brain_working_duration"
@@ -148,7 +148,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/circle_dot_indicator"
-                    android:tint="@android:color/darker_gray" />
+                    android:tint="@color/yellow_200" />
 
                 <androidx.constraintlayout.utils.widget.ImageFilterView
                     android:id="@+id/page_two"
@@ -156,13 +156,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:src="@drawable/circle_dot_indicator" />
+                    android:src="@drawable/circle_dot_indicator"
+                    android:tint="@color/grey_200"/>
 
                 <androidx.constraintlayout.utils.widget.ImageFilterView
                     android:id="@+id/page_three"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/circle_dot_indicator" />
+                    android:src="@drawable/circle_dot_indicator"
+                    android:tint="@color/grey_200" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
