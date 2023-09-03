@@ -14,6 +14,25 @@
     <string name="title_empty_activity_history">Belum ada riwayat pemeriksaan</string>
 
     <string name="title_add_new">Tambahkan data baru</string>
+    <string name="title_staying_up_late">Begadang</string>
+    <string name="desc_staying_up_late">Berapa jam kamu begadang</string>
+    <string name="title_coffee_consumption">Minum kopi</string>
+    <string name="desc_coffee_consumption">Berapa gelas kopi yang kamu konsumsi kemarin?</string>
+    <string name="title_brain_working">Waktu kerja</string>
+    <string name="desc_brain_working">Berapa jam kamu telah bekerja dihitung dari hari kemarin?</string>
+    <string name="title_pressure_level">Tingkat tekanan</string>
+    <string name="desc_pressure_level">Tingkat tekanan yang kamu rasakan</string>
+    <string name="title_stress_level">Tingkat stress</string>
+    <string name="desc_stress_level">Tingkat stress yang kamu rasakan</string>
+    <string name="title_swimming">Berenang</string>
+    <string name="desc_swimming">Sudahkah kamu berenang hari ini?</string>
+    <string name="title_hair_washing">Keramas</string>
+    <string name="desc_hair_washing">Sudahkah kamu keramas hari ini?</string>
+    <string name="title_dandruff">Ketombe</string>
+    <string name="desc_dandruff">Adakah ketombe di rambutmu?</string>
+    <string name="title_image_data">Data gambar</string>
+    <string name="desc_image_data">Kami butuh gambar foto kulit kepalamu</string>
+    <string name="button_done">Selesai</string>
 
     <string-array name="sense_level">
         <item>Low</item>

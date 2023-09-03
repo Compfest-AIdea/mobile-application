@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/font_inria_sans"
-        android:text="Add New Data"
+        android:text="@string/title_add_new"
+        tools:textColor="@color/black"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -42,14 +43,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_inria_sans"
-                android:text="Image Data"
+                android:text="@string/title_image_data"
                 android:textSize="16sp"
                 android:textStyle="bold" />
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_inria_sans"
-                android:text="We need you to input your scalp image"
+                android:text="@string/desc_image_data"
                 android:textSize="16sp" />
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/ifb_add_images"
@@ -68,7 +69,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/yellow_200"
-                android:text="Submit" />
+                android:text="@string/button_done" />
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -77,20 +78,22 @@
                 <androidx.constraintlayout.utils.widget.ImageFilterView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/circle_dot_indicator" />
+                    android:src="@drawable/circle_dot_indicator"
+                    android:tint="@color/grey_200" />
 
                 <androidx.constraintlayout.utils.widget.ImageFilterView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:src="@drawable/circle_dot_indicator" />
+                    android:src="@drawable/circle_dot_indicator"
+                    android:tint="@color/grey_200" />
 
                 <androidx.constraintlayout.utils.widget.ImageFilterView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/circle_dot_indicator"
-                    android:tint="@android:color/darker_gray" />
+                    android:tint="@color/yellow_200" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
