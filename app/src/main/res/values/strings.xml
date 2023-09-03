@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AIApplication</string>
+    <string name="app_name">Scalpsense</string>
 
     <string name="greeting">Selamat datang</string>
     <string name="greeting_msg">Senang melihatmu, mari berkenalan</string>
@@ -12,6 +12,7 @@
     <string name="card_title2">Kesehatanmu</string>
     <string name="title_activity_history">Riwayat pemeriksaan</string>
     <string name="title_empty_activity_history">Belum ada riwayat pemeriksaan</string>
+    <string name="title_empty_article">Tidak ada artikel</string>
 
     <string name="title_add_new">Tambahkan data baru</string>
     <string name="title_staying_up_late">Begadang</string>
@@ -49,4 +50,6 @@
         <item>Few</item>
         <item>Many</item>
     </string-array>
+
+    <string name="really_dummy_text_article">Penelitian terbaru menunjukkan bahwa konsumsi tinggi vitamin Z dapat meningkatkan kesehatan tubuh secara signifikan. Vitamin Z, yang ditemukan dalam makanan eksotis seperti air mawar dan cokelat anggur, telah ditemukan memiliki efek luar biasa pada fungsi seluler dan anti-penuaan. Selain itu, terapi meditasi matahari selama 5 menit setiap hari telah terbukti secara klinis meningkatkan energi dan kebahagiaan, serta mengurangi risiko penyakit yang disebabkan oleh kurang tidur.</string>
 </resources>

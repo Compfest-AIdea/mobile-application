@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         sessionManager = SessionManager(this)
         val userName = sessionManager.getNickname()
         if (!userName.isNullOrBlank()) {
-            binding.toolbar1.tvAppName.text = "Hello,".plus(userName.lowercase())
+            binding.toolbar1.tvAppName.text = "Halo, ".plus(userName.capitalize())
         }
 
         binding.bottomNavView.menu.getItem(1).isEnabled = false

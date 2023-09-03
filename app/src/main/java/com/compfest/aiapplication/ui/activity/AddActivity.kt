@@ -14,11 +14,6 @@ import com.compfest.aiapplication.STORAGE_ACCESS_PERMISSION_REQUEST
 import com.compfest.aiapplication.databinding.ActivityAddBinding
 import com.compfest.aiapplication.model.AddViewModel
 import com.compfest.aiapplication.ui.fragment.AddFragmentOne
-import com.google.firebase.ml.modeldownloader.CustomModel
-import com.google.firebase.ml.modeldownloader.CustomModelDownloadConditions
-import com.google.firebase.ml.modeldownloader.DownloadType
-import com.google.firebase.ml.modeldownloader.FirebaseModelDownloader
-import org.tensorflow.lite.Interpreter
 
 class AddActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddBinding
@@ -30,7 +25,7 @@ class AddActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.toolbar1.ivLogo.visibility = View.GONE
-        binding.toolbar1.tvAppName.text = "Add New"
+        binding.toolbar1.tvAppName.text = "Tambah Data"
         val fragment = AddFragmentOne()
         fragment.arguments = Bundle().apply { putString("Fragment", fragment::class.java.simpleName) }
         supportFragmentManager.beginTransaction()
