@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">AIApplication</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="greeting">Selamat datang</string>
+    <string name="greeting_msg">Senang melihatmu, mari berkenalan</string>
+    <string name="title_input_name">Siapa namamu?</string>
+    <string name="input_name_fullname">masukkan nama lengkap</string>
+    <string name="input_name_nickname">masukkan nama panggilan</string>
+    <string name="button_next">Simpan</string>
 
     <string-array name="sense_level">
         <item>Low</item>
