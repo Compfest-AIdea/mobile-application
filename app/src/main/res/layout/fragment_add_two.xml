@@ -15,13 +15,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/font_inria_sans"
+            android:text="@string/title_add_new"
             android:textColor="@color/white"
-            android:text="Add New Data"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:textColor="@color/black" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/container_activity_list"
@@ -46,14 +47,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_inria_sans"
-                    android:text="Pressure level"
+                    android:text="Tingkat tekanan"
                     android:textSize="16sp"
                     android:textStyle="bold" />
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_inria_sans"
-                    android:text="Your level of pressure"
+                    android:text="Tingkat tekanan yang kamu rasakan"
                     android:textSize="16sp" />
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spinner_level_of_pressure"
@@ -75,14 +76,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_inria_sans"
-                    android:text="Stress level"
+                    android:text="Tingkat stress"
                     android:textSize="16sp"
                     android:textStyle="bold" />
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_inria_sans"
-                    android:text="Your level of stress"
+                    android:text="Tingkat stress yang kamu rasakan"
                     android:textSize="16sp" />
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spinner_level_of_stress"
@@ -104,14 +105,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_inria_sans"
-                    android:text="Swimming"
+                    android:text="Berenang"
                     android:textSize="16sp"
                     android:textStyle="bold" />
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_inria_sans"
-                    android:text="Have you swimmed today?"
+                    android:text="Sudahkah kamu berenang hari ini?"
                     android:textSize="16sp" />
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spinner_have_swimmed_bool"
@@ -133,14 +134,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_inria_sans"
-                    android:text="Hair washing"
+                    android:text="Keramas"
                     android:textSize="16sp"
                     android:textStyle="bold" />
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_inria_sans"
-                    android:text="Have you washed your hair today?"
+                    android:text="Sudahkah kamu keramas hari ini?"
                     android:textSize="16sp" />
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spinner_hair_washed_bool"
@@ -162,14 +163,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_inria_sans"
-                    android:text="Dandruff"
+                    android:text="Ketombe"
                     android:textSize="16sp"
                     android:textStyle="bold" />
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_inria_sans"
-                    android:text="Does you get any dandruff on your scalp?"
+                    android:text="Adakah ketombe di rambutmu?"
                     android:textSize="16sp" />
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spinner_dandruff_condition_lvl"
