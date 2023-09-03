@@ -2,9 +2,12 @@ package com.compfest.aiapplication.ui.fragment
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context.CAMERA_SERVICE
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.hardware.camera2.CameraManager
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -14,6 +17,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.compfest.aiapplication.CAMERA_PERMISSION_REQUEST
@@ -88,6 +92,26 @@ class AddFragmentThree : Fragment() {
     @Suppress("DEPRECATION")
     private fun startCamera() {
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+
+        // Tentukan ukuran gambar yang Anda inginkan (1:1)
+        val targetSize = 448
+
+        // Buat objek konfigurasi gambar untuk mengatur proporsi gambar yang diambil
+        val options = BitmapFactory.Options()
+        options.inJustDecodeBounds = true
+        BitmapFactory.decodeResource(resources, R.drawable.ic_launcher_background, options)
+
+        // Hitung faktor skala untuk mengatur proporsi 1:1
+        val scaleFactor = Math.min(options.outWidth / targetSize, options.outHeight / targetSize)
+
+        // Atur properti tambahan untuk mengubah rasio gambar
+        takePictureIntent.putExtra("outputX", targetSize * scaleFactor)
+        takePictureIntent.putExtra("outputY", targetSize * scaleFactor)
+        takePictureIntent.putExtra("aspectX", 1)
+        takePictureIntent.putExtra("aspectY", 1)
+        takePictureIntent.putExtra("scale", true)
+
+        // Mulai kamera dengan intent yang telah dikonfigurasi
         startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
     }
 
@@ -124,7 +148,7 @@ class AddFragmentThree : Fragment() {
             val resultRaw = ArrayList<Float>()
             for (value in outputArray) {
                 resultRaw.add(value)
-                Log.d("TestModel", value.toString())
+                Log.d("ModelMLScalpCondi", value.toString())
             }
             model.close()
 
@@ -163,7 +187,7 @@ class AddFragmentThree : Fragment() {
         println("Output:")
         for (i in 0 until outputFeature0.typeSize) {
             resultRaw.add(outputFeature0.getFloatValue(i))
-            Log.d("ModelML","Class $i: ${outputFeature0.getFloatValue(i)}")
+            Log.d("ModelMLHairLoss","Class $i: ${outputFeature0.getFloatValue(i)}")
         }
 
         var maxVal = resultRaw[0]
