@@ -71,4 +71,17 @@
     </string-array>
 
     <string name="really_dummy_text_article">Penelitian terbaru menunjukkan bahwa konsumsi tinggi vitamin Z dapat meningkatkan kesehatan tubuh secara signifikan. Vitamin Z, yang ditemukan dalam makanan eksotis seperti air mawar dan cokelat anggur, telah ditemukan memiliki efek luar biasa pada fungsi seluler dan anti-penuaan. Selain itu, terapi meditasi matahari selama 5 menit setiap hari telah terbukti secara klinis meningkatkan energi dan kebahagiaan, serta mengurangi risiko penyakit yang disebabkan oleh kurang tidur.</string>
+    <string-array name="article_title">
+        <item>Dummy Title</item>
+    </string-array>
+    <string-array name="article_story">
+        <item>Dummy Story</item>
+    </string-array>
+    <integer-array name="article_image">
+        <item>@drawable/img_story_0</item>
+        <item>@drawable/img_story_1</item>
+        <item>@drawable/img_story_2</item>
+        <item>@drawable/img_story_3</item>
+    </integer-array>
+
 </resources>

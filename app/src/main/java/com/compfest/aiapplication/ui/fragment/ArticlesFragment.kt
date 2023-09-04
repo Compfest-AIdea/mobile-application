@@ -1,60 +1,62 @@
 package com.compfest.aiapplication.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.compfest.aiapplication.R
+import com.compfest.aiapplication.data.Article
+import com.compfest.aiapplication.databinding.FragmentAddThreeBinding
+import com.compfest.aiapplication.databinding.FragmentArticlesBinding
+import com.compfest.aiapplication.ui.activity.ArticleActivity
+import com.compfest.aiapplication.ui.adapter.ArticleAdapter
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ArticlesFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ArticlesFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentArticlesBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var recycler: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_articles, container, false)
+        _binding = FragmentArticlesBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ArticlesFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ArticlesFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val articleTitle = resources.getStringArray(R.array.disease_name)
+        val articleStory = resources.getStringArray(R.array.disease_desc)
+        val articleImage = resources.obtainTypedArray(R.array.article_image)
+        val arrayOfArticle = ArrayList<Article>()
+        for (i in articleTitle.indices) {
+            arrayOfArticle.add(
+                Article(articleTitle[i], articleStory[i], articleImage.getResourceId(i, -1))
+            )
+        }
+        if (arrayOfArticle.isNotEmpty()) {
+            binding.rvArticleList.visibility = View.VISIBLE
+            binding.tvEmptyMessage.visibility = View.GONE
+
+            val adapter = ArticleAdapter(arrayOfArticle) {
+                Toast.makeText(requireContext(), it.title, Toast.LENGTH_SHORT).show()
+                val intent = Intent(requireContext(), ArticleActivity::class.java)
+                intent.putExtra(ArticleActivity.EXTRA_ARTICLE, it)
+                startActivity(intent)
             }
+
+            recycler = binding.rvArticleList
+            recycler.layoutManager = LinearLayoutManager(requireContext())
+            recycler.adapter = adapter
+        }
+
     }
 }
