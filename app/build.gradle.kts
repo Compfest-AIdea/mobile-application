@@ -85,4 +85,6 @@ dependencies {
     implementation("org.tensorflow:tensorflow-lite:2.3.0")
 
     implementation("androidx.paging:paging-runtime-ktx:3.2.0")
+
+    implementation("com.github.bumptech.glide:glide:4.11.0")
 }
