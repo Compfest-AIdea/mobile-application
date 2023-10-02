@@ -32,7 +32,10 @@ class ArticlesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setListOfArticle()
+    }
 
+    private fun setListOfArticle() {
         val articleTitle = resources.getStringArray(R.array.disease_name)
         val articleStory = resources.getStringArray(R.array.disease_desc)
         val articleImage = resources.obtainTypedArray(R.array.article_image)
@@ -57,6 +60,5 @@ class ArticlesFragment : Fragment() {
             recycler.layoutManager = LinearLayoutManager(requireContext())
             recycler.adapter = adapter
         }
-
     }
 }

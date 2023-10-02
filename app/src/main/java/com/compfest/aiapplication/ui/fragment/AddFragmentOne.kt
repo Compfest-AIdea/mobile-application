@@ -32,32 +32,17 @@ class AddFragmentOne : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAddOneBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setInputFieldBehavior()
-
         Log.d("ThisFragment", thisFragmentName.toString())
-        val nextButton = binding.btnNextOne
-        nextButton.setOnClickListener {
-            val stayUpLate = binding.stayUpLate.text.toString()
-            val coffeeConsumption = binding.coffeeConsumption.text.toString()
-            val brainWorkingDuration = binding.brainWorkingDuration.text.toString()
 
-            viewModel.saveDataFragmentOne(stayUpLate, coffeeConsumption, brainWorkingDuration)
-
-            val fragment = AddFragmentTwo()
-            fragment.arguments = Bundle().apply { putString("Fragment", fragment::class.java.simpleName) }
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, fragment)
-                .addToBackStack("$thisFragmentName to ${fragment::class.java.simpleName}")
-                .commit()
-        }
+        setInputFieldBehavior()
+        setNextButtonAction()
     }
 
     private fun setInputFieldBehavior() {
@@ -90,5 +75,23 @@ class AddFragmentOne : Fragment() {
                 }
             }
         })
+    }
+
+    private fun setNextButtonAction() {
+        val nextButton = binding.btnNextOne
+        nextButton.setOnClickListener {
+            val stayUpLate = binding.stayUpLate.text.toString()
+            val coffeeConsumption = binding.coffeeConsumption.text.toString()
+            val brainWorkingDuration = binding.brainWorkingDuration.text.toString()
+
+            viewModel.saveDataFragmentOne(stayUpLate, coffeeConsumption, brainWorkingDuration)
+
+            val fragment = AddFragmentTwo()
+            fragment.arguments = Bundle().apply { putString("Fragment", fragment::class.java.simpleName) }
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack("$thisFragmentName to ${fragment::class.java.simpleName}")
+                .commit()
+        }
     }
 }

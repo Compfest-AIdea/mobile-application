@@ -28,10 +28,6 @@ class HomeFragment : Fragment() {
         PredictionAdapter(::onPredictionClick)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,9 +46,18 @@ class HomeFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity(), factory)[HomeViewModel::class.java]
 
         recycler.adapter = predictionAdapter
-        viewModel.predictionResult.observe(requireActivity()) {
-            predictionAdapter.submitList(it)
-        }
+        setListOfPrediction()
+        setRecentPrediction()
+    }
+
+    private fun onPredictionClick(predictionResult: PredictionResult) {
+        val intent = Intent(requireContext(), ResultActivity::class.java)
+        intent.putExtra(ResultActivity.EXTRA_ID, predictionResult.id)
+        intent.putExtra("origin", HomeFragment::class.java.simpleName)
+        startActivity(intent)
+    }
+
+    private fun setRecentPrediction() {
         viewModel.recentPredictionResult.observe(requireActivity()) { predictionResult ->
             if (predictionResult != null) {
                 binding.tvEmptyMessage.visibility = View.GONE
@@ -74,10 +79,9 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun onPredictionClick(predictionResult: PredictionResult) {
-        val intent = Intent(requireContext(), ResultActivity::class.java)
-        intent.putExtra(ResultActivity.EXTRA_ID, predictionResult.id)
-        intent.putExtra("origin", HomeFragment::class.java.simpleName)
-        startActivity(intent)
+    private fun setListOfPrediction() {
+        viewModel.predictionResult.observe(requireActivity()) {
+            predictionAdapter.submitList(it)
+        }
     }
 }

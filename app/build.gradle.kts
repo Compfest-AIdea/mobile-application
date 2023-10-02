@@ -58,6 +58,8 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.7.2")
     implementation("androidx.fragment:fragment-ktx:1.6.1")
 
+    implementation("androidx.paging:paging-runtime-ktx:3.2.0")
+
     val lifecycle_version = "2.5.1"
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
@@ -66,25 +68,13 @@ dependencies {
 
     val room_version = "2.5.2"
     implementation("androidx.room:room-runtime:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
     annotationProcessor("androidx.room:room-compiler:$room_version")
     kapt("androidx.room:room-compiler:$room_version")
-    // Kotlin Extensions and Coroutines support for Room
-    implementation("androidx.room:room-ktx:$room_version")
 
-    // Import the BoM for the Firebase platform
-    implementation(platform("com.google.firebase:firebase-bom:32.2.3"))
-
-    // Add the dependency for the Firebase SDK for Google Analytics
-    implementation("com.google.firebase:firebase-analytics-ktx")
-
-    // Add the dependency for the Firebase ML model downloader library
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation("com.google.firebase:firebase-ml-modeldownloader-ktx")
-
-    // Also add the dependency for the TensorFlow Lite library and specify its version
+    // Tensorflow Lite
     implementation("org.tensorflow:tensorflow-lite:2.3.0")
 
-    implementation("androidx.paging:paging-runtime-ktx:3.2.0")
-
+    // Glide
     implementation("com.github.bumptech.glide:glide:4.11.0")
 }
