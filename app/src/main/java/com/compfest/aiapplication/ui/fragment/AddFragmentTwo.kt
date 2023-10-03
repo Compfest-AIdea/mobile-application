@@ -34,26 +34,11 @@ class AddFragmentTwo : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setData()
-        val nextButton = binding.btnNextTwo
-        nextButton.setOnClickListener {
-            val pressureLevel = binding.spinnerLevelOfPressure.selectedItemPosition.toString()
-            val stressLevel = binding.spinnerLevelOfStress.selectedItemPosition.toString()
-            val swimming = binding.spinnerHaveSwimmedBool.selectedItemPosition.toString()
-            val hairWashing = binding.spinnerHairWashedBool.selectedItemPosition.toString()
-            val dandruff = binding.spinnerDandruffConditionLvl.selectedItemPosition.toString()
-            viewModel.saveDataFragmentTwo(pressureLevel, stressLevel, swimming, hairWashing, dandruff)
-
-            val fragment = AddFragmentThree()
-            fragment.arguments = Bundle().apply { putString("Fragment", fragment::class.java.simpleName) }
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, fragment)
-                .addToBackStack("$thisFragmentName to ${fragment::class.java.simpleName}")
-                .commit()
-        }
+        setSpinner()
+        setButton()
     }
 
-    private fun setData() {
+    private fun setSpinner() {
         val senseLevel = resources.getStringArray(R.array.sense_level)
         val boolVal = resources.getStringArray(R.array.bool_val)
         val conditionLevel = resources.getStringArray(R.array.condition_level)
@@ -76,6 +61,25 @@ class AddFragmentTwo : Fragment() {
         binding.spinnerDandruffConditionLvl.apply {
             adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, conditionLevel)
             setSelection(0)
+        }
+    }
+
+    private fun setButton() {
+        val nextButton = binding.btnNextTwo
+        nextButton.setOnClickListener {
+            val pressureLevel = binding.spinnerLevelOfPressure.selectedItemPosition.toString()
+            val stressLevel = binding.spinnerLevelOfStress.selectedItemPosition.toString()
+            val swimming = binding.spinnerHaveSwimmedBool.selectedItemPosition.toString()
+            val hairWashing = binding.spinnerHairWashedBool.selectedItemPosition.toString()
+            val dandruff = binding.spinnerDandruffConditionLvl.selectedItemPosition.toString()
+            viewModel.saveDataFragmentTwo(pressureLevel, stressLevel, swimming, hairWashing, dandruff)
+
+            val fragment = AddFragmentThree()
+            fragment.arguments = Bundle().apply { putString("Fragment", fragment::class.java.simpleName) }
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack("$thisFragmentName to ${fragment::class.java.simpleName}")
+                .commit()
         }
     }
 }
