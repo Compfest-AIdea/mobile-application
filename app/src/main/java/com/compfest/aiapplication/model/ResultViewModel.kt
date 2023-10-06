@@ -1,15 +1,12 @@
 package com.compfest.aiapplication.model
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.compfest.aiapplication.data.PredictionImageInput
-import com.compfest.aiapplication.data.PredictionTabularInput
-import com.compfest.aiapplication.data.PredictionImageResult
 import com.compfest.aiapplication.data.PredictionRepository
 import com.compfest.aiapplication.data.PredictionResult
-import com.compfest.aiapplication.data.PredictionTabularResult
+import com.compfest.aiapplication.data.PredictionTabularInput
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

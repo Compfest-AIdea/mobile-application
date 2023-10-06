@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.compfest.aiapplication.R
 import com.compfest.aiapplication.data.Article
-import com.compfest.aiapplication.databinding.FragmentAddThreeBinding
 import com.compfest.aiapplication.databinding.FragmentArticlesBinding
 import com.compfest.aiapplication.ui.activity.ArticleActivity
 import com.compfest.aiapplication.ui.adapter.ArticleAdapter

@@ -1,12 +1,10 @@
 package com.compfest.aiapplication.model
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.compfest.aiapplication.data.PredictionImageInput
 import com.compfest.aiapplication.data.PredictionTabularInput
-import com.compfest.aiapplication.ui.fragment.AddFragmentThree
 
 class AddViewModel: ViewModel() {
     val viewModelName: String = AddViewModel::class.java.simpleName

@@ -1,9 +1,7 @@
 package com.compfest.aiapplication.ui.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import androidx.recyclerview.widget.RecyclerView
 import com.compfest.aiapplication.data.Article
 import com.compfest.aiapplication.databinding.ArticleItemBinding

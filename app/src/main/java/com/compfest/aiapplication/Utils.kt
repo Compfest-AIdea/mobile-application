@@ -90,7 +90,7 @@ fun convertLongToDateString(timeInMillis: Long): String {
     return dateFormat.format(date)
 }
 
-fun loadJsonFromAssets(context: Context, fileName: String): String {
+fun loadJsonFromAssets(fileName: String, context: Context): String {
     return try {
         val inputStream = context.assets.open(fileName)
         val size = inputStream.available()
@@ -104,7 +104,7 @@ fun loadJsonFromAssets(context: Context, fileName: String): String {
     }
 }
 
-fun loadFaqDataFromJson(context: Context): List<FaQ> {
-    val jsonFile = loadJsonFromAssets(context, "faq_list.json")
+fun loadFaqDataFromJson(fileName: String, context: Context): List<FaQ> {
+    val jsonFile = loadJsonFromAssets(fileName, context)
     return Json.decodeFromString(jsonFile)
 }

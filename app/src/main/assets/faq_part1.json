@@ -20,6 +20,37 @@
         ]
     },
     {
+        "q":"Bagaimana cara mengakses artikel kesehatan di Scalpsense?",
+        "a":[
+            "1.Masuk aplikasi Scalpsense",
+            "2.Klik tombol garis tiga"
+        ]
+    },
+    {
+        "q":"Apakah artikel kesehatan di Scalpsense disusun oleh ahli medis?",
+        "a":[
+            "Untuk saat ini, artikel yang terdapat pada Scalpsense diambil dari website-website kesehatan tepercaya."
+        ]
+    },
+    {
+        "q":"Bagaimana saya dapat menghubungi tim dukungan Scalpsense jika saya memiliki pertanyaan atau masalah teknis?",
+        "a":[
+            "Anda dapat menghubungi kami pada kontak e-mail halo.scalpsense@gmail.com dan whatsapp +6285161115099"
+        ]
+    },
+    {
+        "q":"Apakah Scalpsense tersedia secara gratis atau berbayar?",
+        "a":[
+            "Untuk saat ini, seluruh fitur Scalpsense tersedia secara gratis."
+        ]
+    },
+    {
+        "q":"Bagaimana keamanan data saya saat menggunakan Scalpsense?",
+        "a":[
+            "Scalpsense tidak meminta data pribadi selain nama pengguna. Penyimpanan data Scalpsense juga dilakukan secara lokal pada ponsel pengguna masing-masing sehingga mengurangi risiko kebocoran data."
+        ]
+    },
+    {
         "q":"Apa saja kondisi kulit kepala yang dapat dideteksi oleh Scalpsense?",
         "a":[
             "Scalpsense dapat mendeteksi 5 kondisi kulit kepala: normal, alopecia areata, scalp psoriasis, sebhorreic dermatitis, tinea capitis. Saat hasil deteksi keluar, detail kondisi atau penyakit akan ditampilkan. Penjelasan menyeluruh setiap penyakit juga dapat Anda cari melalui fitur Artikel."
@@ -29,6 +60,6 @@
         "q":"Apa yang harus saya lakukan jika Scalpsense mendeteksi masalah pada kulit kepala atau rambut saya?",
         "a":[
             "Untuk saat ini, Scalpsense terbatas pada fungsi deteksi dan edukasi. Jika kulit kepala atau rambut Anda terdeteksi bermasalah, kami menganjurkan Anda untuk memeriksakan diri lebih lanjut ke dokter terkait. Anda juga dapat menambah wawasan secara mandiri melalui fitur artikel yang terdapat pada Scalpsense."
-    ]
+        ]
     }
 ]

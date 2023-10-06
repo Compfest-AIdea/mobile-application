@@ -28,7 +28,7 @@ class AddActivity : AppCompatActivity() {
         binding.toolbar1.ivLogo.visibility = View.GONE
         binding.toolbar1.tvAppName.text = "Tambah Data"
         binding.toolbar1.btnGoHelp.setOnClickListener {
-            startActivity(Intent(this, FaqActivity::class.java))
+            startActivity(Intent(this, FaqActivity::class.java).putExtra(FaqActivity.ORIGIN, AddActivity::class.java.simpleName))
         }
 
         val fragment = AddFragmentOne()

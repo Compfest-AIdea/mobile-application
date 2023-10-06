@@ -1,12 +1,8 @@
 package com.compfest.aiapplication.ui.activity
 
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.webkit.WebSettings
-import android.webkit.WebViewClient
-import androidx.core.text.HtmlCompat
-import com.compfest.aiapplication.R
+import androidx.appcompat.app.AppCompatActivity
 import com.compfest.aiapplication.data.Article
 import com.compfest.aiapplication.databinding.ActivityArticleBinding
 
