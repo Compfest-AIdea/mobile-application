@@ -1,0 +1,34 @@
+[
+    {
+        "q":"Apa itu Scalpsense?",
+        "a":[
+            "Scalpsense adalah aplikasi e-health yang memanfaatkan kecerdasaan buatan (AI) untuk mendeteksi kesehatan kulit kepala berdasarkan gambar dan menilai tingkat kerontokan rambut."
+        ]
+    },
+    {
+        "q":"Bagaimana cara menggunakan fitur deteksi kesehatan kulit kepala dan kerontokan rambut di Scalpsense?",
+        "a":[
+            "1.Masuk ke aplikasi Scalpsense",
+            "2.Klik tombol +",
+            "3.Isikan data yang dibutuhkan pada formulir",
+            "4.Klik ikon + pada bagian Data Gambar",
+            "5.Klik ikon foto",
+            "6.Fotokan kulit kepala yang ingin dideteksi",
+            "7.Pastikan foto benar-benar menunjukkan bagian kulit kepala",
+            "8.Klik tombol save",
+            "9.Klik tombol selesai"
+        ]
+    },
+    {
+        "q":"Apa saja kondisi kulit kepala yang dapat dideteksi oleh Scalpsense?",
+        "a":[
+            "Scalpsense dapat mendeteksi 5 kondisi kulit kepala: normal, alopecia areata, scalp psoriasis, sebhorreic dermatitis, tinea capitis. Saat hasil deteksi keluar, detail kondisi atau penyakit akan ditampilkan. Penjelasan menyeluruh setiap penyakit juga dapat Anda cari melalui fitur Artikel."
+        ]
+    },
+    {
+        "q":"Apa yang harus saya lakukan jika Scalpsense mendeteksi masalah pada kulit kepala atau rambut saya?",
+        "a":[
+            "Untuk saat ini, Scalpsense terbatas pada fungsi deteksi dan edukasi. Jika kulit kepala atau rambut Anda terdeteksi bermasalah, kami menganjurkan Anda untuk memeriksakan diri lebih lanjut ke dokter terkait. Anda juga dapat menambah wawasan secara mandiri melalui fitur artikel yang terdapat pada Scalpsense."
+    ]
+    }
+]

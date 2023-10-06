@@ -1,6 +1,7 @@
 package com.compfest.aiapplication.ui.activity
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
@@ -26,6 +27,10 @@ class AddActivity : AppCompatActivity() {
 
         binding.toolbar1.ivLogo.visibility = View.GONE
         binding.toolbar1.tvAppName.text = "Tambah Data"
+        binding.toolbar1.btnGoHelp.setOnClickListener {
+            startActivity(Intent(this, FaqActivity::class.java))
+        }
+
         val fragment = AddFragmentOne()
         fragment.arguments = Bundle().apply { putString("Fragment", fragment::class.java.simpleName) }
         supportFragmentManager.beginTransaction()

@@ -35,6 +35,9 @@ class ResultActivity : AppCompatActivity() {
 
         binding.toolbar1.ivLogo.visibility = View.GONE
         binding.toolbar1.tvAppName.text = "Hasil Pemeriksaan"
+        binding.toolbar1.btnGoHelp.setOnClickListener {
+            startActivity(Intent(this, FaqActivity::class.java))
+        }
 
         val factory = ViewModelFactory.getInstance(this)
         viewModel = ViewModelProvider(this, factory)[ResultViewModel::class.java]

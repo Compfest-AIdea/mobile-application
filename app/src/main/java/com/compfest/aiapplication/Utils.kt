@@ -5,6 +5,8 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.widget.Toast
+import com.compfest.aiapplication.data.FaQ
+import kotlinx.serialization.json.Json
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -86,4 +88,23 @@ fun convertLongToDateString(timeInMillis: Long): String {
     dateFormat.timeZone = TimeZone.getDefault() // Set zona waktu lokal
     val date = Date(timeInMillis)
     return dateFormat.format(date)
+}
+
+fun loadJsonFromAssets(context: Context, fileName: String): String {
+    return try {
+        val inputStream = context.assets.open(fileName)
+        val size = inputStream.available()
+        val buffer = ByteArray(size)
+        inputStream.read(buffer)
+        inputStream.close()
+        String(buffer, Charsets.UTF_8)
+    } catch (e: Exception) {
+        e.printStackTrace()
+        ""
+    }
+}
+
+fun loadFaqDataFromJson(context: Context): List<FaQ> {
+    val jsonFile = loadJsonFromAssets(context, "faq_list.json")
+    return Json.decodeFromString(jsonFile)
 }

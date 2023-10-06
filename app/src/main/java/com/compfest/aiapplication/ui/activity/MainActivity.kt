@@ -28,6 +28,9 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         if (!userName.isNullOrBlank()) {
             binding.toolbar1.tvAppName.text = "Halo, ".plus(userName.capitalize())
         }
+        binding.toolbar1.btnGoHelp.setOnClickListener {
+            startActivity(Intent(this, FaqActivity::class.java))
+        }
 
         binding.bottomNavView.menu.getItem(1).isEnabled = false
         binding.bottomNavView.setOnItemSelectedListener(this)
