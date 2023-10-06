@@ -60,13 +60,14 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.6.1")
 
     implementation("androidx.paging:paging-runtime-ktx:3.2.0")
-
+    
     val lifecycle_version = "2.5.1"
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
     // LiveData
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
 
+    // RoomDB
     val room_version = "2.5.2"
     implementation("androidx.room:room-runtime:$room_version")
     implementation("androidx.room:room-ktx:$room_version")

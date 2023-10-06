@@ -30,7 +30,6 @@ class AddActivity : AppCompatActivity() {
         binding.toolbar1.btnGoHelp.setOnClickListener {
             startActivity(Intent(this, FaqActivity::class.java).putExtra(FaqActivity.ORIGIN, AddActivity::class.java.simpleName))
         }
-
         val fragment = AddFragmentOne()
         fragment.arguments = Bundle().apply { putString("Fragment", fragment::class.java.simpleName) }
         supportFragmentManager.beginTransaction()

@@ -76,7 +76,7 @@ class HomeFragment : Fragment() {
             }
         }
     }
-
+    
     private fun setListOfPrediction() {
         viewModel.predictionResult.observe(requireActivity()) {
             predictionAdapter.submitList(it)

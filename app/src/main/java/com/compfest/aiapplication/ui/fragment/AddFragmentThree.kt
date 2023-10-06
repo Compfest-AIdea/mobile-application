@@ -249,7 +249,7 @@ class AddFragmentThree : Fragment() {
             }
         }
     }
-
+    
     companion object {
         const val REQUEST_IMAGE_CAPTURE = 101
     }

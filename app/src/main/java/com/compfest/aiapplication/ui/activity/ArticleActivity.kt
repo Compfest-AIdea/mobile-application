@@ -22,10 +22,6 @@ class ArticleActivity : AppCompatActivity() {
 
     private fun setArticle(article: Article) {
         binding.tvArticleTitle.text = article.title
-        //binding.web.loadUrl("https://www.alodokter.com/dermatitis-seboroik")
-        //binding.web.settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
-        //binding.web.settings.javaScriptEnabled = true
-        //binding.web.webViewClient = WebViewClient()
         binding.tvArticleStory.text = article.story
         binding.ivArticleImage.setImageResource(article.imagePath)
     }
