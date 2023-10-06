@@ -6,11 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.compfest.aiapplication.R
 import com.compfest.aiapplication.convertLongToDateString
 import com.compfest.aiapplication.data.PredictionResult
 import com.compfest.aiapplication.databinding.FragmentHomeBinding
@@ -26,10 +24,6 @@ class HomeFragment : Fragment() {
     private lateinit var recycler: RecyclerView
     private val predictionAdapter: PredictionAdapter by lazy {
         PredictionAdapter(::onPredictionClick)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
@@ -50,9 +44,18 @@ class HomeFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity(), factory)[HomeViewModel::class.java]
 
         recycler.adapter = predictionAdapter
-        viewModel.predictionResult.observe(requireActivity()) {
-            predictionAdapter.submitList(it)
-        }
+        setListOfPrediction()
+        setRecentPrediction()
+    }
+
+    private fun onPredictionClick(predictionResult: PredictionResult) {
+        val intent = Intent(requireContext(), ResultActivity::class.java)
+        intent.putExtra(ResultActivity.EXTRA_ID, predictionResult.id)
+        intent.putExtra("origin", HomeFragment::class.java.simpleName)
+        startActivity(intent)
+    }
+
+    private fun setRecentPrediction() {
         viewModel.recentPredictionResult.observe(requireActivity()) { predictionResult ->
             if (predictionResult != null) {
                 binding.tvEmptyMessage.visibility = View.GONE
@@ -73,11 +76,10 @@ class HomeFragment : Fragment() {
             }
         }
     }
-
-    private fun onPredictionClick(predictionResult: PredictionResult) {
-        val intent = Intent(requireContext(), ResultActivity::class.java)
-        intent.putExtra(ResultActivity.EXTRA_ID, predictionResult.id)
-        intent.putExtra("origin", HomeFragment::class.java.simpleName)
-        startActivity(intent)
+    
+    private fun setListOfPrediction() {
+        viewModel.predictionResult.observe(requireActivity()) {
+            predictionAdapter.submitList(it)
+        }
     }
 }

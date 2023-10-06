@@ -6,7 +6,6 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.compfest.aiapplication.R
@@ -35,6 +34,9 @@ class ResultActivity : AppCompatActivity() {
 
         binding.toolbar1.ivLogo.visibility = View.GONE
         binding.toolbar1.tvAppName.text = "Hasil Pemeriksaan"
+        binding.toolbar1.btnGoHelp.setOnClickListener {
+            startActivity(Intent(this, FaqActivity::class.java).putExtra(FaqActivity.ORIGIN, ResultActivity::class.java.simpleName))
+        }
 
         val factory = ViewModelFactory.getInstance(this)
         viewModel = ViewModelProvider(this, factory)[ResultViewModel::class.java]

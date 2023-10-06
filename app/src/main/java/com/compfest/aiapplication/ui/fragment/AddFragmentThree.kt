@@ -2,12 +2,10 @@ package com.compfest.aiapplication.ui.fragment
 
 import android.Manifest
 import android.app.Activity
-import android.content.Context.CAMERA_SERVICE
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.hardware.camera2.CameraManager
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -17,7 +15,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.compfest.aiapplication.CAMERA_PERMISSION_REQUEST
@@ -66,27 +63,8 @@ class AddFragmentThree : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setImageCaptureButton()
-
-        val btnSubmitAll = binding.btnSubmitAll
-        btnSubmitAll.setOnClickListener {
-            if (viewModel.getImage() != null) {
-                val resultTabular = tryingMLTabular()
-                val resultImage = tryingMLImage()
-                val intent = Intent(requireContext(), ResultActivity::class.java)
-                intent.apply {
-                    putExtra("origin", AddFragmentThree::class.java.simpleName)
-                    putExtra(ResultActivity.EXTRA_RESULT_TABULAR, resultTabular)
-                    putExtra(ResultActivity.EXTRA_RESULT_IMAGE, resultImage)
-                    putExtra(ResultActivity.EXTRA_PREDICTION_TABULAR_INPUT, viewModel.getParcelableTabularInputData())
-                    putExtra(ResultActivity.EXTRA_PREDICTION_IMAGE_INPUT, viewModel.getParcelableImageInputData())
-                }
-                startActivity(intent)
-                requireActivity().finish()
-            } else {
-                Toast.makeText(requireContext(), "Tolong, isi data gambar terlebih dahulu", Toast.LENGTH_SHORT).show()
-            }
-        }
+        setImageCaptureDialog()
+        setButton()
     }
 
     @Suppress("DEPRECATION")
@@ -207,7 +185,7 @@ class AddFragmentThree : Fragment() {
         return result
     }
 
-    private fun setImageCaptureButton() {
+    private fun setImageCaptureDialog() {
         val bsAddImages = BottomSheetDialog(requireContext())
         binding.ifbAddImages.setOnClickListener {
             setBottomSheet(bsAddImages)
@@ -250,6 +228,28 @@ class AddFragmentThree : Fragment() {
         dialog.show()
     }
 
+    private fun setButton() {
+        val btnSubmitAll = binding.btnSubmitAll
+        btnSubmitAll.setOnClickListener {
+            if (viewModel.getImage() != null) {
+                val resultTabular = tryingMLTabular()
+                val resultImage = tryingMLImage()
+                val intent = Intent(requireContext(), ResultActivity::class.java)
+                intent.apply {
+                    putExtra("origin", AddFragmentThree::class.java.simpleName)
+                    putExtra(ResultActivity.EXTRA_RESULT_TABULAR, resultTabular)
+                    putExtra(ResultActivity.EXTRA_RESULT_IMAGE, resultImage)
+                    putExtra(ResultActivity.EXTRA_PREDICTION_TABULAR_INPUT, viewModel.getParcelableTabularInputData())
+                    putExtra(ResultActivity.EXTRA_PREDICTION_IMAGE_INPUT, viewModel.getParcelableImageInputData())
+                }
+                startActivity(intent)
+                requireActivity().finish()
+            } else {
+                Toast.makeText(requireContext(), "Tolong, isi data gambar terlebih dahulu", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+    
     companion object {
         const val REQUEST_IMAGE_CAPTURE = 101
     }

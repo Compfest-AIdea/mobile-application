@@ -1,0 +1,56 @@
+[
+    {
+        "q":"Apa yang harus saya lakukan setelah menerima hasil diagnosa?",
+        "a":[
+            "Setelah menerima hasil diagnosa, sangat penting untuk berkonsultasi dengan seorang profesional kesehatan seperti dokter untuk evaluasi lebih lanjut dan rekomendasi perawatan yang tepat."
+        ]
+    },
+    {
+        "q":"Seberapa akurat hasil diagnosa ini?",
+        "a":[
+            "Hasil diagnosa ini didasarkan pada informasi yang Anda berikan dan kemudian dilakukan proses deteksi menggunakan machine learning dengan tingkat akurasi deteksi 92%. Namun, hasil deteksi ini bukanlah pengganti pendapat dokter.  Hasil deteksi hanya digunakan sebagai pendapat kedua/ tambahan setelah pendapat dan hasil diagnosa dokter/ spesialis"
+        ]
+    },
+    {
+        "q":"Apakah hasil diagnosa ini definitif?",
+        "a":[
+            "Tidak, hasil diagnosa ini hanya sebagai panduan awal. Dokter akan melakukan evaluasi lebih lanjut dan mungkin melakukan tes tambahan untuk diagnosis yang lebih pasti."
+        ]
+    },
+    {
+        "q":"Apakah aplikasi ini menggantikan kunjungan ke dokter?",
+        "a":[
+            "Tidak, aplikasi ini tidak menggantikan konsultasi dokter. Selalu konsultasikan hasil diagnosa dengan dokter Anda untuk perawatan yang tepat."
+        ]
+    },
+    {
+        "q":"Apa yang harus saya lakukan jika saya tidak setuju dengan hasil diagnosa?",
+        "a":[
+            "Jika Anda merasa hasil diagnosa tidak akurat atau memiliki pertanyaan, konsultasikan dengan dokter Anda. Mereka dapat memberikan penjelasan lebih lanjut dan panduan yang sesuai."
+        ]
+    },
+    {
+        "q":"Berapa lama hasil diagnosa ini berlaku?",
+        "a":[
+            "Hasil diagnosa ini berlaku untuk saat ini berdasarkan informasi yang Anda berikan. Kondisi kesehatan Anda dapat berubah, jadi selalu penting untuk tetap mengikuti perawatan dan pemantauan yang disarankan oleh dokter."
+        ]
+    },
+    {
+        "q":"Apakah ada langkah-langkah pencegahan yang dapat saya ambil?",
+        "a":[
+            "Pada umumnya, aplikasi ini akan memberikan saran pencegahan umum terkait penyakit atau kondisi tertentu. Namun, konsultasikan dengan dokter Anda untuk rekomendasi pencegahan yang lebih khusus."
+        ]
+    },
+    {
+        "q":"Apa yang harus saya lakukan jika saya memiliki pertanyaan tambahan?",
+        "a":[
+            "Jika Anda memiliki pertanyaan lebih lanjut atau perlu klarifikasi, jangan ragu untuk menghubungi tim dukungan aplikasi kami melalui email."
+        ]
+    },
+    {
+        "q":"Bagaimana cara saya menyimpan atau mencetak hasil diagnosa ini?",
+        "a":[
+            "Biasanya, aplikasi akan memberikan opsi untuk menyimpan atau mencetak hasil diagnosa. Ikuti panduan yang disediakan dalam aplikasi untuk melakukannya."
+        ]
+    }
+]
