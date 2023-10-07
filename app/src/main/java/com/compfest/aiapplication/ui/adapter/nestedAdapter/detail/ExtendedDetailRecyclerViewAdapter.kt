@@ -3,10 +3,9 @@ package com.compfest.aiapplication.ui.adapter.nestedAdapter.detail
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.compfest.aiapplication.databinding.AnswerItemBinding
 import com.compfest.aiapplication.databinding.ExpandedDetailItemBinding
 
-class ChildRecyclerViewAdapter(private val childItemList: List<String>): RecyclerView.Adapter<ChildRecyclerViewAdapter.ChildViewHolder>() {
+class ExtendedDetailRecyclerViewAdapter(private val extendedDetailItemList: List<String>): RecyclerView.Adapter<ExtendedDetailRecyclerViewAdapter.ChildViewHolder>() {
     inner class ChildViewHolder(itemBinding: ExpandedDetailItemBinding): RecyclerView.ViewHolder(itemBinding.root) {
         val childTvDesc = itemBinding.childDescription
     }
@@ -16,10 +15,10 @@ class ChildRecyclerViewAdapter(private val childItemList: List<String>): Recycle
         return ChildViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = childItemList.size
+    override fun getItemCount(): Int = extendedDetailItemList.size
 
     override fun onBindViewHolder(holder: ChildViewHolder, position: Int) {
-        val childItem = childItemList[position]
+        val childItem = extendedDetailItemList[position]
         holder.childTvDesc.text = childItem
     }
 }

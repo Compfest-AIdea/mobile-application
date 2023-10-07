@@ -1,11 +1,9 @@
 package com.compfest.aiapplication.ui.activity
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.util.TypedValue
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -24,7 +22,7 @@ import com.compfest.aiapplication.getImageFromExternalStorage
 import com.compfest.aiapplication.loadDataFromJson
 import com.compfest.aiapplication.model.ResultViewModel
 import com.compfest.aiapplication.model.ViewModelFactory
-import com.compfest.aiapplication.ui.adapter.nestedAdapter.detail.ChildRecyclerViewAdapter
+import com.compfest.aiapplication.ui.adapter.nestedAdapter.detail.ExtendedDetailRecyclerViewAdapter
 import com.compfest.aiapplication.ui.fragment.HomeFragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlinx.serialization.json.Json
@@ -146,11 +144,22 @@ class ResultActivity : AppCompatActivity() {
             }
         }
         val maxValIndex = tabularResult.indexOf(maxVal)
-        when (maxValIndex) {
-            3 -> { return "Serious Hair Loss" }
-            2 -> { return "Hair Loss" }
-            1 -> { return "Slight Hair Loss" }
-            else -> { return "Normal" }
+        return when (maxValIndex) {
+            3 -> {
+                "Serious Hair Loss"
+            }
+
+            2 -> {
+                "Hair Loss"
+            }
+
+            1 -> {
+                "Slight Hair Loss"
+            }
+
+            else -> {
+                "Normal"
+            }
         }
     }
 
@@ -171,12 +180,26 @@ class ResultActivity : AppCompatActivity() {
             }
         }
         val disesaseName = resources.getStringArray(R.array.disease_name)
-        when (maxValIndex) {
-            4 -> { return disesaseName[0] }
-            3 -> { return disesaseName[1] }
-            2 -> { return disesaseName[2] }
-            1 -> { return "normal" }
-            else -> { return disesaseName[3] }
+        return when (maxValIndex) {
+            4 -> {
+                disesaseName[0]
+            }
+
+            3 -> {
+                disesaseName[1]
+            }
+
+            2 -> {
+                disesaseName[2]
+            }
+
+            1 -> {
+                "normal"
+            }
+
+            else -> {
+                disesaseName[3]
+            }
         }
     }
 
@@ -193,48 +216,40 @@ class ResultActivity : AppCompatActivity() {
 
         val diseaseName = resources.getStringArray(R.array.disease_name)
         val diseaseDesc = resources.getStringArray(R.array.disease_desc)
-        val diseaseArticle = resources.getStringArray(R.array.disease_article)
         when (imageResult) {
             diseaseName[0] -> {
                 bottomSheetBinding.tvDiseaseArticleTitle.text = diseaseName[0]
                 bottomSheetBinding.tvDisesaseArticleDesc.text = diseaseDesc[0]
-                //goToDetailLink(diseaseArticle[0], bottomSheetBinding)
                 showDetail()
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-                childRVavoid.adapter = ChildRecyclerViewAdapter(detailData[0].description.pencegahan)
-                childRVtreat.adapter = ChildRecyclerViewAdapter(detailData[0].description.pengobatan)
+                childRVavoid.adapter = ExtendedDetailRecyclerViewAdapter(detailData[0].description.pencegahan)
+                childRVtreat.adapter = ExtendedDetailRecyclerViewAdapter(detailData[0].description.pengobatan)
             }
             diseaseName[1] -> {
                 bottomSheetBinding.tvDiseaseArticleTitle.text = diseaseName[1]
                 bottomSheetBinding.tvDisesaseArticleDesc.text = diseaseDesc[1]
-                //goToDetailLink(diseaseArticle[1], bottomSheetBinding)
                 showDetail()
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-                childRVavoid.adapter = ChildRecyclerViewAdapter(detailData[1].description.pencegahan)
-                childRVtreat.adapter = ChildRecyclerViewAdapter(detailData[1].description.pengobatan)
+                childRVavoid.adapter = ExtendedDetailRecyclerViewAdapter(detailData[1].description.pencegahan)
+                childRVtreat.adapter = ExtendedDetailRecyclerViewAdapter(detailData[1].description.pengobatan)
             }
             diseaseName[2] -> {
                 bottomSheetBinding.tvDiseaseArticleTitle.text = diseaseName[2]
                 bottomSheetBinding.tvDisesaseArticleDesc.text = diseaseDesc[2]
-                //goToDetailLink(diseaseArticle[2], bottomSheetBinding)
                 showDetail()
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-                childRVavoid.adapter = ChildRecyclerViewAdapter(detailData[2].description.pencegahan)
-                childRVtreat.adapter = ChildRecyclerViewAdapter(detailData[2].description.pengobatan)
+                childRVavoid.adapter = ExtendedDetailRecyclerViewAdapter(detailData[2].description.pencegahan)
+                childRVtreat.adapter = ExtendedDetailRecyclerViewAdapter(detailData[2].description.pengobatan)
             }
             diseaseName[3] -> {
                 bottomSheetBinding.tvDiseaseArticleTitle.text = diseaseName[3]
                 bottomSheetBinding.tvDisesaseArticleDesc.text = diseaseDesc[3]
-                //goToDetailLink(diseaseArticle[3], bottomSheetBinding)
                 showDetail()
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-                childRVavoid.adapter = ChildRecyclerViewAdapter(detailData[3].description.pencegahan)
-                childRVtreat.adapter = ChildRecyclerViewAdapter(detailData[3].description.pengobatan)
+                childRVavoid.adapter = ExtendedDetailRecyclerViewAdapter(detailData[3].description.pencegahan)
+                childRVtreat.adapter = ExtendedDetailRecyclerViewAdapter(detailData[3].description.pengobatan)
             }
             else -> {
-                //bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
-                //bottomSheetBehavior.isHideable = true
-                //bottomSheetBehavior.isDraggable = false
                 bottomSheetBehavior.isHideable = false
                 bottomSheetBehavior.isDraggable = true
                 bottomSheetBinding.tvDiseaseArticleSource.text = "Sumber: Bestlife.com"
@@ -253,14 +268,6 @@ class ResultActivity : AppCompatActivity() {
                 //
             }
         })
-    }
-
-    private fun goToDetailLink(url: String, bottomSheetDetailBinding: BottomSheetDetailBinding) {
-        val uri = Uri.parse(url)
-        val intent = Intent(Intent.ACTION_VIEW, uri)
-        bottomSheetDetailBinding.btnGoDetail.setOnClickListener {
-            startActivity(intent)
-        }
     }
 
     private fun showDetail() {
