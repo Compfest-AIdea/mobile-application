@@ -4,10 +4,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.compfest.aiapplication.data.FaQ
 import com.compfest.aiapplication.data.nestedItem.FaqItem
 import com.compfest.aiapplication.databinding.ActivityFaqBinding
-import com.compfest.aiapplication.loadFaqDataFromJson
+import com.compfest.aiapplication.loadDataFromJson
 import com.compfest.aiapplication.ui.adapter.nestedItem.ParentRecyclerViewAdapter
+import kotlinx.serialization.json.Json
 
 class FaqActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFaqBinding
@@ -36,7 +38,8 @@ class FaqActivity : AppCompatActivity() {
 
     private fun getAdapterData(fileName: String): List<FaqItem> {
         val faqItem = ArrayList<FaqItem>()
-        val faqList = loadFaqDataFromJson(fileName, this)
+        val faqData = loadDataFromJson(fileName, this)
+        val faqList: List<FaQ> = Json.decodeFromString(faqData)
         for (faq in faqList) {
             faqItem.add(
                 FaqItem(question = faq.question, sublist = faq.answers)

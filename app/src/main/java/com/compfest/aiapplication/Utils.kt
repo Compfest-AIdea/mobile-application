@@ -104,7 +104,6 @@ fun loadJsonFromAssets(fileName: String, context: Context): String {
     }
 }
 
-fun loadFaqDataFromJson(fileName: String, context: Context): List<FaQ> {
-    val jsonFile = loadJsonFromAssets(fileName, context)
-    return Json.decodeFromString(jsonFile)
+fun loadDataFromJson(fileName: String, context: Context): String {
+    return loadJsonFromAssets(fileName, context)
 }
