@@ -63,5 +63,16 @@
                 "Ada beberapa cara mengatasi kebotakan yang dapat Anda coba agar rambut tumbuh kembali: Kortikosteroid, Salep imunoterapi, Methotrexate, Mengelola stres, Terapi hipnosis, Menggunakan gel bawang putih, Memakai minyak aromaterapi, Konsumsi makanan kaya zinc, tidak memakan makanan pantangan."
             ]
         }
+    },
+    {
+        "title":"Normal",
+        "description":{
+            "pencegahan":[
+                "1. Jangan terlalu sering keramas\n2. Gunakan produk sampo dan kondisioner yang tepat\n3. Melembapkan kulit kepala\n4. Hindari bahan kimia yang keras\n5. Sikat dan pijat untuk merangsang folikel\n6. Menjaga diet sehat dengan nutrisi yang tepat"
+            ],
+            "pengobatan":[
+                ""
+            ]
+        }
     }
 ]

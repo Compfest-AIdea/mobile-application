@@ -4,14 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.compfest.aiapplication.databinding.AnswerItemBinding
+import com.compfest.aiapplication.databinding.ExpandedDetailItemBinding
 
 class ChildRecyclerViewAdapter(private val childItemList: List<String>): RecyclerView.Adapter<ChildRecyclerViewAdapter.ChildViewHolder>() {
-    inner class ChildViewHolder(itemBinding: AnswerItemBinding): RecyclerView.ViewHolder(itemBinding.root) {
+    inner class ChildViewHolder(itemBinding: ExpandedDetailItemBinding): RecyclerView.ViewHolder(itemBinding.root) {
         val childTvDesc = itemBinding.childDescription
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChildViewHolder {
-        val binding: AnswerItemBinding = AnswerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding: ExpandedDetailItemBinding = ExpandedDetailItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ChildViewHolder(binding)
     }
 

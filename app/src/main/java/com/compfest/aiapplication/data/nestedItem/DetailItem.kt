@@ -4,6 +4,6 @@ import kotlinx.serialization.SerialName
 
 data class DetailItem(
     val title: String,
-    val description: List<String>,
+    val description: Description,
     var isExpanded: Boolean = false,
 )
