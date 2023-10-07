@@ -1,31 +1,37 @@
 package com.compfest.aiapplication.ui.activity
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.compfest.aiapplication.R
 import com.compfest.aiapplication.data.PredictionImageInput
 import com.compfest.aiapplication.data.PredictionImageResult
 import com.compfest.aiapplication.data.PredictionResult
 import com.compfest.aiapplication.data.PredictionTabularInput
 import com.compfest.aiapplication.data.PredictionTabularResult
+import com.compfest.aiapplication.data.nestedItem.Detail
 import com.compfest.aiapplication.databinding.ActivityResultBinding
 import com.compfest.aiapplication.databinding.BottomSheetDetailBinding
 import com.compfest.aiapplication.getCurrentTimeMillis
 import com.compfest.aiapplication.getImageFromExternalStorage
+import com.compfest.aiapplication.loadDataFromJson
 import com.compfest.aiapplication.model.ResultViewModel
 import com.compfest.aiapplication.model.ViewModelFactory
+import com.compfest.aiapplication.ui.adapter.nestedAdapter.detail.ExtendedDetailRecyclerViewAdapter
 import com.compfest.aiapplication.ui.fragment.HomeFragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import kotlinx.serialization.json.Json
 
 class ResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultBinding
     private lateinit var viewModel: ResultViewModel
+    private lateinit var bottomSheetBinding: BottomSheetDetailBinding
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<*>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +72,7 @@ class ResultActivity : AppCompatActivity() {
                 viewModel.saveResult(predictionResult)
             }
         }
+
     }
 
     companion object {
@@ -137,11 +144,22 @@ class ResultActivity : AppCompatActivity() {
             }
         }
         val maxValIndex = tabularResult.indexOf(maxVal)
-        when (maxValIndex) {
-            3 -> { return "Serious Hair Loss" }
-            2 -> { return "Hair Loss" }
-            1 -> { return "Slight Hair Loss" }
-            else -> { return "Normal" }
+        return when (maxValIndex) {
+            3 -> {
+                "Serious Hair Loss"
+            }
+
+            2 -> {
+                "Hair Loss"
+            }
+
+            1 -> {
+                "Slight Hair Loss"
+            }
+
+            else -> {
+                "Normal"
+            }
         }
     }
 
@@ -162,51 +180,83 @@ class ResultActivity : AppCompatActivity() {
             }
         }
         val disesaseName = resources.getStringArray(R.array.disease_name)
-        when (maxValIndex) {
-            4 -> { return disesaseName[0] }
-            3 -> { return disesaseName[1] }
-            2 -> { return disesaseName[2] }
-            1 -> { return "normal" }
-            else -> { return disesaseName[3] }
+        return when (maxValIndex) {
+            4 -> {
+                disesaseName[0]
+            }
+
+            3 -> {
+                disesaseName[1]
+            }
+
+            2 -> {
+                disesaseName[2]
+            }
+
+            1 -> {
+                "normal"
+            }
+
+            else -> {
+                disesaseName[3]
+            }
         }
     }
 
     private fun setBottomSheetDetail(imageResult: String) {
         val bottomSheetDetail: View = findViewById(R.id.bottom_sheet)
-        val bottomSheetBinding = BottomSheetDetailBinding.bind(bottomSheetDetail)
-        val bottomSheetBehavior: BottomSheetBehavior<*> = BottomSheetBehavior.from(bottomSheetDetail)
+        bottomSheetBinding = BottomSheetDetailBinding.bind(bottomSheetDetail)
+        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetDetail)
+
+        val childRVavoid = bottomSheetBinding.rvDiseaseExtendedDetail0
+        childRVavoid.layoutManager = LinearLayoutManager(this)
+        val childRVtreat = bottomSheetBinding.rvDiseaseExtendedDetail1
+        childRVtreat.layoutManager = LinearLayoutManager(this)
+        val detailData: List<Detail> = Json.decodeFromString(loadDataFromJson("detail_article.json", this))
+
         val diseaseName = resources.getStringArray(R.array.disease_name)
         val diseaseDesc = resources.getStringArray(R.array.disease_desc)
-        val diseaseArticle = resources.getStringArray(R.array.disease_article)
         when (imageResult) {
             diseaseName[0] -> {
                 bottomSheetBinding.tvDiseaseArticleTitle.text = diseaseName[0]
                 bottomSheetBinding.tvDisesaseArticleDesc.text = diseaseDesc[0]
-                goToDetailLink(diseaseArticle[0], bottomSheetBinding)
+                showDetail()
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                childRVavoid.adapter = ExtendedDetailRecyclerViewAdapter(detailData[0].description.pencegahan)
+                childRVtreat.adapter = ExtendedDetailRecyclerViewAdapter(detailData[0].description.pengobatan)
             }
             diseaseName[1] -> {
                 bottomSheetBinding.tvDiseaseArticleTitle.text = diseaseName[1]
                 bottomSheetBinding.tvDisesaseArticleDesc.text = diseaseDesc[1]
-                goToDetailLink(diseaseArticle[1], bottomSheetBinding)
+                showDetail()
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                childRVavoid.adapter = ExtendedDetailRecyclerViewAdapter(detailData[1].description.pencegahan)
+                childRVtreat.adapter = ExtendedDetailRecyclerViewAdapter(detailData[1].description.pengobatan)
             }
             diseaseName[2] -> {
                 bottomSheetBinding.tvDiseaseArticleTitle.text = diseaseName[2]
                 bottomSheetBinding.tvDisesaseArticleDesc.text = diseaseDesc[2]
-                goToDetailLink(diseaseArticle[2], bottomSheetBinding)
+                showDetail()
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                childRVavoid.adapter = ExtendedDetailRecyclerViewAdapter(detailData[2].description.pencegahan)
+                childRVtreat.adapter = ExtendedDetailRecyclerViewAdapter(detailData[2].description.pengobatan)
             }
             diseaseName[3] -> {
                 bottomSheetBinding.tvDiseaseArticleTitle.text = diseaseName[3]
                 bottomSheetBinding.tvDisesaseArticleDesc.text = diseaseDesc[3]
-                goToDetailLink(diseaseArticle[3], bottomSheetBinding)
+                showDetail()
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                childRVavoid.adapter = ExtendedDetailRecyclerViewAdapter(detailData[3].description.pencegahan)
+                childRVtreat.adapter = ExtendedDetailRecyclerViewAdapter(detailData[3].description.pengobatan)
             }
             else -> {
-                bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
-                bottomSheetBehavior.isHideable = true
-                bottomSheetBehavior.isDraggable = false
+                bottomSheetBehavior.isHideable = false
+                bottomSheetBehavior.isDraggable = true
+                bottomSheetBinding.tvDiseaseArticleSource.text = "Sumber: Bestlife.com"
+                bottomSheetBinding.tvDiseaseArticleTitle.text = "Tips perawatan kulit kepala normal"
+                bottomSheetBinding.tvDisesaseArticleDesc.text = detailData[4].description.pencegahan[0]
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                bottomSheetBinding.btnGoDetail.visibility = View.GONE
             }
         }
         bottomSheetBehavior.addBottomSheetCallback(object: BottomSheetBehavior.BottomSheetCallback() {
@@ -220,11 +270,15 @@ class ResultActivity : AppCompatActivity() {
         })
     }
 
-    private fun goToDetailLink(url: String, bottomSheetDetailBinding: BottomSheetDetailBinding) {
-        val uri = Uri.parse(url)
-        val intent = Intent(Intent.ACTION_VIEW, uri)
-        bottomSheetDetailBinding.btnGoDetail.setOnClickListener {
-            startActivity(intent)
+    private fun showDetail() {
+        bottomSheetBinding.btnGoDetail.setOnClickListener {
+            if (bottomSheetBinding.contentExtendedDetail.visibility == View.GONE) {
+                bottomSheetBinding.contentExtendedDetail.visibility = View.VISIBLE
+                bottomSheetBinding.btnGoDetail.text = "Sembunyikan Detail"
+            } else {
+                bottomSheetBinding.contentExtendedDetail.visibility = View.GONE
+                bottomSheetBinding.btnGoDetail.text = "Lihat Detail"
+            }
         }
     }
 }

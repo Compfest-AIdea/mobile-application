@@ -1,4 +1,4 @@
-package com.compfest.aiapplication.data
+package com.compfest.aiapplication.data.nestedItem
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
