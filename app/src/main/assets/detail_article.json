@@ -1,0 +1,67 @@
+[
+    {
+        "title":"Tinea",
+        "description":{
+            "pencegahan":[
+                "- Menjaga kebersihan kulit kepala dengan keramas secara teratur, terutama setelah potong rambut.",
+                "- Menjaga kebersihan dengan mandi dan mencuci tangan setiap setelah melakukan aktivitas yang rentan akan kotoran dan keringat.",
+                "- Jangan berbagi barang pribadi seperti pakaian, handuk, atau sikat rambut. Karena lebih mudah terjadi pada anak-anak, ajari si kecil untuk tidak meminjamkan peralatan pribadi.",
+                "- Bila memiliki hewan peliharaan, bawalah ke dokter untuk diperiksa kesehatannya secara rutin."
+            ],
+            "pengobatan":[
+                "Untuk mengatasi tinea capitis, pasien membutuhkan obat-obatan berefek sistemik, yang berarti obat bekerja dengan cara beredar ke seluruh tubuh melalui aliran darah. Obat sistemik dapat berupa obat oral (minum) atau obat injeksi (disuntik). Jenis yang paling sering diresepkan di antaranya adalah obat antijamur griseofulvin dan terbinafine."
+            ]
+        }
+    },
+    {
+        "title":"Seborrheic",
+        "description":{
+            "pencegahan":[
+                "Dermatitis seboroik tidak dapat dicegah. Bila Anda sudah pernah mengalaminya, beberapa upaya berikut dapat Anda lakukan untuk menghambat kambuhnya penyakit:",
+                "- Keramas dengan sampo antijamur selama 5 menit, lalu bilas hingga bersih. Untuk membersihkan tubuh, gunakan sabun yang dapat menghilangkan minyak untuk mencegah timbulnya bakteri dan jamur",
+                "- Jangan gunakan produk perawatan kulit dan rambut yang mengandung alkohol, karena dapat menyebabkan peradangan di kulit.",
+                "- Hentikan penggunaan hair spray, gel, atau produk penataan rambut yang dapat memicu kambuhnya dermatitis seboroik"
+            ],
+            "pengobatan":[
+                "Dermatitis seboroik dapat diatasi dengan sampo antiketombe yang dijual bebas. Sampo tersebut umumnya mengandung selenium sulfide, asam salisilat, sodium sulfasetamid, atau sulfur. Selain penanganan dengan sampo atau krim yang dijual bebas, beberapa upaya perawatan di rumah juga dapat dilakukan untuk mengendalikan peradangan ini. Upaya tersebut antara lain:",
+                "- Tidak menggaruk bagian tubuh yang terkena dermatitis seboroik, karena bisa memperparah iritasi dan meningkatkan risiko terjadinya infeksi.",
+                "- Mandi dan keramas secara teratur dengan membilas sabun atau sampo hingga benar-benar bersih, serta gunakan pelembap jika diperlukan.",
+                "- Tidak menggunakan sabun atau krim pencukur pada wajah karena dapat memicu iritasi kulit.",
+                "- Menggunakan baju dengan bahan katun yang halus untuk mengurangi iritasi di permukaan kulit.",
+                "Jika penanganan dengan sampo atau krim yang dijual bebas belum bisa mengatasi peradangan, maka dokter dapat meresepkan obat-obatan berikut: Kortikosteroid topikal (obat luar), Antijamur."
+            ]
+        }
+    },
+    {
+        "title":"Psoriasis",
+        "description":{
+            "pencegahan":[
+                "Meskipun tergolong penyakit autoimun, psoriasis merupakan penyakit yang dapat dicegah. Caranya adalah dengan menghindari faktor pemicunya. Beberapa upaya yang dapat dilakukan yaitu:",
+                "- Berhenti merokok",
+                "- Menghindari konsumsi minuman beralkohol",
+                "- Mengelola stres, misalnya dengan melakukan meditasi atau yoga",
+                "- Mengonsumsi makanan bergizi seimbang, termasuk sayuran, buah-buahan, dan kacang-kacangan",
+                "- Membersihkan dan menutup bagian yang mengalami luka, untuk mencegah infeksi kulit",
+                "- Mencuci tangan secara rutin untuk menghindari penularan penyakit infeksi",
+                "- Menggunakan tabir surya ketika akan beraktivitas di luar ruangan, untuk melindungi kulit dari paparan sinar UV",
+                "- Menggunakan losion pelembap agar kelembapan kulit tetap terjaga",
+                "- Berkonsultasi dengan dokter terkait konsumsi obat yang dapat memicu psoriasis, seperti lithium, propranolol, quinidine, dan indomethacin",
+                "- Tetap melanjutkan pengobatan meski gejala psoriasis telah reda"
+            ],
+            "pengobatan":[
+                "Berikut adalah berbagai pilihan pengobatan untuk mengatasi psoriasis kulit kepala: Sampo khusus psoriasis, Kondisioner, Obat oles, Pengobatan sistemik"
+            ]
+        }
+    },
+    {
+        "title":"Alopecia",
+        "description":{
+            "pencegahan":[
+                "Alopecia areata sulit untuk dicegah, mengingat penyebab pastinya belum diketahui. Meski demikian, bagi penderita penyakit autoimun, dianjurkan untuk melakukan kontrol secara rutin ke dokter untuk memantau kondisi."],
+            "pengobatan":[
+                "Sebenarnya hingga saat ini, belum ada pengobatan yang dapat menyembuhkan alopecia areata secara menyeluruh. Namun, obat-obatan tertentu dapat digunakan untuk merangsang pertumbuhan rambut kembali secara lebih cepat. Obat-obatan yang dapat diberikan, antara lain: Minoxidil, Kortikosteroid, Anthralin, Diphencyprone (DPCP).",
+                "Ada beberapa cara mengatasi kebotakan yang dapat Anda coba agar rambut tumbuh kembali: Kortikosteroid, Salep imunoterapi, Methotrexate, Mengelola stres, Terapi hipnosis, Menggunakan gel bawang putih, Memakai minyak aromaterapi, Konsumsi makanan kaya zinc, tidak memakan makanan pantangan."
+            ]
+        }
+    }
+]

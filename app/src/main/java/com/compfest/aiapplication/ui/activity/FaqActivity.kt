@@ -4,11 +4,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.compfest.aiapplication.data.FaQ
+import com.compfest.aiapplication.data.nestedItem.FaQ
 import com.compfest.aiapplication.data.nestedItem.FaqItem
 import com.compfest.aiapplication.databinding.ActivityFaqBinding
 import com.compfest.aiapplication.loadDataFromJson
-import com.compfest.aiapplication.ui.adapter.nestedItem.ParentRecyclerViewAdapter
+import com.compfest.aiapplication.ui.adapter.nestedAdapter.faq.ParentRecyclerViewAdapter
 import kotlinx.serialization.json.Json
 
 class FaqActivity : AppCompatActivity() {

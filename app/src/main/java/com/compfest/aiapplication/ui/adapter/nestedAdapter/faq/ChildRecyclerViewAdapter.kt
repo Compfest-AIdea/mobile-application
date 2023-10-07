@@ -1,4 +1,4 @@
-package com.compfest.aiapplication.ui.adapter.nestedItem
+package com.compfest.aiapplication.ui.adapter.nestedAdapter.faq
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

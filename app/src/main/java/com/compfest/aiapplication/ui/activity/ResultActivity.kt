@@ -8,20 +8,25 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.compfest.aiapplication.R
 import com.compfest.aiapplication.data.PredictionImageInput
 import com.compfest.aiapplication.data.PredictionImageResult
 import com.compfest.aiapplication.data.PredictionResult
 import com.compfest.aiapplication.data.PredictionTabularInput
 import com.compfest.aiapplication.data.PredictionTabularResult
+import com.compfest.aiapplication.data.nestedItem.Detail
 import com.compfest.aiapplication.databinding.ActivityResultBinding
 import com.compfest.aiapplication.databinding.BottomSheetDetailBinding
 import com.compfest.aiapplication.getCurrentTimeMillis
 import com.compfest.aiapplication.getImageFromExternalStorage
+import com.compfest.aiapplication.loadDataFromJson
 import com.compfest.aiapplication.model.ResultViewModel
 import com.compfest.aiapplication.model.ViewModelFactory
+import com.compfest.aiapplication.ui.adapter.nestedAdapter.detail.ChildRecyclerViewAdapter
 import com.compfest.aiapplication.ui.fragment.HomeFragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import kotlinx.serialization.json.Json
 
 class ResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultBinding
@@ -66,6 +71,7 @@ class ResultActivity : AppCompatActivity() {
                 viewModel.saveResult(predictionResult)
             }
         }
+
     }
 
     companion object {
@@ -175,6 +181,13 @@ class ResultActivity : AppCompatActivity() {
         val bottomSheetDetail: View = findViewById(R.id.bottom_sheet)
         val bottomSheetBinding = BottomSheetDetailBinding.bind(bottomSheetDetail)
         val bottomSheetBehavior: BottomSheetBehavior<*> = BottomSheetBehavior.from(bottomSheetDetail)
+
+        val childRVavoid = bottomSheetBinding.rvDiseaseExtendedDetail0
+        childRVavoid.layoutManager = LinearLayoutManager(this)
+        val childRVtreat = bottomSheetBinding.rvDiseaseExtendedDetail1
+        childRVtreat.layoutManager = LinearLayoutManager(this)
+        val detailData: List<Detail> = Json.decodeFromString(loadDataFromJson("detail_article.json", this))
+
         val diseaseName = resources.getStringArray(R.array.disease_name)
         val diseaseDesc = resources.getStringArray(R.array.disease_desc)
         val diseaseArticle = resources.getStringArray(R.array.disease_article)
@@ -184,24 +197,36 @@ class ResultActivity : AppCompatActivity() {
                 bottomSheetBinding.tvDisesaseArticleDesc.text = diseaseDesc[0]
                 goToDetailLink(diseaseArticle[0], bottomSheetBinding)
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                bottomSheetBinding.contentExtendedDetail.visibility = View.VISIBLE
+                childRVavoid.adapter = ChildRecyclerViewAdapter(detailData[0].description.pencegahan)
+                childRVtreat.adapter = ChildRecyclerViewAdapter(detailData[0].description.pengobatan)
             }
             diseaseName[1] -> {
                 bottomSheetBinding.tvDiseaseArticleTitle.text = diseaseName[1]
                 bottomSheetBinding.tvDisesaseArticleDesc.text = diseaseDesc[1]
                 goToDetailLink(diseaseArticle[1], bottomSheetBinding)
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                bottomSheetBinding.contentExtendedDetail.visibility = View.VISIBLE
+                childRVavoid.adapter = ChildRecyclerViewAdapter(detailData[1].description.pencegahan)
+                childRVtreat.adapter = ChildRecyclerViewAdapter(detailData[1].description.pengobatan)
             }
             diseaseName[2] -> {
                 bottomSheetBinding.tvDiseaseArticleTitle.text = diseaseName[2]
                 bottomSheetBinding.tvDisesaseArticleDesc.text = diseaseDesc[2]
                 goToDetailLink(diseaseArticle[2], bottomSheetBinding)
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                bottomSheetBinding.contentExtendedDetail.visibility = View.VISIBLE
+                childRVavoid.adapter = ChildRecyclerViewAdapter(detailData[2].description.pencegahan)
+                childRVtreat.adapter = ChildRecyclerViewAdapter(detailData[2].description.pengobatan)
             }
             diseaseName[3] -> {
                 bottomSheetBinding.tvDiseaseArticleTitle.text = diseaseName[3]
                 bottomSheetBinding.tvDisesaseArticleDesc.text = diseaseDesc[3]
                 goToDetailLink(diseaseArticle[3], bottomSheetBinding)
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                bottomSheetBinding.contentExtendedDetail.visibility = View.VISIBLE
+                childRVavoid.adapter = ChildRecyclerViewAdapter(detailData[4].description.pencegahan)
+                childRVtreat.adapter = ChildRecyclerViewAdapter(detailData[4].description.pengobatan)
             }
             else -> {
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
